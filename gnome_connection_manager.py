@@ -8,165 +8,19 @@
 # Warning: Do not modify any context comment such as #--
 # They are required to keep user's code
 
-# Gnome Connection Manager
-# Renzo Bertuzzi (kuthulu@gmail.com) - CHILE
-#
-#TODO
-# - help
-# - drag'n drop hosts entre grupos
-# - sftp
-# - master password (When starting the application)
-# - Save open console status (and split status)
-# - Review search engine, sometimes can not find the words
-# - Shortcut to move between notebooks
-# - Remove the "accelerator" from the .glade file (or leave them optional)
-# - Picocom (or minicom, or pyserial, ser2net) support for serial communication
-# - Allow modify combination to close application CTRL + Q
-# - Icon in system tray
-# - Remove ALT + F shortcut for file
-# - Allow disabling shortcuts
-# - Socks / http proxy support for ssh
-# - cluster mode: would be nice to have a drop-down list on the cluster button and once selected \"the text to send to hosts box\" should be activated on the right of the cluster button. The box should stay on the toolbar and not over the terminal window
-# - hide chars** in cluster mode (un checkbox para mostrar/ocultar entrada)
-# - Select multiple hosts and connect
-# - Select multiple hosts and edit them
-# - Allow to set color at group level
-# - Allow change group name
-# - overwrite colors (like putty)
-# - Change charset in console or in host properties
-# - One "nice to have" would be the ability for GCM to use my existing PuTTY sessions instead of entering everything a second time. External script for that that parses ~/putty/session files
-# - Enter passwords in commands and hide them, #P=password (Angelo Corsaro). TextView doesnt support masking text, it needs a different implementation. Pending.
-# - Persist history of cluster commands. is it really necessary?
-# - Option to disable shortcuts
-#
-#Changelog:
-# v1.1.0 - Bugfix: public key field was not saved (thanks to Benoît Georgelin for reporting the bug)
-#        - Bugfix: bug in AES library resulted in blank passwords randomly being replaced by some characters (thanks to Boyan Peychev for reporting the bug)
-#        - Bugfix: drag and release tab on the same notebook caused tab to be closed
-#        - Bugfix: Estado de nodos expandidos/contraidos se revertia a un estado anterior al editar por segunda vez un host
-#        - Bugfix: Cluster window had to be resized to show the text area in some setups
-#        - Bugfix: Blank lines in commands were removed when restarting application (thanks to Nicholas O'Neill for reporting the bug)
-#        - Se agrega traducción a koreano (thanks to Jong Hoon Lee)
-#        - Better indentation in server panel
-#        - Disabled the horizontal scroll bar in the console
-#        - Added option to open local console on application startup (thanks to Boaman Surebun for the implementation)
-#        - Se agrega opción para copiar todo el buffer al porta-papeles
-#        - Se usa la consola por defecto del usuario en vez de bash
-#        - Se exponen algunos shortcuts
-#        - Added menu with servers list
-#
-# v1.0.0 - Bugfix: last group was collapsed when adding/editing a new host. All collapsed nodes are preserved now. (thanks to Kevin Brennan for reporting the bug)
-#        - Bugfix: importing servers in another computer cleared all the passwords. (thanks to Simon Pitt for reporting the bug)
-#        - Bugfix: buttons to choose colors did not reflect the selected color (thanks to Sverre Rakkenes for reporting the bug)
-#        - Se implementa AES-256 para encriptar claves
-#        - Se agrega opcion para pasar parametros adicionales a la linea de comando (ssh/telnet)
-#        - Se agrega opcion para auto cerrar tab (nunca, siempre, solo si no hay errores) cuando se finaliza la sesion
-#        - Se agrega menu con opcion para ocultar toolbar y panel de servidores
-#        - Se agrega soporte para compression ssh (gracias a Boaman Surebun por la implementacion)
-#        - Se agrega configuracion en host para sequencia de teclas Backspace y Delete
-#
-# v0.9.8 - Bugfix: find_back shortcut was not working
-#        - Bugfix: double click on tabs or arrows in the tab bar opened a new local window
-#        - Se quita F10 como atajo para el menu
-#        - Se agrega texto de licencia en acerca de
-#        - Historial de comandos en cluster
-#        - Se agrega descripcion y tooltips sobre hosts
-#        - delay entre los comandos que se envian al inicio (por cada linea, usar una linea tipo comentario con el delay??)
-#        - Se agrega redireccionamiento dynamico de puertos
-#
-# v0.9.7 - Bugfix: error message "Error connecting to server: global name 'bolor' is not defined" when opening a host with custom colors (thanks to talos)
-#
-# v0.9.6 - Bugfix: error al duplicar un host en un subgrupo
-#        - Se agrega opcion para generar log de las sesiones
-#        - Si no existe el idioma, ingles por defecto
-#        - Se agrega opcion para habilitar Agent-forwarding
-#        - Se agrega soporte para private key files
-#
-# v0.9.5 - Se elimina mensaje "The package is of bad quality" al instalar en ubuntu 11.04 (lintian check)
-#        - Bugfix: el modo cluster no muestra los titulos correctos de las consolas cuando han sido renombradas
-#        - Se agrega opción de clonar consola
-#        - Archivo de configuración ahora se guarda al realizar cambios (antes se guardaba al salir de la aplicacion)
-#        - Se agrega opción de tener subgrupos, al editar un host se debe usar el formato grupo/subgrupo/subgrupo para el nombre de grupo
-#
-# v0.9.4 - Bugfix: Dejar el foco siempre en la nueva consola
-#        - Bugfix: Shortcut para console_previous se revertia a ctrl+shift+left
-#        - Se agrega traducción a italiano (gracias a Vincenzo Reale)
-#        - Bugfix: Telnet no funcionaba al usarlo sin usuario
-#
-# v0.9.3 - Bugfix: No funcionaba el boton "Local" luego de cerrar todas las consolas
-#        - Bugfix: se quita atajo CTRL+QUIT para salir de la aplicacion.
-#        - Se agrega traducción a ruso (gracias a Denis Fokin)
-#        - Se agrega traducción a portugues (gracias a Ericson Alexandre S.)
-#        - Se agrega menu contextual "copiar y pegar"
-#        - Se agrega shortcut para reconectar
-#        - Revisar si expect esta instalado al iniciar
-#        - Permitir conexiones locales al guardar un host (ssh, telnet, local)
-#
-# v0.9.2 - Bugfix: En algunos casos no se guardaban los passwords
-#        - Bugfix: Al conectarse a traves de una sesion remota (nomachine, X11) y abrir gcm se limpiaban los passwords
-#        - Se agrega traducción a polaco (gracias a Pawel)
-#
-# v0.9.1 - Bugfix: Se corrigen algunos textos en frances
-#        - Bugfix: Se corrige bug al importar servidores
-#        - Bugfix: opcion de reconectar desaparece para las demás consolas luego de reconectar a una consola
-#        - Se agrega opcion de cerrar consola con boton central del mouse sin pedir confirmacion
-#
-# v0.9.0 - Se agrega opcion de copiar texto seleccionado automaticamente al porta papeles
-#        - Se agrega menu para duplicar host
-#        - Se agrega modo cluster (permite enviar mismo comando a varios hosts a la vez)
-#        - Se agrega menu para reabrir una sesion cerrada
-#        - menu contextual en consola para enviar los comandos predefinidos
-#
-# v0.8.0 - Bugfix: ancho/alto incorrecto al dividir consola horizontal/vertical
-#        - Se agrega opcion para conservar tamaño de ventana entre ejecuciones
-#        - Se agrega opcion para resetear y resetear-limpiar consola (menu contextual y shortcut)
-#        - Soporte para autenticacion sin password/public key(se debe dejar el password en blanco)
-#        - X11 forwading para ssh
-#        - cambiar font de consola
-#        - Permitir ocultar boton para donar
-#
-# v0.7.1 - Bugfix: al cerrar consola con shortcut se mantenia abierta la sesion ssh
-#        - Bugfix: importar servers arrojaba mensaje "Archivo invalido"
-#
-# v0.7.0 - Se agrega menu contextual "copiar direccion" del host
-#        - Se agrega opcion de keep-alive por host
-#        - Se agrega colores configurables por host
-#        - Se agrega opción de renombrar tabs de consola
-#        - Se agrega traducción a francés (gracias a William M.)
-#        - Se agrega shortcut para cerrar consola
-#
-# v0.6.1 - Se agrega shortcuts para cambiar entre consolas (izq, der, y 01 a 09)
-#        - Correción de bug: no se podia editar un shortcut predefinido
-#
-# v0.6.0 - Se agrega opción para guardar buffer en archivo
-#        - Se agrega buscador
-#        - Boton para abrir consola local
-#        - ejecutar comando luego del login
-#        - guardar estado (abiertos/cerrados) de folders y posicion del panel
-#        - importar/exportar lista de servidores
-#        - menu contextual en grupos y servidores (expandir/contraer todo, editar host, agregar host)
-#        - shortcuts para comandos predefinidos (copia, pegar, etc) y para ejecutar comandos
-#        - comprobar actualizaciones
-#        - Corrección de bug: autologin no funcionaba para algunos servidores telnet
-#
-# v0.5.0 - Corrección de bug que mostraba mal las consolas ssh en algunos casos (no se ocupaba todo el espacio de la consola)
-#        - Corrección de bug que cerraba dos consolas al tener la pantalla dividida y cerrar consola de la derecha
-#        - Se agrega opción de menu contextual con boton derecho
-#        - Se agrega opción de confirmar al cerrar una consola
-#        - Se muestra mensaje en pantalla cuando cambia la key de un host para ssh
-#        - Boton donar
-
 from __future__ import with_statement
-import os
-import operator
-import sys
+
 import base64
-import time
-import tempfile
-import argparse
 import glob
+import operator
+import os
+import sys
+import tempfile
+import time
 import traceback
 from datetime import datetime
+
+from config import Config
 
 try:
     import gtk
@@ -178,26 +32,22 @@ except:
 try:
     import vte
 except:
-    error = gtk.MessageDialog (None, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR, gtk.BUTTONS_OK,
-      'You must install libvte for python')
+    error = gtk.MessageDialog(None, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR, gtk.BUTTONS_OK,
+                              'You must install libvte for python')
     error.run()
-    sys.exit (1)
+    sys.exit(1)
 
-#Ver si expect esta instalado
+# Ver si expect esta instalado
 try:
     e = os.system("expect >/dev/null 2>&1 -v")
 except:
     e = -1
 if e != 0:
-    error = gtk.MessageDialog (None, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR, gtk.BUTTONS_OK,
-      'You must install expect')
+    error = gtk.MessageDialog(None, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR, gtk.BUTTONS_OK,
+                              'You must install expect')
     error.run()
-    sys.exit (1)
+    sys.exit(1)
 
-parser = argparse.ArgumentParser()
-parser.add_argument('-c', '--configdir', dest='configdir',
-                    help='specify a config directory (it must exist), if config directory is not specified, defaults to $HOME/.gcm')
-args = parser.parse_args()
 
 gtk.gdk.threads_init()
 
@@ -210,18 +60,18 @@ import pango
 try:
     import pyaes
 except:
-    error = gtk.MessageDialog (None, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR, gtk.BUTTONS_OK,
-      'You must install pyaes')
+    error = gtk.MessageDialog(None, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR, gtk.BUTTONS_OK,
+                              'You must install pyaes')
     error.run()
-    sys.exit (1)
+    sys.exit(1)
 
 try:
     import polib
 except:
-    error = gtk.MessageDialog (None, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR, gtk.BUTTONS_OK,
-      'You must install polib')
+    error = gtk.MessageDialog(None, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR, gtk.BUTTONS_OK,
+                              'You must install polib')
     error.run()
-    sys.exit (1)
+    sys.exit(1)
 
 app_name = "Gnome Connection Manager"
 app_version = "1.1.0"
@@ -232,26 +82,21 @@ BASE_PATH = os.path.dirname(os.path.abspath(sys.argv[0]))
 
 SSH_BIN = 'ssh'
 TEL_BIN = 'telnet'
-SHELL   = os.environ["SHELL"]
+SHELL = os.environ["SHELL"]
 
 SSH_COMMAND = BASE_PATH + "/ssh.expect"
-CONFIG_DIR = None
-CONFIG_FILE = None
-KEY_FILE = None
-DEFAULT_CONFIG_FILE = "gcm.conf"
-DEFAULT_KEY_FILE = ".gcm.key"
 
-DOMAIN_NAME="gcm-lang"
+DOMAIN_NAME = "gcm-lang"
 
 HSPLIT = 0
 VSPLIT = 1
 
-_COPY =      ["copy"]
-_PASTE =     ["paste"]
-_COPY_ALL =  ["copy_all"]
-_SAVE =      ["save"]
-_FIND =      ["find"]
-_CLEAR =     ["reset"]
+_COPY = ["copy"]
+_PASTE = ["paste"]
+_COPY_ALL = ["copy_all"]
+_SAVE = ["save"]
+_FIND = ["find"]
+_CLEAR = ["reset"]
 _FIND_NEXT = ["find_next"]
 _FIND_BACK = ["find_back"]
 _CONSOLE_PREV = ["console_previous"]
@@ -273,6 +118,7 @@ ICON_PATH = BASE_PATH + "/icon.png"
 
 GLADE_DIR = ""
 LOCALE_DIR = os.path.join(BASE_PATH, 'lang')
+
 
 def update_localization_files():
     """
@@ -299,71 +145,19 @@ def update_localization_files():
 
     bindtextdomain(DOMAIN_NAME, LOCALE_DIR)
 
-groups={}
-shortcuts={}
 
-enc_passwd=''
+groups = {}
+shortcuts = {}
 
-def find_config_dir():
-    """
-    find the config directory
+enc_passwd = ''
 
-    will not create a directory that is passed from the command line
-
-    defaults to $HOME/.gcm
-    """
-    global args
-    global parser
-
-    configdir = None
-
-    if args.configdir:
-        if os.path.exists(args.configdir):
-            configdir = args.configdir
-        else:
-            thelp = parser.format_usage()
-            thelp = thelp + '\n' + "Config directory does not exist"
-            thelp = thelp + '\n    ' + args.configdir
-
-            print thelp
-            sys.exit(1)
-    else:
-        configdir = os.path.join(os.getenv("HOME"), ".gcm")
-        if not os.path.exists(configdir):
-            os.makedirs(configdir)
-
-    return configdir
-
-#Variables de configuracion
-class conf():
-    WORD_SEPARATORS="-A-Za-z0-9,./?%&#:_=+@~"
-    BUFFER_LINES=2000
-    STARTUP_LOCAL=True
-    CONFIRM_ON_EXIT=True
-    FONT_COLOR = ""
-    BACK_COLOR = ""
-    TRANSPARENCY = 0
-    PASTE_ON_RIGHT_CLICK = 1
-    CONFIRM_ON_CLOSE_TAB = 0
-    AUTO_CLOSE_TAB = 0
-    COLLAPSED_FOLDERS = ""
-    LEFT_PANEL_WIDTH = 100
-    CHECK_UPDATES=True
-    WINDOW_WIDTH = -1
-    WINDOW_HEIGHT = -1
-    FONT = ""
-    HIDE_DONATE = False
-    AUTO_COPY_SELECTION = 0
-    LOG_PATH = os.path.expanduser("~")
-    SHOW_TOOLBAR = True
-    SHOW_PANEL = True
-    VERSION = 0
 
 def msgbox(text, parent=None):
     msgBox = gtk.MessageDialog(parent, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR, gtk.BUTTONS_OK, text)
     msgBox.set_icon_from_file(ICON_PATH)
     msgBox.run()
     msgBox.destroy()
+
 
 def msgconfirm(text):
     msgBox = gtk.MessageDialog(None, gtk.DIALOG_MODAL, gtk.MESSAGE_QUESTION, gtk.BUTTONS_OK_CANCEL, text)
@@ -383,6 +177,7 @@ def inputbox(title, text, default='', password=False):
     msgBox.destroy()
     return response
 
+
 def show_font_dialog(parent, title, button):
     if not hasattr(parent, 'dlgFont'):
         parent.dlgFont = None
@@ -400,15 +195,16 @@ def show_font_dialog(parent, title, button):
         button.get_child().modify_font(button.selected_font)
     parent.dlgFont.hide()
 
+
 def show_open_dialog(parent, title, action):
     dlg = gtk.FileChooserDialog(title=title, parent=parent, action=action)
     dlg.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
 
-    dlg.add_button(gtk.STOCK_SAVE if action==gtk.FILE_CHOOSER_ACTION_SAVE else gtk.STOCK_OPEN, gtk.RESPONSE_OK)
+    dlg.add_button(gtk.STOCK_SAVE if action == gtk.FILE_CHOOSER_ACTION_SAVE else gtk.STOCK_OPEN, gtk.RESPONSE_OK)
     dlg.set_do_overwrite_confirmation(True)
-    if not hasattr(parent,'lastPath'):
+    if not hasattr(parent, 'lastPath'):
         parent.lastPath = os.path.expanduser("~")
-    dlg.set_current_folder( parent.lastPath )
+    dlg.set_current_folder(parent.lastPath)
 
     if dlg.run() == gtk.RESPONSE_OK:
         filename = dlg.get_filename()
@@ -417,6 +213,7 @@ def show_open_dialog(parent, title, action):
         filename = None
     dlg.destroy()
     return filename
+
 
 def get_key_name(event):
     name = ""
@@ -430,17 +227,21 @@ def get_key_name(event):
         name = name + "SUPER+"
     return name + gtk.gdk.keyval_name(event.keyval).upper()
 
+
 def get_username():
     return os.getenv('USER') or os.getenv('LOGNAME') or os.getenv('USERNAME')
+
 
 def get_password():
     return enc_passwd
 
+
 def load_encryption_key():
     global enc_passwd
+    conf = Config()
     try:
-        if os.path.exists(KEY_FILE):
-            with open(KEY_FILE) as f:
+        if os.path.exists(conf.key_file):
+            with open(conf.key_file) as f:
                 enc_passwd = f.read()
         else:
             initialise_encryption_key()
@@ -448,23 +249,26 @@ def load_encryption_key():
         msgbox("Error trying to open key_file")
         enc_passwd = ''
 
+
 def initialise_encryption_key():
     global enc_passwd
     import uuid
     uid = uuid.uuid4()
     enc_passwd = uid.hex
+    conf = Config()
     try:
-        with os.fdopen(os.open(KEY_FILE, os.O_WRONLY | os.O_CREAT, 0600), 'w') as f:
+        with os.fdopen(os.open(conf.key_file, os.O_WRONLY | os.O_CREAT, 0600), 'w') as f:
             f.write(enc_passwd)
     except:
         msgbox("Error initialising key_file")
+
 
 ## funciones para encryptar passwords - no son muy seguras, pero impiden que los pass se guarden en texto plano
 def xor(pw, str1):
     c = 0
     liste = []
     for k in xrange(len(str1)):
-        if c > len(pw)-1:
+        if c > len(pw) - 1:
             c = 0
         fi = ord(pw[c])
         c += 1
@@ -472,6 +276,7 @@ def xor(pw, str1):
         fin = operator.xor(fi, se)
         liste += [chr(fin)]
     return liste
+
 
 def encrypt_old(passw, string):
     try:
@@ -481,6 +286,7 @@ def encrypt_old(passw, string):
         s = ""
     return s
 
+
 def decrypt_old(passw, string):
     try:
         ret = xor(passw, base64.b64decode(string))
@@ -488,6 +294,7 @@ def decrypt_old(passw, string):
     except:
         s = ""
     return s
+
 
 def encrypt(passw, string):
     aes = pyaes.AESModeOfOperationCTR(passw)
@@ -497,16 +304,17 @@ def encrypt(passw, string):
         s = ""
     return s
 
+
 def decrypt(passw, string):
     aes = pyaes.AESModeOfOperationCTR(passw)
     try:
-        s = decrypt_old(passw, string) if conf.VERSION == 0 else aes.decrypt(string)
+        s = decrypt_old(passw, string) if Config.VERSION == 0 else aes.decrypt(string)
     except:
         s = ""
     return s
 
-class Wmain(SimpleGladeApp):
 
+class Wmain(SimpleGladeApp):
     def __init__(self, path="gnome-connection-manager.glade",
                  root="wMain",
                  domain=DOMAIN_NAME, **kwargs):
@@ -522,27 +330,27 @@ class Wmain(SimpleGladeApp):
 
         self.createMenu()
 
-        if conf.VERSION == 0:
+        if Config.VERSION == 0:
             initialise_encryption_key()
 
         settings = gtk.settings_get_default()
         settings.props.gtk_menu_bar_accel = None
 
         self.real_transparency = False
-        if conf.TRANSPARENCY>0:
-            #Revisar si hay soporte para transparencia
+        if Config.TRANSPARENCY > 0:
+            # Revisar si hay soporte para transparencia
             screen = self.get_widget("wMain").get_screen()
             colormap = screen.get_rgba_colormap()
             if colormap != None and screen.is_composited():
                 self.get_widget("wMain").set_colormap(colormap)
                 self.real_transparency = True
 
-        if conf.WINDOW_WIDTH != -1 and conf.WINDOW_HEIGHT != -1:
-            self.get_widget("wMain").resize(conf.WINDOW_WIDTH, conf.WINDOW_HEIGHT)
+        if Config.WINDOW_WIDTH != -1 and Config.WINDOW_HEIGHT != -1:
+            self.get_widget("wMain").resize(Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT)
         else:
             self.get_widget("wMain").maximize()
         self.get_widget("wMain").show()
-        #Just added children in glade to eliminate GTK warning, remove all children
+        # Just added children in glade to eliminate GTK warning, remove all children
         for x in self.nbConsole.get_children():
             self.nbConsole.remove(x)
         self.nbConsole.set_scrollable(True)
@@ -550,41 +358,40 @@ class Wmain(SimpleGladeApp):
         self.nbConsole.connect('page_removed', self.on_page_removed)
         self.nbConsole.connect("page-added", self.on_page_added)
 
-
         self.hpMain.previous_position = 150
 
-        if conf.LEFT_PANEL_WIDTH!=0:
-            self.set_panel_visible(conf.SHOW_PANEL)
-        self.set_toolbar_visible(conf.SHOW_TOOLBAR)
+        if Config.LEFT_PANEL_WIDTH != 0:
+            self.set_panel_visible(Config.SHOW_PANEL)
+        self.set_toolbar_visible(Config.SHOW_TOOLBAR)
 
-        #a veces no se posiciona correctamente con 400 ms, asi que se repite el llamado
-        gobject.timeout_add(400, lambda : self.hpMain.set_position(conf.LEFT_PANEL_WIDTH))
-        gobject.timeout_add(900, lambda : self.hpMain.set_position(conf.LEFT_PANEL_WIDTH))
+        # a veces no se posiciona correctamente con 400 ms, asi que se repite el llamado
+        gobject.timeout_add(400, lambda: self.hpMain.set_position(Config.LEFT_PANEL_WIDTH))
+        gobject.timeout_add(900, lambda: self.hpMain.set_position(Config.LEFT_PANEL_WIDTH))
 
-        if conf.HIDE_DONATE:
+        if Config.HIDE_DONATE:
             self.get_widget("btnDonate").hide_all()
 
-        if conf.CHECK_UPDATES:
+        if Config.CHECK_UPDATES:
             gobject.timeout_add(2000, lambda: self.check_updates())
 
-        #Por cada parametro de la linea de comandos buscar el host y agregar un tab
+        # Por cada parametro de la linea de comandos buscar el host y agregar un tab
         for arg in sys.argv[1:]:
             i = arg.rfind("/")
-            if i!=-1:
+            if i != -1:
                 group = arg[:i]
-                name = arg[i+1:]
-                if group!='' and name!='' and groups.has_key(group):
+                name = arg[i + 1:]
+                if group != '' and name != '' and groups.has_key(group):
                     for h in groups[group]:
-                        if h.name==name:
+                        if h.name == name:
                             self.addTab(self.nbConsole, h)
                             break
 
         self.get_widget('txtSearch').modify_text(gtk.STATE_NORMAL, gtk.gdk.Color('darkgray'))
 
-        if conf.STARTUP_LOCAL:
-            self.addTab(self.nbConsole,'local')
+        if Config.STARTUP_LOCAL:
+            self.addTab(self.nbConsole, 'local')
 
-    #-- Wmain.new {
+    # -- Wmain.new {
     def new(self):
         self.hpMain = self.get_widget("hpMain")
         self.nbConsole = self.get_widget("nbConsole")
@@ -593,9 +400,10 @@ class Wmain(SimpleGladeApp):
         self.menuCustomCommands = self.get_widget("menuCustomCommands")
         self.current = None
         self.count = 0
-    #-- Wmain.new }
 
-    #-- Wmain custom methods {
+    # -- Wmain.new }
+
+    # -- Wmain custom methods {
     #   Write your own methods here
 
     def check_updates(self):
@@ -604,20 +412,20 @@ class Wmain(SimpleGladeApp):
 
     def on_terminal_click(self, widget, event, *args):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            if conf.PASTE_ON_RIGHT_CLICK:
+            if Config.PASTE_ON_RIGHT_CLICK:
                 widget.paste_clipboard()
             else:
                 self.popupMenu.mnuCopy.set_sensitive(widget.get_has_selection())
-                self.popupMenu.mnuLog.set_active( hasattr(widget, "log_handler_id") and widget.log_handler_id != 0 )
+                self.popupMenu.mnuLog.set_active(hasattr(widget, "log_handler_id") and widget.log_handler_id != 0)
                 self.popupMenu.terminal = widget
-                self.popupMenu.popup( None, None, None, event.button, event.time)
+                self.popupMenu.popup(None, None, None, event.button, event.time)
             return True
 
     def on_terminal_keypress(self, widget, event, *args):
         if shortcuts.has_key(get_key_name(event)):
             cmd = shortcuts[get_key_name(event)]
             if type(cmd) == list:
-                #comandos predefinidos
+                # comandos predefinidos
                 if cmd == _COPY:
                     self.terminal_copy(widget)
                 elif cmd == _PASTE:
@@ -633,7 +441,7 @@ class Wmain(SimpleGladeApp):
                     if hasattr(self, 'search'):
                         self.find_word()
                 elif cmd == _CLEAR:
-                   widget.reset(True, True)
+                    widget.reset(True, True)
                 elif cmd == _FIND_BACK:
                     if hasattr(self, 'search'):
                         self.find_word(backwards=True)
@@ -655,8 +463,8 @@ class Wmain(SimpleGladeApp):
                         while gtk.events_pending():
                             gtk.main_iteration(False)
 
-                        #esperar 2 seg antes de enviar el pass para dar tiempo a que se levante expect y prevenir que se muestre el pass
-                        if widget.command[2]!=None and widget.command[2]!='':
+                        # esperar 2 seg antes de enviar el pass para dar tiempo a que se levante expect y prevenir que se muestre el pass
+                        if widget.command[2] != None and widget.command[2] != '':
                             gobject.timeout_add(2000, self.send_data, widget, widget.command[2])
                     widget.get_parent().get_parent().get_tab_label(widget.get_parent()).mark_tab_as_active()
                     return True
@@ -666,19 +474,19 @@ class Wmain(SimpleGladeApp):
                     page = int(cmd[0][8:]) - 1
                     widget.get_parent().get_parent().set_current_page(page)
             else:
-                #comandos del usuario
+                # comandos del usuario
                 widget.feed_child(cmd)
 
             return True
         return False
 
     def on_terminal_selection(self, widget, *args):
-        if conf.AUTO_COPY_SELECTION:
+        if Config.AUTO_COPY_SELECTION:
             self.terminal_copy(widget)
         return True
 
     def find_word(self, backwards=False):
-        pos=-1
+        pos = -1
         if backwards:
             lst = range(0, self.search['index'])
             lst.reverse()
@@ -690,86 +498,92 @@ class Wmain(SimpleGladeApp):
             pos = self.search['lines'][i].find(self.search['word'])
             if pos != -1:
                 self.search['index'] = i if backwards else i + 1
-                #print 'found at line %d column %d, index=%d' % (i, pos, self.search['index'])
+                # print 'found at line %d column %d, index=%d' % (i, pos, self.search['index'])
                 gobject.timeout_add(0, lambda: self.search['terminal'].get_adjustment().set_value(i))
                 self.search['terminal'].queue_draw()
                 break
-        if pos==-1:
+        if pos == -1:
             self.search['index'] = len(self.search['lines']) if backwards else 0
 
-
     def init_search(self):
-        if hasattr(self, 'search') and self.get_widget('txtSearch').get_text() == self.search['word'] and self.current == self.search['terminal']:
-            return  True
+        if hasattr(self, 'search') and self.get_widget('txtSearch').get_text() == self.search[
+            'word'] and self.current == self.search['terminal']:
+            return True
 
         terminal = self.find_active_terminal(self.hpMain)
         if terminal == None:
             terminal = self.current
         else:
             self.current = terminal
-        if terminal==None:
+        if terminal == None:
             return False
 
         self.search = {}
-        self.search['lines'] = terminal.get_text_range(0, 0, terminal.get_property('scrollback-lines'), terminal.get_column_count(), lambda *args: True, None, None ).rstrip().splitlines()
+        self.search['lines'] = terminal.get_text_range(0, 0, terminal.get_property('scrollback-lines'),
+                                                       terminal.get_column_count(), lambda *args: True, None,
+                                                       None).rstrip().splitlines()
         self.search['index'] = len(self.search['lines'])
         self.search['terminal'] = terminal
         self.search['word'] = self.get_widget('txtSearch').get_text()
         return True
 
     def on_popupmenu(self, widget, item, *args):
-        if item == 'V': #PASTE
+        if item == 'V':  # PASTE
             self.terminal_paste(self.popupMenu.terminal)
             return True
-        elif item == 'C': #COPY
+        elif item == 'C':  # COPY
             self.terminal_copy(self.popupMenu.terminal)
             return True
-        elif item == 'CV': #COPY and PASTE
+        elif item == 'CV':  # COPY and PASTE
             self.terminal_copy_paste(self.popupMenu.terminal)
             return True
-        elif item == 'A': #SELECT ALL
+        elif item == 'A':  # SELECT ALL
             self.terminal_select_all(self.popupMenu.terminal)
             return True
-        elif item == 'CA': #COPY ALL
+        elif item == 'CA':  # COPY ALL
             self.terminal_copy_all(self.popupMenu.terminal)
             return True
-        elif item == 'X': #CLOSE CONSOLE
+        elif item == 'X':  # CLOSE CONSOLE
             widget = self.popupMenu.terminal.get_parent()
             notebook = widget.get_parent()
-            page=notebook.page_num(widget)
+            page = notebook.page_num(widget)
             notebook.remove_page(page)
             return True
-        elif item == 'CP': #CUSTOM COMMANDS
+        elif item == 'CP':  # CUSTOM COMMANDS
             self.popupMenu.terminal.feed_child(args[0])
-        elif item == 'S': #SAVE BUFFER
+        elif item == 'S':  # SAVE BUFFER
             self.show_save_buffer(self.popupMenu.terminal)
             return True
-        elif item == 'H': #COPY HOST ADDRESS TO CLIPBOARD
-            if self.treeServers.get_selection().get_selected()[1]!=None and not self.treeModel.iter_has_child(self.treeServers.get_selection().get_selected()[1]):
-                host = self.treeModel.get_value(self.treeServers.get_selection().get_selected()[1],1)
+        elif item == 'H':  # COPY HOST ADDRESS TO CLIPBOARD
+            if self.treeServers.get_selection().get_selected()[1] != None and not self.treeModel.iter_has_child(
+                    self.treeServers.get_selection().get_selected()[1]):
+                host = self.treeModel.get_value(self.treeServers.get_selection().get_selected()[1], 1)
                 cb = gtk.Clipboard()
                 cb.set_text(host.host)
                 cb.store()
             return True
-        elif item == 'SCPF': #COPY TO CLIPBOARD SCP STRING TO RECEIVE FROM HOST
-            if self.treeServers.get_selection().get_selected()[1]!=None and not self.treeModel.iter_has_child(self.treeServers.get_selection().get_selected()[1]):
-                host = self.treeModel.get_value(self.treeServers.get_selection().get_selected()[1],1)
+        elif item == 'SCPF':  # COPY TO CLIPBOARD SCP STRING TO RECEIVE FROM HOST
+            if self.treeServers.get_selection().get_selected()[1] != None and not self.treeModel.iter_has_child(
+                    self.treeServers.get_selection().get_selected()[1]):
+                host = self.treeModel.get_value(self.treeServers.get_selection().get_selected()[1], 1)
                 cb = gtk.Clipboard()
                 scpstr = "scp " + host.user + "@" + host.host + ":"
                 cb.set_text(scpstr)
                 cb.store()
             return True
-        elif item == 'SCPT': #COPY TO CLIPBOARD SCP STRING to SEND TO HOST
-            if self.treeServers.get_selection().get_selected()[1]!=None and not self.treeModel.iter_has_child(self.treeServers.get_selection().get_selected()[1]):
-                host = self.treeModel.get_value(self.treeServers.get_selection().get_selected()[1],1)
+        elif item == 'SCPT':  # COPY TO CLIPBOARD SCP STRING to SEND TO HOST
+            if self.treeServers.get_selection().get_selected()[1] != None and not self.treeModel.iter_has_child(
+                    self.treeServers.get_selection().get_selected()[1]):
+                host = self.treeModel.get_value(self.treeServers.get_selection().get_selected()[1], 1)
                 cb = gtk.Clipboard()
                 scpstr = "scp ./ " + host.user + "@" + host.host + ":"
                 cb.set_text(scpstr)
                 cb.store()
             return True
 
-        elif item == 'D': #DUPLICATE HOST
-            if self.treeServers.get_selection().get_selected()[1]!=None and not self.treeModel.iter_has_child(self.treeServers.get_selection().get_selected()[1]):
+        elif item == 'D':  # DUPLICATE HOST
+            if self.treeServers.get_selection().get_selected()[1] != None and not self.treeModel.iter_has_child(
+                    self.treeServers.get_selection().get_selected()[1]):
                 selected = self.treeServers.get_selection().get_selected()[1]
                 group = self.get_group(selected)
                 host = self.treeModel.get_value(selected, 1)
@@ -779,16 +593,17 @@ class Wmain(SimpleGladeApp):
                     if h.name == newname:
                         newname = '%s (copy)' % (newname)
                 newhost.name = newname
-                groups[group].append( newhost )
+                groups[group].append(newhost)
                 self.updateTree()
                 self.writeConfig()
             return True
-        elif item == 'R': #RENAME TAB
-            text = inputbox(_('Renombrar consola'), _('Ingrese nuevo nombre'), self.popupMenuTab.label.get_text().strip())
+        elif item == 'R':  # RENAME TAB
+            text = inputbox(_('Renombrar consola'), _('Ingrese nuevo nombre'),
+                            self.popupMenuTab.label.get_text().strip())
             if text != None and text != '':
                 self.popupMenuTab.label.set_text("  %s  " % (text))
             return True
-        elif item == 'RS' or item == 'RS2': #RESET CONSOLE
+        elif item == 'RS' or item == 'RS2':  # RESET CONSOLE
             if (item == 'RS'):
                 tab = self.popupMenuTab.label.get_parent().get_parent()
                 term = tab.widget.get_child()
@@ -796,7 +611,7 @@ class Wmain(SimpleGladeApp):
                 term = self.popupMenu.terminal
             term.reset(True, False)
             return True
-        elif item == 'RC' or item == 'RC2': #RESET AND CLEAR CONSOLE
+        elif item == 'RC' or item == 'RC2':  # RESET AND CLEAR CONSOLE
             if (item == 'RC'):
                 tab = self.popupMenuTab.label.get_parent().get_parent()
                 term = tab.widget.get_child()
@@ -804,7 +619,7 @@ class Wmain(SimpleGladeApp):
                 term = self.popupMenu.terminal
             term.reset(True, True)
             return True
-        elif item == 'RO': #REOPEN SESION
+        elif item == 'RO':  # REOPEN SESION
             tab = self.popupMenuTab.label.get_parent().get_parent()
             term = tab.widget.get_child()
             if not hasattr(term, "command"):
@@ -814,12 +629,12 @@ class Wmain(SimpleGladeApp):
                 while gtk.events_pending():
                     gtk.main_iteration(False)
 
-                #esperar 2 seg antes de enviar el pass para dar tiempo a que se levante expect y prevenir que se muestre el pass
-                if term.command[2]!=None and term.command[2]!='':
+                # esperar 2 seg antes de enviar el pass para dar tiempo a que se levante expect y prevenir que se muestre el pass
+                if term.command[2] != None and term.command[2] != '':
                     gobject.timeout_add(2000, self.send_data, term, term.command[2])
             tab.mark_tab_as_active()
             return True
-        elif item == 'CC' or item == 'CC2': #CLONE CONSOLE
+        elif item == 'CC' or item == 'CC2':  # CLONE CONSOLE
             if item == 'CC':
                 tab = self.popupMenuTab.label.get_parent().get_parent()
                 term = tab.widget.get_child()
@@ -836,7 +651,7 @@ class Wmain(SimpleGladeApp):
                 host.log = hasattr(term, "log_handler_id") and term.log_handler_id != 0
                 self.addTab(ntbk, host)
             return True
-        elif item == 'L' or item == 'L2': #ENABLE/DISABLE LOG
+        elif item == 'L' or item == 'L2':  # ENABLE/DISABLE LOG
             if item == 'L':
                 tab = self.popupMenuTab.label.get_parent().get_parent()
                 term = tab.widget.get_child()
@@ -921,7 +736,7 @@ class Wmain(SimpleGladeApp):
         self.popupMenu.append(menuItem)
         menuItem.show()
 
-        #Menu de comandos personalizados
+        # Menu de comandos personalizados
         self.popupMenu.mnuCommands = gtk.Menu()
 
         self.popupMenu.mnuCmds = menuItem = gtk.ImageMenuItem(_("Comandos personalizados"))
@@ -930,7 +745,7 @@ class Wmain(SimpleGladeApp):
         menuItem.show()
         self.populateCommandsMenu()
 
-        #Menu contextual para panel de servidores
+        # Menu contextual para panel de servidores
         self.popupMenuFolder = gtk.Menu()
 
         self.popupMenuFolder.mnuConnect = menuItem = gtk.ImageMenuItem(_("Conectar"))
@@ -995,8 +810,7 @@ class Wmain(SimpleGladeApp):
         menuItem.connect("activate", lambda *args: self.treeServers.collapse_all())
         menuItem.show()
 
-
-        #Menu contextual para tabs
+        # Menu contextual para tabs
         self.popupMenuTab = gtk.Menu()
 
         self.popupMenuTab.mnuRename = menuItem = gtk.ImageMenuItem(_("Renombrar consola"))
@@ -1021,7 +835,7 @@ class Wmain(SimpleGladeApp):
         menuItem.set_image(gtk.image_new_from_stock(gtk.STOCK_CONNECT, gtk.ICON_SIZE_MENU))
         self.popupMenuTab.append(menuItem)
         menuItem.connect("activate", self.on_popupmenu, 'RO')
-        #menuItem.show()
+        # menuItem.show()
 
         self.popupMenuTab.mnuClone = menuItem = gtk.ImageMenuItem(_("Clonar consola"))
         menuItem.set_image(gtk.image_new_from_stock(gtk.STOCK_COPY, gtk.ICON_SIZE_MENU))
@@ -1102,9 +916,10 @@ class Wmain(SimpleGladeApp):
             self.terminal_copy_all(terminal)
 
     def on_contents_changed(self, terminal):
-        col,row = terminal.get_cursor_position()
+        col, row = terminal.get_cursor_position()
         if terminal.last_logged_row != row:
-            text = terminal.get_text_range(terminal.last_logged_row, terminal.last_logged_col, row, col, lambda *args: True, None, None)
+            text = terminal.get_text_range(terminal.last_logged_row, terminal.last_logged_col, row, col,
+                                           lambda *args: True, None, None)
             terminal.last_logged_row = row
             terminal.last_logged_col = col
             terminal.log.write(text[:-1])
@@ -1119,16 +934,17 @@ class Wmain(SimpleGladeApp):
             terminal.log_handler_id = terminal.connect('contents-changed', self.on_contents_changed)
             p = terminal.get_parent()
             title = p.get_parent().get_tab_label(p).get_text().strip()
-            prefix = "%s/%s-%s" % (os.path.expanduser(conf.LOG_PATH), title, time.strftime("%Y%m%d"))
+            prefix = "%s/%s-%s" % (os.path.expanduser(Config.LOG_PATH), title, time.strftime("%Y%m%d"))
             filename = ''
-            for i in range(1,1000):
-                if not os.path.exists("%s-%03i.log" % (prefix,i)):
-                    filename = "%s-%03i.log" % (prefix,i)
+            for i in range(1, 1000):
+                if not os.path.exists("%s-%03i.log" % (prefix, i)):
+                    filename = "%s-%03i.log" % (prefix, i)
                     break
-            filename == "%s-%03i.log" % (prefix,1)
+            filename == "%s-%03i.log" % (prefix, 1)
             try:
                 terminal.log = open(filename, 'w', 0)
-                terminal.log.write("Session '%s' opened at %s\n%s\n" % (title, time.strftime("%Y-%m-%d %H:%M:%S"), "-"*80))
+                terminal.log.write(
+                    "Session '%s' opened at %s\n%s\n" % (title, time.strftime("%Y-%m-%d %H:%M:%S"), "-" * 80))
             except:
                 traceback.print_exc()
                 msgbox("%s\n%s" % (_("No se puede abrir el archivo de log para escritura"), filename))
@@ -1144,8 +960,8 @@ class Wmain(SimpleGladeApp):
     def addTab(self, notebook, host):
         try:
             v = vte.Terminal()
-            v.set_word_chars(conf.WORD_SEPARATORS)
-            v.set_scrollback_lines(conf.BUFFER_LINES)
+            v.set_word_chars(Config.WORD_SEPARATORS)
+            v.set_scrollback_lines(Config.BUFFER_LINES)
             if v.get_emulation() != os.getenv("TERM"):
                 os.environ['TERM'] = v.get_emulation()
 
@@ -1155,21 +971,35 @@ class Wmain(SimpleGladeApp):
             fcolor = host.font_color
             bcolor = host.back_color
             if fcolor == '' or fcolor == None or bcolor == '' or bcolor == None:
-                fcolor = conf.FONT_COLOR
-                bcolor = conf.BACK_COLOR
+                fcolor = Config.FONT_COLOR
+                bcolor = Config.BACK_COLOR
 
-            if len(fcolor)>0 and len(bcolor)>0:
-                v.set_colors(gtk.gdk.Color(fcolor), gtk.gdk.Color(bcolor), [])
+            palette_components = [
+                # background
+                '#000000', '#CC0000', '#4E9A06', '#C4A000',
+                '#3465A4', '#75507B', '#06989A', '#D3D7CF',
+                # foreground
+                '#555753', '#EF2929', '#8AE234', '#FCE94F',
+                '#729FCF', '#729FCF', '#34E2E2', '#EEEEEC'
+            ]
 
-            if len(conf.FONT)==0:
-                conf.FONT = 'monospace'
+            palette = []
+            for components in palette_components:
+                color = gtk.gdk.color_parse(components)
+                palette.append(color)
+
+            if len(fcolor) > 0 and len(bcolor) > 0:
+                v.set_colors(gtk.gdk.Color(fcolor), gtk.gdk.Color(bcolor), palette)
+
+            if len(Config.FONT) == 0:
+                Config.FONT = 'monospace'
             else:
-                v.set_font(pango.FontDescription(conf.FONT))
+                v.set_font(pango.FontDescription(Config.FONT))
 
             scrollPane = gtk.ScrolledWindow()
             scrollPane.connect('button_press_event', lambda *args: True)
             scrollPane.set_property('hscrollbar-policy', gtk.POLICY_NEVER)
-            tab = NotebookTabLabel("  %s  " % (host.name), self.nbConsole, scrollPane, self.popupMenuTab )
+            tab = NotebookTabLabel("  %s  " % (host.name), self.nbConsole, scrollPane, self.popupMenuTab)
 
             v.connect("child-exited", lambda widget: tab.mark_tab_as_closed())
             v.connect('focus', self.on_tab_focus)
@@ -1177,14 +1007,14 @@ class Wmain(SimpleGladeApp):
             v.connect('key_press_event', self.on_terminal_keypress)
             v.connect('selection-changed', self.on_terminal_selection)
 
-            if conf.TRANSPARENCY > 0:
+            if Config.TRANSPARENCY > 0:
                 if not self.real_transparency:
                     v.set_background_transparent(True)
-                    v.set_background_saturation(conf.TRANSPARENCY / 100.0)
-                    if len(bcolor)>0:
+                    v.set_background_saturation(Config.TRANSPARENCY / 100.0)
+                    if len(bcolor) > 0:
                         v.set_background_tint_color(gtk.gdk.Color(bcolor))
                 else:
-                    v.set_opacity(int( (100 - conf.TRANSPARENCY) / 100.0 * 65535) )
+                    v.set_opacity(int((100 - Config.TRANSPARENCY) / 100.0 * 65535))
 
             v.set_backspace_binding(host.backspace_key)
             v.set_delete_binding(host.delete_key)
@@ -1201,9 +1031,9 @@ class Wmain(SimpleGladeApp):
             self.on_tab_focus(v)
             self.set_terminal_logger(v, host.log)
 
-            gobject.timeout_add(200, lambda : self.wMain.set_focus(v))
+            gobject.timeout_add(200, lambda: self.wMain.set_focus(v))
 
-            #Dar tiempo a la interfaz para que muestre el terminal
+            # Dar tiempo a la interfaz para que muestre el terminal
             while gtk.events_pending():
                 gtk.main_iteration(False)
 
@@ -1213,18 +1043,18 @@ class Wmain(SimpleGladeApp):
                 cmd = SSH_COMMAND
                 password = host.password
                 if host.type == 'ssh':
-                    if len(host.user)==0:
+                    if len(host.user) == 0:
                         host.user = get_username()
                     if host.password == '':
                         cmd = SSH_BIN
-                        args = [ SSH_BIN, '-l', host.user, '-p', host.port]
+                        args = [SSH_BIN, '-l', host.user, '-p', host.port]
                     else:
                         args = [SSH_COMMAND, host.type, '-l', host.user, '-p', host.port]
-                    if host.keep_alive!='0' and host.keep_alive!='':
+                    if host.keep_alive != '0' and host.keep_alive != '':
                         args.append('-o')
                         args.append('ServerAliveInterval=%s' % (host.keep_alive))
                     for t in host.tunnel:
-                        if t!="":
+                        if t != "":
                             if t.endswith(":*:*"):
                                 args.append("-D")
                                 args.append(t[:-4])
@@ -1237,7 +1067,7 @@ class Wmain(SimpleGladeApp):
                         args.append("-A")
                     if host.compression:
                         args.append("-C")
-                        if host.compressionLevel!='':
+                        if host.compressionLevel != '':
                             args.append('-o')
                             args.append('CompressionLevel=%s' % (host.compressionLevel))
                     if host.private_key != None and host.private_key != '':
@@ -1247,8 +1077,8 @@ class Wmain(SimpleGladeApp):
                         args += host.extra_params.split()
                     args.append(host.host)
                 else:
-                    if host.user=='' or host.password=='':
-                        password=''
+                    if host.user == '' or host.password == '':
+                        password = ''
                         cmd = TEL_BIN
                         args = [TEL_BIN]
                     else:
@@ -1261,13 +1091,13 @@ class Wmain(SimpleGladeApp):
                 while gtk.events_pending():
                     gtk.main_iteration(False)
 
-                #esperar 2 seg antes de enviar el pass para dar tiempo a que se levante expect y prevenir que se muestre el pass
-                if password!=None and password!='':
+                # esperar 2 seg antes de enviar el pass para dar tiempo a que se levante expect y prevenir que se muestre el pass
+                if password != None and password != '':
                     gobject.timeout_add(2000, self.send_data, v, password)
 
-            #esperar 3 seg antes de enviar comandos
-            if host.commands!=None and host.commands!='':
-                basetime = 700 if len(host.host)==0 else 3000
+            # esperar 3 seg antes de enviar comandos
+            if host.commands != None and host.commands != '':
+                basetime = 700 if len(host.host) == 0 else 3000
                 lines = []
                 for line in host.commands.splitlines():
                     if line.startswith("##D=") and line[4:].isdigit():
@@ -1281,7 +1111,7 @@ class Wmain(SimpleGladeApp):
                     gobject.timeout_add(basetime, self.send_data, v, "\r".join(lines))
             v.queue_draw()
 
-            #guardar datos de consola para clonar consola
+            # guardar datos de consola para clonar consola
             v.host = host
         except:
             traceback.print_exc()
@@ -1298,9 +1128,9 @@ class Wmain(SimpleGladeApp):
         self.treeServers.set_model(self.treeModel)
 
         self.treeServers.set_level_indentation(5)
-        #Force the alternating row colors, by default it's off with one column
+        # Force the alternating row colors, by default it's off with one column
         self.treeServers.set_property('rules-hint', True)
-        gtk.rc_parse_string( """
+        gtk.rc_parse_string("""
                 style "custom-treestyle"{
                     GtkTreeView::allow-rules = 1
                 }
@@ -1308,7 +1138,7 @@ class Wmain(SimpleGladeApp):
             """)
         column = gtk.TreeViewColumn()
         column.set_title('Servers')
-        self.treeServers.append_column( column )
+        self.treeServers.append_column(column)
 
         renderer = gtk.CellRendererPixbuf()
         column.pack_start(renderer, expand=False)
@@ -1324,12 +1154,13 @@ class Wmain(SimpleGladeApp):
         self.updateTree()
 
     def on_treeServers_tooltip(self, widget, x, y, keyboard, tooltip):
-        x,y = widget.convert_widget_to_bin_window_coords(x, y)
+        x, y = widget.convert_widget_to_bin_window_coords(x, y)
         pos = widget.get_path_at_pos(x, y)
         if pos:
             host = list(widget.get_model()[pos[0]])[1]
             if host:
-                text = "<span><b>%s</b>\n%s:%s@%s\n</span><span size='smaller'>%s</span>" % (host.name, host.type, host.user, host.host, host.description)
+                text = "<span><b>%s</b>\n%s:%s@%s\n</span><span size='smaller'>%s</span>" % (
+                host.name, host.type, host.user, host.host, host.description)
                 tooltip.set_markup(text)
                 return True
         return False
@@ -1337,37 +1168,38 @@ class Wmain(SimpleGladeApp):
     def loadConfig(self):
         global groups
 
-        cp= ConfigParser.RawConfigParser(  )
-        cp.read( CONFIG_FILE )
+        cp = ConfigParser.RawConfigParser()
+        conf = Config()
+        cp.read(conf.config_file)
 
-        #Leer configuracion general
+        # Leer configuracion general
         try:
-            conf.WORD_SEPARATORS = cp.get("options", "word-separators")
-            conf.BUFFER_LINES = cp.getint("options", "buffer-lines")
-            conf.CONFIRM_ON_EXIT = cp.getboolean("options", "confirm-exit")
-            conf.FONT_COLOR = cp.get("options", "font-color")
-            conf.BACK_COLOR = cp.get("options", "back-color")
-            conf.TRANSPARENCY = cp.getint("options", "transparency")
-            conf.PASTE_ON_RIGHT_CLICK = cp.getboolean("options", "paste-right-click")
-            conf.CONFIRM_ON_CLOSE_TAB = cp.getboolean("options", "confirm-close-tab")
-            conf.CHECK_UPDATES = cp.getboolean("options", "check-updates")
-            conf.COLLAPSED_FOLDERS = cp.get("window", "collapsed-folders")
-            conf.LEFT_PANEL_WIDTH = cp.getint("window", "left-panel-width")
-            conf.WINDOW_WIDTH = cp.getint("window", "window-width")
-            conf.WINDOW_HEIGHT = cp.getint("window", "window-height")
-            conf.FONT = cp.get("options", "font")
-            conf.HIDE_DONATE = cp.getboolean("options", "donate")
-            conf.AUTO_COPY_SELECTION = cp.getboolean("options", "auto-copy-selection")
-            conf.LOG_PATH = cp.get("options", "log-path")
-            conf.VERSION = cp.get("options", "version")
-            conf.AUTO_CLOSE_TAB = cp.getint("options", "auto-close-tab")
-            conf.SHOW_PANEL = cp.getboolean("window", "show-panel")
-            conf.SHOW_TOOLBAR = cp.getboolean("window", "show-toolbar")
-            conf.STARTUP_LOCAL = cp.getboolean("options","startup-local")
+            Config.WORD_SEPARATORS = cp.get("options", "word-separators")
+            Config.BUFFER_LINES = cp.getint("options", "buffer-lines")
+            Config.CONFIRM_ON_EXIT = cp.getboolean("options", "confirm-exit")
+            Config.FONT_COLOR = cp.get("options", "font-color")
+            Config.BACK_COLOR = cp.get("options", "back-color")
+            Config.TRANSPARENCY = cp.getint("options", "transparency")
+            Config.PASTE_ON_RIGHT_CLICK = cp.getboolean("options", "paste-right-click")
+            Config.CONFIRM_ON_CLOSE_TAB = cp.getboolean("options", "confirm-close-tab")
+            Config.CHECK_UPDATES = cp.getboolean("options", "check-updates")
+            Config.COLLAPSED_FOLDERS = cp.get("window", "collapsed-folders")
+            Config.LEFT_PANEL_WIDTH = cp.getint("window", "left-panel-width")
+            Config.WINDOW_WIDTH = cp.getint("window", "window-width")
+            Config.WINDOW_HEIGHT = cp.getint("window", "window-height")
+            Config.FONT = cp.get("options", "font")
+            Config.HIDE_DONATE = cp.getboolean("options", "donate")
+            Config.AUTO_COPY_SELECTION = cp.getboolean("options", "auto-copy-selection")
+            Config.LOG_PATH = cp.get("options", "log-path")
+            Config.VERSION = cp.get("options", "version")
+            Config.AUTO_CLOSE_TAB = cp.getint("options", "auto-close-tab")
+            Config.SHOW_PANEL = cp.getboolean("window", "show-panel")
+            Config.SHOW_TOOLBAR = cp.getboolean("window", "show-toolbar")
+            Config.STARTUP_LOCAL = cp.getboolean("options", "startup-local")
         except:
             print "%s: %s" % (_("Entrada invalida en archivo de configuracion"), sys.exc_info()[1])
 
-        #Leer shorcuts
+        # Leer shorcuts
         scuts = {}
         try:
             scuts[cp.get("shortcuts", "copy")] = _COPY
@@ -1429,24 +1261,25 @@ class Wmain(SimpleGladeApp):
         except:
             scuts["CTRL+K"] = _CLEAR
 
-        #shortcuts para cambiar consola1-consola9
-        for x in range(1,10):
+        # shortcuts para cambiar consola1-consola9
+        for x in range(1, 10):
             try:
-                scuts[cp.get("shortcuts", "console_%d" % (x) )] = eval("_CONSOLE_%d" % (x))
+                scuts[cp.get("shortcuts", "console_%d" % (x))] = eval("_CONSOLE_%d" % (x))
             except:
                 scuts["F%d" % (x)] = eval("_CONSOLE_%d" % (x))
         try:
             i = 1
             while True:
-                scuts[cp.get("shortcuts", "shortcut%d" % (i))] = cp.get("shortcuts", "command%d" % (i)).replace('\\n','\n')
+                scuts[cp.get("shortcuts", "shortcut%d" % (i))] = cp.get("shortcuts", "command%d" % (i)).replace('\\n',
+                                                                                                                '\n')
                 i = i + 1
         except:
             pass
         global shortcuts
         shortcuts = scuts
 
-        #Leer lista de hosts
-        groups={}
+        # Leer lista de hosts
+        groups = {}
         for section in cp.sections():
             if not section.startswith("host "):
                 continue
@@ -1455,35 +1288,35 @@ class Wmain(SimpleGladeApp):
                 host = HostUtils.load_host_from_ini(cp, section)
 
                 if not groups.has_key(host.group):
-                    groups[host.group]=[]
+                    groups[host.group] = []
 
-                groups[host.group].append( host )
+                groups[host.group].append(host)
             except:
                 print "%s: %s" % (_("Entrada invalida en archivo de configuracion"), sys.exc_info()[1])
 
     def is_node_collapsed(self, model, path, iter, nodes):
-        if self.treeModel.get_value(iter, 1)==None and not self.treeServers.row_expanded(path):
-             nodes.append(self.treeModel.get_string_from_iter(iter))
+        if self.treeModel.get_value(iter, 1) == None and not self.treeServers.row_expanded(path):
+            nodes.append(self.treeModel.get_string_from_iter(iter))
 
     def get_collapsed_nodes(self):
-        nodes=[]
+        nodes = []
         self.treeModel.foreach(self.is_node_collapsed, nodes)
         return nodes
 
     def set_collapsed_nodes(self):
         self.treeServers.expand_all()
         if self.treeModel.get_iter_root():
-            for node in conf.COLLAPSED_FOLDERS.split(","):
-                if node!='':
+            for node in Config.COLLAPSED_FOLDERS.split(","):
+                if node != '':
                     self.treeServers.collapse_row(node)
 
     def updateTree(self):
         for grupo in dict(groups):
-            if len(groups[grupo])==0:
+            if len(groups[grupo]) == 0:
                 del groups[grupo]
 
-        if conf.COLLAPSED_FOLDERS == None:
-            conf.COLLAPSED_FOLDERS = ','.join(self.get_collapsed_nodes())
+        if Config.COLLAPSED_FOLDERS == None:
+            Config.COLLAPSED_FOLDERS = ','.join(self.get_collapsed_nodes())
 
         self.menuServers.foreach(self.menuServers.remove)
         self.treeModel.clear()
@@ -1492,7 +1325,7 @@ class Wmain(SimpleGladeApp):
         iconDir = self.treeServers.render_icon("gtk-directory", size=gtk.ICON_SIZE_BUTTON, detail=None)
 
         grupos = groups.keys()
-        grupos.sort(lambda x,y: cmp(y,x))
+        grupos.sort(lambda x, y: cmp(y, x))
 
         for grupo in grupos:
             group = None
@@ -1510,7 +1343,7 @@ class Wmain(SimpleGladeApp):
                 menu = self.get_folder_menu(self.menuServers, '', path)
                 if menu == None:
                     menu = gtk.ImageMenuItem(folder)
-                    #menu.set_image(gtk.image_new_from_stock(gtk.STOCK_DIRECTORY, gtk.ICON_SIZE_MENU))
+                    # menu.set_image(gtk.image_new_from_stock(gtk.STOCK_DIRECTORY, gtk.ICON_SIZE_MENU))
                     menuNode.prepend(menu)
                     menuNode = gtk.Menu()
                     menu.set_submenu(menuNode)
@@ -1528,110 +1361,111 @@ class Wmain(SimpleGladeApp):
                 menuNode.append(mnuItem)
 
         self.set_collapsed_nodes()
-        conf.COLLAPSED_FOLDERS = None
+        Config.COLLAPSED_FOLDERS = None
 
     def get_folder(self, obj, folder, path):
         if not obj:
             return None
         for row in obj:
-            if path == folder+'/'+row[0]:
+            if path == folder + '/' + row[0]:
                 return row
-            i = self.get_folder(row.iterchildren(), folder+'/'+row[0], path)
+            i = self.get_folder(row.iterchildren(), folder + '/' + row[0], path)
             if i:
                 return i
 
     def get_folder_menu(self, obj, folder, path):
-        if not obj or not (isinstance(obj,gtk.Menu) or isinstance(obj,gtk.MenuItem)):
+        if not obj or not (isinstance(obj, gtk.Menu) or isinstance(obj, gtk.MenuItem)):
             return None
         for item in obj.get_children():
-            if path == folder+'/'+item.get_label():
+            if path == folder + '/' + item.get_label():
                 return item.get_submenu()
-            i = self.get_folder_menu(item.get_submenu(), folder+'/'+item.get_label(), path)
+            i = self.get_folder_menu(item.get_submenu(), folder + '/' + item.get_label(), path)
             if i:
                 return i
 
     def writeConfig(self):
         global groups
 
-        cp= ConfigParser.RawConfigParser( )
-        cp.read( CONFIG_FILE + ".tmp" )
+        cp = ConfigParser.RawConfigParser()
+        conf = Config()
+        cp.read(conf.config_file + ".tmp")
 
         cp.add_section("options")
-        cp.set("options", "word-separators", conf.WORD_SEPARATORS)
-        cp.set("options", "buffer-lines", conf.BUFFER_LINES)
-        cp.set("options", "startup-local", conf.STARTUP_LOCAL)
-        cp.set("options", "confirm-exit", conf.CONFIRM_ON_EXIT)
-        cp.set("options", "font-color", conf.FONT_COLOR)
-        cp.set("options", "back-color", conf.BACK_COLOR)
-        cp.set("options", "transparency", conf.TRANSPARENCY)
-        cp.set("options", "paste-right-click", conf.PASTE_ON_RIGHT_CLICK)
-        cp.set("options", "confirm-close-tab", conf.CONFIRM_ON_CLOSE_TAB)
-        cp.set("options", "check-updates", conf.CHECK_UPDATES)
-        cp.set("options", "font", conf.FONT)
-        cp.set("options", "donate", conf.HIDE_DONATE)
-        cp.set("options", "auto-copy-selection", conf.AUTO_COPY_SELECTION)
-        cp.set("options", "log-path", conf.LOG_PATH)
+        cp.set("options", "word-separators", Config.WORD_SEPARATORS)
+        cp.set("options", "buffer-lines", Config.BUFFER_LINES)
+        cp.set("options", "startup-local", Config.STARTUP_LOCAL)
+        cp.set("options", "confirm-exit", Config.CONFIRM_ON_EXIT)
+        cp.set("options", "font-color", Config.FONT_COLOR)
+        cp.set("options", "back-color", Config.BACK_COLOR)
+        cp.set("options", "transparency", Config.TRANSPARENCY)
+        cp.set("options", "paste-right-click", Config.PASTE_ON_RIGHT_CLICK)
+        cp.set("options", "confirm-close-tab", Config.CONFIRM_ON_CLOSE_TAB)
+        cp.set("options", "check-updates", Config.CHECK_UPDATES)
+        cp.set("options", "font", Config.FONT)
+        cp.set("options", "donate", Config.HIDE_DONATE)
+        cp.set("options", "auto-copy-selection", Config.AUTO_COPY_SELECTION)
+        cp.set("options", "log-path", Config.LOG_PATH)
         cp.set("options", "version", app_fileversion)
-        cp.set("options", "auto-close-tab", conf.AUTO_CLOSE_TAB)
+        cp.set("options", "auto-close-tab", Config.AUTO_CLOSE_TAB)
 
         collapsed_folders = ','.join(self.get_collapsed_nodes())
         cp.add_section("window")
         cp.set("window", "collapsed-folders", collapsed_folders)
         cp.set("window", "left-panel-width", self.hpMain.get_position())
-        cp.set("window", "window-width", conf.WINDOW_WIDTH)
-        cp.set("window", "window-height", conf.WINDOW_HEIGHT)
-        cp.set("window", "show-panel", conf.SHOW_PANEL)
-        cp.set("window", "show-toolbar", conf.SHOW_TOOLBAR)
+        cp.set("window", "window-width", Config.WINDOW_WIDTH)
+        cp.set("window", "window-height", Config.WINDOW_HEIGHT)
+        cp.set("window", "show-panel", Config.SHOW_PANEL)
+        cp.set("window", "show-toolbar", Config.SHOW_TOOLBAR)
 
-        i=1
+        i = 1
         for grupo in groups:
             for host in groups[grupo]:
                 section = "host " + str(i)
                 cp.add_section(section)
                 HostUtils.save_host_to_ini(cp, section, host)
-                i+=1
+                i += 1
 
         cp.add_section("shortcuts")
-        i=1
+        i = 1
         for s in shortcuts:
             if type(shortcuts[s]) == list:
                 cp.set("shortcuts", shortcuts[s][0], s)
             else:
                 cp.set("shortcuts", "shortcut%d" % (i), s)
-                cp.set("shortcuts", "command%d" % (i), shortcuts[s].replace('\n','\\n'))
-                i=i+1
+                cp.set("shortcuts", "command%d" % (i), shortcuts[s].replace('\n', '\\n'))
+                i = i + 1
 
-        f = open(CONFIG_FILE + ".tmp", "w")
+        f = open(conf.config_file + ".tmp", "w")
         cp.write(f)
         f.close()
-        os.rename(CONFIG_FILE + ".tmp", CONFIG_FILE)
+        os.rename(conf.config_file + ".tmp", conf.config_file)
 
     def on_tab_focus(self, widget, *args):
         if isinstance(widget, vte.Terminal):
             self.current = widget
 
     def split_notebook(self, direction):
-        csp = self.current.get_parent() if self.current!=None else None
-        cnb = csp.get_parent() if csp!=None else None
+        csp = self.current.get_parent() if self.current != None else None
+        cnb = csp.get_parent() if csp != None else None
 
-        #Separar solo si hay mas de 2 tabs en el notebook actual
-        if csp!=None and cnb.get_n_pages()>1:
-            #Crear un hpaned, en el hijo 0 dejar el notebook y en el hijo 1 el nuevo notebook
-            #El nuevo hpaned dejarlo como hijo del actual parent
-            hp = gtk.HPaned() if direction==HSPLIT else gtk.VPaned()
+        # Separar solo si hay mas de 2 tabs en el notebook actual
+        if csp != None and cnb.get_n_pages() > 1:
+            # Crear un hpaned, en el hijo 0 dejar el notebook y en el hijo 1 el nuevo notebook
+            # El nuevo hpaned dejarlo como hijo del actual parent
+            hp = gtk.HPaned() if direction == HSPLIT else gtk.VPaned()
             nb = gtk.Notebook()
             nb.set_group_id(11)
             nb.connect('button_press_event', self.on_double_click, None)
             nb.connect('page_removed', self.on_page_removed)
             nb.connect("page-added", self.on_page_added)
             nb.set_property("scrollable", True)
-            cp  = cnb.get_parent()
+            cp = cnb.get_parent()
 
-            if direction==HSPLIT:
-                cnb.set_size_request(cnb.allocation.width/2, cnb.allocation.height)
+            if direction == HSPLIT:
+                cnb.set_size_request(cnb.allocation.width / 2, cnb.allocation.height)
             else:
-                cnb.set_size_request(cnb.allocation.width, cnb.allocation.height/2)
-            #cnb.set_size_request(cnb.allocation.width/2, cnb.allocation.height/2)
+                cnb.set_size_request(cnb.allocation.width, cnb.allocation.height / 2)
+            # cnb.set_size_request(cnb.allocation.width/2, cnb.allocation.height/2)
 
             cp.remove(cnb)
             cp.add(hp)
@@ -1654,14 +1488,14 @@ class Wmain(SimpleGladeApp):
             self.current = cnb.get_nth_page(cnb.get_current_page()).get_children()[0]
 
     def find_notebook(self, widget, exclude=None):
-        if widget!=exclude and isinstance(widget, gtk.Notebook):
+        if widget != exclude and isinstance(widget, gtk.Notebook):
             return widget
         else:
             if not hasattr(widget, "get_children"):
                 return None
             for w in widget.get_children():
                 wid = self.find_notebook(w, exclude)
-                if wid!=exclude and isinstance(wid, gtk.Notebook):
+                if wid != exclude and isinstance(wid, gtk.Notebook):
                     return wid
             return None
 
@@ -1679,13 +1513,13 @@ class Wmain(SimpleGladeApp):
             return None
 
     def check_notebook_pages(self, widget):
-        if widget.get_n_pages()==0:
-            #eliminar el notebook solo si queda otro notebook y no quedan tabs en el actual
+        if widget.get_n_pages() == 0:
+            # eliminar el notebook solo si queda otro notebook y no quedan tabs en el actual
             paned = widget.get_parent()
-            if paned==None or paned==self.hpMain:
+            if paned == None or paned == self.hpMain:
                 return
             container = paned.get_parent()
-            save = paned.get_child2() if paned.get_child1()==widget else paned.get_child1()
+            save = paned.get_child2() if paned.get_child1() == widget else paned.get_child1()
             container.remove(paned)
             paned.remove(save)
             container.add(save)
@@ -1696,17 +1530,17 @@ class Wmain(SimpleGladeApp):
                     self.nbConsole = self.find_notebook(save)
 
     def on_page_removed(self, widget, *args):
-        self.count-=1
+        self.count -= 1
         if hasattr(widget, "is_closed") and widget.is_closed:
-            #tab has been closed
+            # tab has been closed
             self.check_notebook_pages(widget)
         else:
-            #tab has been moved to another notebook
-            #save a reference to this notebook, on_page_added check if the notebook must be removed
+            # tab has been moved to another notebook
+            # save a reference to this notebook, on_page_added check if the notebook must be removed
             self.check_notebook = widget
 
     def on_page_added(self, widget, *args):
-        self.count+=1
+        self.count += 1
         if hasattr(self, "check_notebook"):
             self.check_notebook_pages(self.check_notebook)
             delattr(self, "check_notebook")
@@ -1716,62 +1550,67 @@ class Wmain(SimpleGladeApp):
         dlg.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
         dlg.add_button(gtk.STOCK_SAVE, gtk.RESPONSE_OK)
         dlg.set_do_overwrite_confirmation(True)
-        dlg.set_current_name( os.path.basename("gcm-buffer-%s.txt" % (time.strftime("%Y%m%d%H%M%S")) ))
-        if not hasattr(self,'lastPath'):
+        dlg.set_current_name(os.path.basename("gcm-buffer-%s.txt" % (time.strftime("%Y%m%d%H%M%S"))))
+        if not hasattr(self, 'lastPath'):
             self.lastPath = os.path.expanduser("~")
-        dlg.set_current_folder( self.lastPath )
+        dlg.set_current_folder(self.lastPath)
 
         if dlg.run() == gtk.RESPONSE_OK:
             filename = dlg.get_filename()
             self.lastPath = os.path.dirname(filename)
 
             try:
-                buff = terminal.get_text_range(0, 0, terminal.get_property('scrollback-lines')-1, terminal.get_column_count()-1, lambda *args: True, None, None ).strip()
+                buff = terminal.get_text_range(0, 0, terminal.get_property('scrollback-lines') - 1,
+                                               terminal.get_column_count() - 1, lambda *args: True, None, None).strip()
                 f = open(filename, "w")
                 f.write(buff)
                 f.close()
             except:
                 traceback.print_exc()
                 dlg.destroy()
-                msgbox("%s: %s" % (_("No se puede abrir archivo para escritura"), filename) )
+                msgbox("%s: %s" % (_("No se puede abrir archivo para escritura"), filename))
                 return
 
         dlg.destroy()
 
     def set_panel_visible(self, visibility):
         if visibility:
-            gobject.timeout_add(200, lambda : self.hpMain.set_position(self.hpMain.previous_position if self.hpMain.previous_position>10 else 150))
+            gobject.timeout_add(200, lambda: self.hpMain.set_position(
+                self.hpMain.previous_position if self.hpMain.previous_position > 10 else 150))
         else:
             self.hpMain.previous_position = self.hpMain.get_position()
-            gobject.timeout_add(200, lambda : self.hpMain.set_position(0))
+            gobject.timeout_add(200, lambda: self.hpMain.set_position(0))
         self.get_widget("show_panel").set_active(visibility)
-        conf.SHOW_PANEL = visibility
+        Config.SHOW_PANEL = visibility
 
     def set_toolbar_visible(self, visibility):
-        #self.get_widget("toolbar1").set_visible(visibility)
+        # self.get_widget("toolbar1").set_visible(visibility)
         if visibility:
             self.get_widget("toolbar1").show()
         else:
             self.get_widget("toolbar1").hide()
         self.get_widget("show_toolbar").set_active(visibility)
-        conf.SHOW_TOOLBAR = visibility
+        Config.SHOW_TOOLBAR = visibility
 
-    #-- Wmain custom methods }
+    # -- Wmain custom methods }
 
-    #-- Wmain.on_wMain_destroy {
+    # -- Wmain.on_wMain_destroy {
     def on_wMain_destroy(self, widget, *args):
         self.writeConfig()
         gtk.main_quit()
-    #-- Wmain.on_wMain_destroy }
 
-    #-- Wmain.on_wMain_delete_event {
+    # -- Wmain.on_wMain_destroy }
+
+    # -- Wmain.on_wMain_delete_event {
     def on_wMain_delete_event(self, widget, *args):
-        (conf.WINDOW_WIDTH, conf.WINDOW_HEIGHT) = self.get_widget("wMain").get_size()
-        if conf.CONFIRM_ON_EXIT and self.count>0 and msgconfirm("%s %d %s" % (_("Hay"), self.count, _("consolas abiertas, confirma que desea salir?")) ) != gtk.RESPONSE_OK:
+        (Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT) = self.get_widget("wMain").get_size()
+        if Config.CONFIRM_ON_EXIT and self.count > 0 and msgconfirm("%s %d %s" % (
+        _("Hay"), self.count, _("consolas abiertas, confirma que desea salir?"))) != gtk.RESPONSE_OK:
             return True
-    #-- Wmain.on_wMain_delete_event }
 
-    #-- Wmain.on_guardar_como1_activate {
+    # -- Wmain.on_wMain_delete_event }
+
+    # -- Wmain.on_guardar_como1_activate {
     def on_guardar_como1_activate(self, widget, *args):
         term = self.find_active_terminal(self.hpMain)
         if term == None:
@@ -1779,9 +1618,9 @@ class Wmain(SimpleGladeApp):
         if term != None:
             self.show_save_buffer(term)
 
-    #-- Wmain.on_guardar_como1_activate }
+    # -- Wmain.on_guardar_como1_activate }
 
-    #-- Wmain.on_importar_servidores1_activate {
+    # -- Wmain.on_importar_servidores1_activate {
     def on_importar_servidores1_activate(self, widget, *args):
         filename = show_open_dialog(parent=self.wMain, title=_("Abrir"), action=gtk.FILE_CHOOSER_ACTION_OPEN)
         if filename != None:
@@ -1789,12 +1628,12 @@ class Wmain(SimpleGladeApp):
             if password == None:
                 return
 
-            #abrir archivo con lista de servers y cargarlos en el arbol
+            # abrir archivo con lista de servers y cargarlos en el arbol
             try:
-                cp= ConfigParser.RawConfigParser( )
-                cp.read( filename )
+                cp = ConfigParser.RawConfigParser()
+                cp.read(filename)
 
-                #validar el pass
+                # validar el pass
                 s = decrypt(password, cp.get("gcm", "gcm"))
                 if (s != password[::-1]):
                     msgbox(_("Clave invalida"))
@@ -1803,28 +1642,29 @@ class Wmain(SimpleGladeApp):
                 if msgconfirm(_(u'Se sobreescribirá la lista de servidores, continuar?')) != gtk.RESPONSE_OK:
                     return
 
-                grupos={}
+                grupos = {}
                 for section in cp.sections():
                     if not section.startswith("host "):
                         continue
                     host = HostUtils.load_host_from_ini(cp, section, password)
 
                     if not grupos.has_key(host.group):
-                        grupos[host.group]=[]
+                        grupos[host.group] = []
 
-                    grupos[host.group].append( host )
+                    grupos[host.group].append(host)
             except:
                 traceback.print_exc()
                 msgbox(_("Archivo invalido"))
                 return
-            #sobreescribir lista de hosts
+            # sobreescribir lista de hosts
             global groups
-            groups=grupos
+            groups = grupos
 
             self.updateTree()
-    #-- Wmain.on_importar_servidores1_activate }
 
-    #-- Wmain.on_exportar_servidores1_activate {
+    # -- Wmain.on_importar_servidores1_activate }
+
+    # -- Wmain.on_exportar_servidores1_activate {
     def on_exportar_servidores1_activate(self, widget, *args):
         filename = show_open_dialog(parent=self.wMain, title=_("Guardar como"), action=gtk.FILE_CHOOSER_ACTION_SAVE)
         if filename != None:
@@ -1833,9 +1673,9 @@ class Wmain(SimpleGladeApp):
                 return
 
             try:
-                cp= ConfigParser.RawConfigParser( )
-                cp.read( filename + ".tmp" )
-                i=1
+                cp = ConfigParser.RawConfigParser()
+                cp.read(filename + ".tmp")
+                i = 1
                 cp.add_section("gcm")
                 cp.set("gcm", "gcm", encrypt(password, password[::-1]))
                 global groups
@@ -1844,7 +1684,7 @@ class Wmain(SimpleGladeApp):
                         section = "host " + str(i)
                         cp.add_section(section)
                         HostUtils.save_host_to_ini(cp, section, host, password)
-                        i+=1
+                        i += 1
                 f = open(filename + ".tmp", "w")
                 cp.write(f)
                 f.close()
@@ -1852,161 +1692,181 @@ class Wmain(SimpleGladeApp):
             except:
                 traceback.print_exc()
                 msgbox(_("Archivo invalido"))
-    #-- Wmain.on_exportar_servidores1_activate }
 
-    #-- Wmain.on_salir1_activate {
+    # -- Wmain.on_exportar_servidores1_activate }
+
+    # -- Wmain.on_salir1_activate {
     def on_salir1_activate(self, widget, *args):
-        (conf.WINDOW_WIDTH, conf.WINDOW_HEIGHT) = self.get_widget("wMain").get_size()
+        (Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT) = self.get_widget("wMain").get_size()
         self.writeConfig()
         gtk.main_quit()
-    #-- Wmain.on_salir1_activate }
 
-    #-- Wmain.on_show_toolbar_activate {
+    # -- Wmain.on_salir1_activate }
+
+    # -- Wmain.on_show_toolbar_activate {
     def on_show_toolbar_toggled(self, widget, *args):
         self.set_toolbar_visible(widget.get_active())
-    #-- Wmain.on_show_toolbar_activate }
 
-    #-- Wmain.on_show_panel_activate {
+    # -- Wmain.on_show_toolbar_activate }
+
+    # -- Wmain.on_show_panel_activate {
     def on_show_panel_toggled(self, widget, *args):
         self.set_panel_visible(widget.get_active())
-    #-- Wmain.on_show_panel_activate }
 
-    #-- Wmain.on_acerca_de1_activate {
+    # -- Wmain.on_show_panel_activate }
+
+    # -- Wmain.on_acerca_de1_activate {
     def on_acerca_de1_activate(self, widget, *args):
         w_about = Wabout()
-    #-- Wmain.on_acerca_de1_activate }
 
-    #-- Wmain.on_double_click {
+    # -- Wmain.on_acerca_de1_activate }
+
+    # -- Wmain.on_double_click {
     def on_double_click(self, widget, event, *args):
         if event.type in [gtk.gdk._2BUTTON_PRESS, gtk.gdk._3BUTTON_PRESS] and event.button == 1:
             if isinstance(widget, gtk.Notebook):
                 pos = event.x + widget.get_allocation().x
-                size = widget.get_tab_label(widget.get_nth_page(widget.get_n_pages()-1)).get_allocation()
-                if pos <= size.x + size.width + 2 * widget.get_property("tab-vborder") + 8 or event.x >= widget.get_allocation().width - widget.style_get_property("scroll-arrow-hlength"):
+                size = widget.get_tab_label(widget.get_nth_page(widget.get_n_pages() - 1)).get_allocation()
+                if pos <= size.x + size.width + 2 * widget.get_property(
+                        "tab-vborder") + 8 or event.x >= widget.get_allocation().width - widget.style_get_property(
+                        "scroll-arrow-hlength"):
                     return True
             self.addTab(widget if isinstance(widget, gtk.Notebook) else self.nbConsole, 'local')
             return True
-    #-- Wmain.on_double_click }
 
-    #-- Wmain.on_btnLocal_clicked {
+    # -- Wmain.on_double_click }
+
+    # -- Wmain.on_btnLocal_clicked {
     def on_btnLocal_clicked(self, widget, *args):
-        if self.current != None and self.current.get_parent()!=None and isinstance(self.current.get_parent().get_parent(), gtk.Notebook):
+        if self.current != None and self.current.get_parent() != None and isinstance(
+                self.current.get_parent().get_parent(), gtk.Notebook):
             ntbk = self.current.get_parent().get_parent()
         else:
             ntbk = self.nbConsole
         self.addTab(ntbk, 'local')
-    #-- Wmain.on_btnLocal_clicked }
 
-    #-- Wmain.on_btnConnect_clicked {
+    # -- Wmain.on_btnLocal_clicked }
+
+    # -- Wmain.on_btnConnect_clicked {
     def on_btnConnect_clicked(self, widget, *args):
-        if self.treeServers.get_selection().get_selected()[1]!=None:
+        if self.treeServers.get_selection().get_selected()[1] != None:
             if not self.treeModel.iter_has_child(self.treeServers.get_selection().get_selected()[1]):
                 self.on_tvServers_row_activated(self.treeServers)
             else:
                 selected = self.treeServers.get_selection().get_selected()[1]
-                group = self.treeModel.get_value(selected,0)
+                group = self.treeModel.get_value(selected, 0)
                 parent_group = self.get_group(selected)
                 if parent_group != '':
                     group = parent_group + '/' + group
 
                 for g in groups:
-                    if g == group or g.startswith(group+'/'):
+                    if g == group or g.startswith(group + '/'):
                         for host in groups[g]:
                             self.addTab(self.nbConsole, host)
-    #-- Wmain.on_btnConnect_clicked }
 
-    #-- Wmain.on_btnAdd_clicked {
+    # -- Wmain.on_btnConnect_clicked }
+
+    # -- Wmain.on_btnAdd_clicked {
     def on_btnAdd_clicked(self, widget, *args):
-        group=""
-        if self.treeServers.get_selection().get_selected()[1]!=None:
+        group = ""
+        if self.treeServers.get_selection().get_selected()[1] != None:
             selected = self.treeServers.get_selection().get_selected()[1]
             group = self.get_group(selected)
             if self.treeModel.iter_has_child(self.treeServers.get_selection().get_selected()[1]):
                 selected = self.treeServers.get_selection().get_selected()[1]
-                group = self.treeModel.get_value(selected,0)
+                group = self.treeModel.get_value(selected, 0)
                 parent_group = self.get_group(selected)
                 if parent_group != '':
                     group = parent_group + '/' + group
         wHost = Whost()
         wHost.init(group)
         self.updateTree()
-    #-- Wmain.on_btnAdd_clicked }
+
+    # -- Wmain.on_btnAdd_clicked }
 
     def get_group(self, i):
         if self.treeModel.iter_parent(i):
             p = self.get_group(self.treeModel.iter_parent(i))
-            return (p+'/' if p!='' else '') + self.treeModel.get_value(self.treeModel.iter_parent(i),0)
+            return (p + '/' if p != '' else '') + self.treeModel.get_value(self.treeModel.iter_parent(i), 0)
         else:
             return ''
 
-    #-- Wmain.on_bntEdit_clicked {
+    # -- Wmain.on_bntEdit_clicked {
     def on_bntEdit_clicked(self, widget, *args):
-        if self.treeServers.get_selection().get_selected()[1]!=None and not self.treeModel.iter_has_child(self.treeServers.get_selection().get_selected()[1]):
+        if self.treeServers.get_selection().get_selected()[1] != None and not self.treeModel.iter_has_child(
+                self.treeServers.get_selection().get_selected()[1]):
             selected = self.treeServers.get_selection().get_selected()[1]
-            host = self.treeModel.get_value(selected,1)
+            host = self.treeModel.get_value(selected, 1)
             wHost = Whost()
             wHost.init(host.group, host)
-            #self.updateTree()
-    #-- Wmain.on_bntEdit_clicked }
+            # self.updateTree()
 
-    #-- Wmain.on_btnDel_clicked {
+    # -- Wmain.on_bntEdit_clicked }
+
+    # -- Wmain.on_btnDel_clicked {
     def on_btnDel_clicked(self, widget, *args):
-        if self.treeServers.get_selection().get_selected()[1]!=None:
+        if self.treeServers.get_selection().get_selected()[1] != None:
             if not self.treeModel.iter_has_child(self.treeServers.get_selection().get_selected()[1]):
-                #Eliminar solo el nodo
-                name = self.treeModel.get_value(self.treeServers.get_selection().get_selected()[1],0)
-                if msgconfirm("%s [%s]?" % (_("Confirma que desea eliminar el host"), name) ) == gtk.RESPONSE_OK:
-                    host = self.treeModel.get_value(self.treeServers.get_selection().get_selected()[1],1)
+                # Eliminar solo el nodo
+                name = self.treeModel.get_value(self.treeServers.get_selection().get_selected()[1], 0)
+                if msgconfirm("%s [%s]?" % (_("Confirma que desea eliminar el host"), name)) == gtk.RESPONSE_OK:
+                    host = self.treeModel.get_value(self.treeServers.get_selection().get_selected()[1], 1)
                     groups[host.group].remove(host)
                     self.updateTree()
             else:
-                #Eliminar todo el grupo
+                # Eliminar todo el grupo
                 group = self.get_group(self.treeModel.iter_children(self.treeServers.get_selection().get_selected()[1]))
-                if msgconfirm("%s [%s]?" % (_("Confirma que desea eliminar todos los hosts del grupo"), group) ) == gtk.RESPONSE_OK:
+                if msgconfirm("%s [%s]?" % (
+                _("Confirma que desea eliminar todos los hosts del grupo"), group)) == gtk.RESPONSE_OK:
                     try:
                         del groups[group]
                     except:
                         pass
                     for h in dict(groups):
-                        if h.startswith(group+'/'):
+                        if h.startswith(group + '/'):
                             del groups[h]
                     self.updateTree()
         self.writeConfig()
-    #-- Wmain.on_btnDel_clicked }
 
-    #-- Wmain.on_btnHSplit_clicked {
+    # -- Wmain.on_btnDel_clicked }
+
+    # -- Wmain.on_btnHSplit_clicked {
     def on_btnHSplit_clicked(self, widget, *args):
         self.split_notebook(HSPLIT)
-    #-- Wmain.on_btnHSplit_clicked }
 
-    #-- Wmain.on_btnVSplit_clicked {
+    # -- Wmain.on_btnHSplit_clicked }
+
+    # -- Wmain.on_btnVSplit_clicked {
     def on_btnVSplit_clicked(self, widget, *args):
         self.split_notebook(VSPLIT)
-    #-- Wmain.on_btnVSplit_clicked }
 
-    #-- Wmain.on_btnUnsplit_clicked {
+    # -- Wmain.on_btnVSplit_clicked }
+
+    # -- Wmain.on_btnUnsplit_clicked {
     def on_btnUnsplit_clicked(self, widget, *args):
         wid = self.find_notebook(self.hpMain, self.nbConsole)
-        while wid!=None:
-            #Mover los tabs al notebook principal
-            while wid.get_n_pages()!=0:
+        while wid != None:
+            # Mover los tabs al notebook principal
+            while wid.get_n_pages() != 0:
                 csp = wid.get_nth_page(0)
                 text = wid.get_tab_label(csp).get_text()
                 csp.reparent(self.nbConsole)
-                csp = self.nbConsole.get_nth_page(self.nbConsole.get_n_pages()-1)
-                tab = NotebookTabLabel(text, self.nbConsole, csp, self.popupMenuTab )
+                csp = self.nbConsole.get_nth_page(self.nbConsole.get_n_pages() - 1)
+                tab = NotebookTabLabel(text, self.nbConsole, csp, self.popupMenuTab)
                 self.nbConsole.set_tab_label(csp, tab_label=tab)
                 self.nbConsole.set_tab_reorderable(csp, True)
                 self.nbConsole.set_tab_detachable(csp, True)
             wid = self.find_notebook(self.hpMain, self.nbConsole)
-    #-- Wmain.on_btnUnsplit_clicked }
 
-    #-- Wmain.on_btnConfig_clicked {
+    # -- Wmain.on_btnUnsplit_clicked }
+
+    # -- Wmain.on_btnConfig_clicked {
     def on_btnConfig_clicked(self, widget, *args):
         wConfig = Wconfig()
-    #-- Wmain.on_btnConfig_clicked }
 
-    #-- Wmain.on_btnDonate_clicked {
+    # -- Wmain.on_btnConfig_clicked }
+
+    # -- Wmain.on_btnDonate_clicked {
     def on_btnDonate_clicked(self, widget, *args):
         with tempfile.NamedTemporaryFile(suffix='.html', delete=False) as f:
             f.write('<html> \
@@ -2023,35 +1883,39 @@ class Wmain(SimpleGladeApp):
             elif os.name == "posix":
                 os.system("/usr/bin/xdg-open %s" % (f.name))
 
-    #-- Wmain.on_btnDonate_clicked }
+    # -- Wmain.on_btnDonate_clicked }
 
-    #-- Wmain.on_txtSearch_focus {
+    # -- Wmain.on_txtSearch_focus {
     def on_txtSearch_focus(self, widget, *args):
         if widget.get_text() == _('buscar...'):
             widget.modify_text(gtk.STATE_NORMAL, gtk.gdk.Color('black'))
             widget.set_text('')
-    #-- Wmain.on_txtSearch_focus }
 
-    #-- Wmain.on_txtSearch_focus_out_event {
+    # -- Wmain.on_txtSearch_focus }
+
+    # -- Wmain.on_txtSearch_focus_out_event {
     def on_txtSearch_focus_out_event(self, widget, *args):
         if widget.get_text() == '':
             widget.modify_text(gtk.STATE_NORMAL, gtk.gdk.Color('darkgray'))
             widget.set_text(_('buscar...'))
-    #-- Wmain.on_txtSearch_focus_out_event }
 
-    #-- Wmain.on_btnSearchBack_clicked {
+    # -- Wmain.on_txtSearch_focus_out_event }
+
+    # -- Wmain.on_btnSearchBack_clicked {
     def on_btnSearchBack_clicked(self, widget, *args):
         if self.init_search():
             self.find_word(backwards=True)
-    #-- Wmain.on_btnSearchBack_clicked }
 
-    #-- Wmain.on_btnSearch_clicked {
+    # -- Wmain.on_btnSearchBack_clicked }
+
+    # -- Wmain.on_btnSearch_clicked {
     def on_btnSearch_clicked(self, widget, *args):
         if self.init_search():
             self.find_word()
-    #-- Wmain.on_btnSearch_clicked }
 
-    #-- Wmain.on_btnCluster_clicked {
+    # -- Wmain.on_btnSearch_clicked }
+
+    # -- Wmain.on_btnCluster_clicked {
     def on_btnCluster_clicked(self, widget, *args):
         if hasattr(self, 'wCluster'):
             if not self.wCluster.get_property("visible"):
@@ -2063,7 +1927,7 @@ class Wmain(SimpleGladeApp):
         if not create:
             return True
 
-        #obtener lista de consolas abiertas
+        # obtener lista de consolas abiertas
         consoles = []
         global wMain
         obj = wMain.hpMain
@@ -2071,7 +1935,7 @@ class Wmain(SimpleGladeApp):
         s.append(obj)
         while len(s) > 0:
             obj = s.pop()
-            #agregar hijos de p a s
+            # agregar hijos de p a s
             if hasattr(obj, "get_children"):
                 for w in obj.get_children():
                     if isinstance(w, gtk.Notebook) or hasattr(w, "get_children"):
@@ -2079,34 +1943,37 @@ class Wmain(SimpleGladeApp):
 
             if isinstance(obj, gtk.Notebook):
                 n = obj.get_n_pages()
-                for i in range(0,n):
+                for i in range(0, n):
                     terminal = obj.get_nth_page(i).get_child()
                     title = obj.get_tab_label(obj.get_nth_page(i)).get_text()
-                    consoles.append( (title, terminal) )
+                    consoles.append((title, terminal))
 
-        if len(consoles)==0:
+        if len(consoles) == 0:
             msgbox(_("No hay consolas abiertas"))
             return True
 
         self.wCluster = Wcluster(terms=consoles).get_widget('wCluster')
-    #-- Wmain.on_btnCluster_clicked }
 
-    #-- Wmain.on_hpMain_button_press_event {
+    # -- Wmain.on_btnCluster_clicked }
+
+    # -- Wmain.on_hpMain_button_press_event {
     def on_hpMain_button_press_event(self, widget, event, *args):
         if event.type in [gtk.gdk._2BUTTON_PRESS]:
             p = self.hpMain.get_position()
-            self.set_panel_visible(p==0)
-    #-- Wmain.on_hpMain_button_press_event }
+            self.set_panel_visible(p == 0)
 
-    #-- Wmain.on_tvServers_row_activated {
+    # -- Wmain.on_hpMain_button_press_event }
+
+    # -- Wmain.on_tvServers_row_activated {
     def on_tvServers_row_activated(self, widget, *args):
         if not self.treeModel.iter_has_child(widget.get_selection().get_selected()[1]):
             selected = widget.get_selection().get_selected()[1]
-            host = self.treeModel.get_value(selected,1)
+            host = self.treeModel.get_value(selected, 1)
             self.addTab(self.nbConsole, host)
-    #-- Wmain.on_tvServers_row_activated }
 
-    #-- Wmain.on_tvServers_button_press_event {
+    # -- Wmain.on_tvServers_row_activated }
+
+    # -- Wmain.on_tvServers_button_press_event {
     def on_tvServers_button_press_event(self, widget, event, *args):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             x = int(event.x)
@@ -2137,20 +2004,21 @@ class Wmain(SimpleGladeApp):
 
                 self.popupMenuFolder.mnuDel.show()
                 self.treeServers.grab_focus()
-                self.treeServers.set_cursor( path, col, 0)
-            self.popupMenuFolder.popup( None, None, None, event.button, event.time)
+                self.treeServers.set_cursor(path, col, 0)
+            self.popupMenuFolder.popup(None, None, None, event.button, event.time)
             return True
-    #-- Wmain.on_tvServers_button_press_event }
+            # -- Wmain.on_tvServers_button_press_event }
+
 
 class Host():
     def __init__(self, *args):
         try:
             self.i = 0
             self.group = self.get_arg(args, None)
-            self.name =  self.get_arg(args, None)
-            self.description =  self.get_arg(args, None)
-            self.host =  self.get_arg(args, None)
-            self.user =   self.get_arg(args, None)
+            self.name = self.get_arg(args, None)
+            self.description = self.get_arg(args, None)
+            self.host = self.get_arg(args, None)
+            self.user = self.get_arg(args, None)
             self.password = self.get_arg(args, None)
             self.private_key = self.get_arg(args, None)
             self.port = self.get_arg(args, 22)
@@ -2162,8 +2030,8 @@ class Host():
             self.back_color = self.get_arg(args, '')
             self.x11 = self.get_arg(args, False)
             self.agent = self.get_arg(args, False)
-            self.compression = self.get_arg(args,False)
-            self.compressionLevel = self.get_arg(args,'')
+            self.compression = self.get_arg(args, False)
+            self.compressionLevel = self.get_arg(args, '')
             self.extra_params = self.get_arg(args, '')
             self.log = self.get_arg(args, False)
             self.backspace_key = self.get_arg(args, int(vte.ERASE_AUTO))
@@ -2171,10 +2039,9 @@ class Host():
         except:
             pass
 
-
     def get_arg(self, args, default):
-        arg = args[self.i] if len(args)>self.i else default
-        self.i +=1
+        arg = args[self.i] if len(args) > self.i else default
+        self.i += 1
         return arg
 
     def __repr__(self):
@@ -2184,19 +2051,23 @@ class Host():
         return ",".join(self.tunnel)
 
     def clone(self):
-        return Host(self.group, self.name, self.description, self.host, self.user, self.password, self.private_key, self.port, self.tunnel_as_string(), self.type, self.commands, self.keep_alive, self.font_color, self.back_color, self.x11, self.agent, self.compression, self.compressionLevel, self.extra_params, self.log, self.backspace_key, self.delete_key)
+        return Host(self.group, self.name, self.description, self.host, self.user, self.password, self.private_key,
+                    self.port, self.tunnel_as_string(), self.type, self.commands, self.keep_alive, self.font_color,
+                    self.back_color, self.x11, self.agent, self.compression, self.compressionLevel, self.extra_params,
+                    self.log, self.backspace_key, self.delete_key)
+
 
 class HostUtils:
     @staticmethod
     def get_val(cp, section, name, default):
         try:
-            return cp.get(section, name) if type(default)!=type(True) else cp.getboolean(section, name)
+            return cp.get(section, name) if type(default) != type(True) else cp.getboolean(section, name)
         except:
             return default
 
     @staticmethod
     def load_host_from_ini(cp, section, pwd=''):
-        if pwd=='':
+        if pwd == '':
             pwd = get_password()
         group = cp.get(section, "group")
         name = cp.get(section, "name")
@@ -2204,9 +2075,9 @@ class HostUtils:
         user = cp.get(section, "user")
         tpw = cp.get(section, "pass")
         if tpw:
-          password = decrypt(pwd, tpw)
+            password = decrypt(pwd, tpw)
         else:
-          password = ''
+            password = ''
         description = HostUtils.get_val(cp, section, "description", "")
         private_key = HostUtils.get_val(cp, section, "private_key", "")
         port = HostUtils.get_val(cp, section, "port", "22")
@@ -2224,12 +2095,14 @@ class HostUtils:
         log = HostUtils.get_val(cp, section, "log", False)
         backspace_key = int(HostUtils.get_val(cp, section, "backspace-key", int(vte.ERASE_AUTO)))
         delete_key = int(HostUtils.get_val(cp, section, "delete-key", int(vte.ERASE_AUTO)))
-        h = Host(group, name, description, host, user, password, private_key, port, tunnel, ctype, commands, keepalive, fcolor, bcolor, x11, agent, compression, compressionLevel,  extra_params, log, backspace_key, delete_key)
+        h = Host(group, name, description, host, user, password, private_key, port, tunnel, ctype, commands, keepalive,
+                 fcolor, bcolor, x11, agent, compression, compressionLevel, extra_params, log, backspace_key,
+                 delete_key)
         return h
 
     @staticmethod
     def save_host_to_ini(cp, section, host, pwd=''):
-        if pwd=='':
+        if pwd == '':
             pwd = get_password()
         cp.set(section, "group", host.group)
         cp.set(section, "name", host.name)
@@ -2257,25 +2130,25 @@ class HostUtils:
         cp.set(section, "backspace-key", host.backspace_key)
         cp.set(section, "delete-key", host.delete_key)
 
-class Whost(SimpleGladeApp):
 
+class Whost(SimpleGladeApp):
     def __init__(self, path="gnome-connection-manager.glade",
                  root="wHost",
                  domain=DOMAIN_NAME, **kwargs):
         path = os.path.join(GLADE_DIR, path)
         SimpleGladeApp.__init__(self, path, root, domain, **kwargs)
 
-        self.treeModel = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING, gobject.TYPE_STRING, gobject.TYPE_STRING)
+        self.treeModel = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING, gobject.TYPE_STRING,
+                                       gobject.TYPE_STRING)
         self.treeTunel.set_model(self.treeModel)
         column = gtk.TreeViewColumn(_("Local"), gtk.CellRendererText(), text=0)
-        self.treeTunel.append_column( column )
+        self.treeTunel.append_column(column)
         column = gtk.TreeViewColumn(_("Host"), gtk.CellRendererText(), text=1)
-        self.treeTunel.append_column( column )
+        self.treeTunel.append_column(column)
         column = gtk.TreeViewColumn(_("Remoto"), gtk.CellRendererText(), text=2)
-        self.treeTunel.append_column( column )
+        self.treeTunel.append_column(column)
 
-
-    #-- Whost.new {
+    # -- Whost.new {
     def new(self):
         global groups
 
@@ -2320,9 +2193,10 @@ class Whost(SimpleGladeApp):
         self.cmbType.set_active(0)
         self.cmbBackspace.set_active(0)
         self.cmbDelete.set_active(0)
-    #-- Whost.new }
 
-    #-- Whost custom methods {
+    # -- Whost.new }
+
+    # -- Whost custom methods {
     def init(self, group, host=None):
         self.cmbGroup.get_child().set_text(group)
         if host == None:
@@ -2335,8 +2209,8 @@ class Whost(SimpleGladeApp):
         self.oldName = host.name
         self.txtDescription.set_text(host.description)
         self.txtHost.set_text(host.host)
-        i =  self.cmbType.get_model().get_iter_first()
-        while i!=None:
+        i = self.cmbType.get_model().get_iter_first()
+        while i != None:
             if (host.type == self.cmbType.get_model()[i][0]):
                 self.cmbType.set_active_iter(i)
                 break
@@ -2347,32 +2221,32 @@ class Whost(SimpleGladeApp):
         self.txtPrivateKey.set_text(host.private_key)
         self.txtPort.set_text(host.port)
         for t in host.tunnel:
-            if t!="":
+            if t != "":
                 tun = t.split(":")
                 tun.append(t)
-                self.treeModel.append(  tun )
+                self.treeModel.append(tun)
         self.txtCommands.set_sensitive(False)
         self.chkCommands.set_active(False)
-        if host.commands!='' and host.commands!=None:
+        if host.commands != '' and host.commands != None:
             self.txtCommands.get_buffer().set_text(host.commands)
             self.txtCommands.set_sensitive(True)
             self.chkCommands.set_active(True)
-        use_keep_alive = host.keep_alive!='' and host.keep_alive!='0' and host.keep_alive!=None
+        use_keep_alive = host.keep_alive != '' and host.keep_alive != '0' and host.keep_alive != None
         self.txtKeepAlive.set_sensitive(use_keep_alive)
         self.chkKeepAlive.set_active(use_keep_alive)
         self.txtKeepAlive.set_text(host.keep_alive)
-        if host.font_color!='' and host.font_color!=None and host.back_color!='' and host.back_color!=None:
+        if host.font_color != '' and host.font_color != None and host.back_color != '' and host.back_color != None:
             self.get_widget("chkDefaultColors").set_active(False)
             self.btnFColor.set_sensitive(True)
             self.btnBColor.set_sensitive(True)
-            fcolor=host.font_color
-            bcolor=host.back_color
+            fcolor = host.font_color
+            bcolor = host.back_color
         else:
             self.get_widget("chkDefaultColors").set_active(True)
             self.btnFColor.set_sensitive(False)
             self.btnBColor.set_sensitive(False)
-            fcolor="#FFFFFF"
-            bcolor="#000000"
+            fcolor = "#FFFFFF"
+            bcolor = "#000000"
 
         self.btnFColor.set_color(gtk.gdk.Color(fcolor))
         self.btnBColor.set_color(gtk.gdk.Color(bcolor))
@@ -2384,8 +2258,8 @@ class Whost(SimpleGladeApp):
         self.btnFColor.set_style(style)
         self.btnFColor.queue_draw()
 
-        self.btnFColor.selected_color=fcolor
-        self.btnBColor.selected_color=bcolor
+        self.btnFColor.selected_color = fcolor
+        self.btnBColor.selected_color = bcolor
         self.chkX11.set_active(host.x11)
         self.chkAgent.set_active(host.agent)
         self.chkCompression.set_active(host.compression)
@@ -2401,7 +2275,7 @@ class Whost(SimpleGladeApp):
         text_iter = buf.get_start_iter()
         buf.remove_all_tags(text_iter, buf.get_end_iter())
         while True:
-            found = text_iter.forward_search("##D=",0, None)
+            found = text_iter.forward_search("##D=", 0, None)
             if not found:
                 break
             start, end = found
@@ -2412,15 +2286,16 @@ class Whost(SimpleGladeApp):
                 buf.apply_tag_by_name("DELAY2", n, end)
             text_iter = end
 
-    #-- Whost custom methods }
+    # -- Whost custom methods }
 
-    #-- Whost.on_cancelbutton1_clicked {
+    # -- Whost.on_cancelbutton1_clicked {
     def on_cancelbutton1_clicked(self, widget, *args):
         self.get_widget("wHost").destroy()
-    #-- Whost.on_cancelbutton1_clicked }
+
+    # -- Whost.on_cancelbutton1_clicked }
 
 
-    #-- Whost.on_okbutton1_clicked {
+    # -- Whost.on_okbutton1_clicked {
     def on_okbutton1_clicked(self, widget, *args):
         group = self.cmbGroup.get_active_text().strip()
         name = self.txtName.get_text().strip()
@@ -2432,11 +2307,12 @@ class Whost(SimpleGladeApp):
         private_key = self.txtPrivateKey.get_text().strip()
         port = self.txtPort.get_text().strip()
         buf = self.txtCommands.get_buffer()
-        commands = buf.get_text(buf.get_start_iter(), buf.get_end_iter()).strip() if self.chkCommands.get_active() else ""
+        commands = buf.get_text(buf.get_start_iter(),
+                                buf.get_end_iter()).strip() if self.chkCommands.get_active() else ""
         keepalive = self.txtKeepAlive.get_text().strip()
         if self.get_widget("chkDefaultColors").get_active():
-            fcolor=""
-            bcolor=""
+            fcolor = ""
+            bcolor = ""
         else:
             fcolor = self.btnFColor.selected_color
             bcolor = self.btnBColor.selected_color
@@ -2452,15 +2328,15 @@ class Whost(SimpleGladeApp):
 
         if ctype == "":
             ctype = "ssh"
-        tunnel=""
+        tunnel = ""
 
-        if ctype=="ssh":
+        if ctype == "ssh":
             for x in self.treeModel:
                 tunnel = '%s,%s' % (x[3], tunnel)
-            tunnel=tunnel[:-1]
+            tunnel = tunnel[:-1]
 
-        #Validar datos
-        if group=="" or name=="" or (host=="" and ctype!='local'):
+        # Validar datos
+        if group == "" or name == "" or (host == "" and ctype != 'local'):
             msgbox(_("Los campos grupo, nombre y host son obligatorios"))
             return
 
@@ -2468,37 +2344,39 @@ class Whost(SimpleGladeApp):
             msgbox(_("Puerto invalido"))
             return
 
-        host = Host(group, name, description, host, user, password, private_key, port, tunnel, ctype, commands, keepalive, fcolor, bcolor, x11, agent, compression, compressionLevel,  extra_params, log, backspace_key, delete_key)
+        host = Host(group, name, description, host, user, password, private_key, port, tunnel, ctype, commands,
+                    keepalive, fcolor, bcolor, x11, agent, compression, compressionLevel, extra_params, log,
+                    backspace_key, delete_key)
 
         try:
-            #Guardar
+            # Guardar
             if not groups.has_key(group):
-                groups[group]=[]
+                groups[group] = []
 
             if self.isNew:
                 for h in groups[group]:
                     if h.name == name:
                         msgbox("%s [%s] %s [%s]" % (_("El nombre"), name, _("ya existe para el grupo"), group))
                         return
-                #agregar host a grupo
-                groups[group].append( host )
+                # agregar host a grupo
+                groups[group].append(host)
             else:
-                if self.oldGroup!=group:
-                    #revisar que no este el nombre en el nuevo grupo
+                if self.oldGroup != group:
+                    # revisar que no este el nombre en el nuevo grupo
                     if not groups.has_key(group):
-                        groups[group] = [ host ]
+                        groups[group] = [host]
                     else:
                         for h in groups[group]:
                             if h.name == name:
                                 msgbox("%s [%s] %s [%s]" % (_("El nombre"), name, _("ya existe para el grupo"), group))
                                 return
-                        groups[group].append( host )
+                        groups[group].append(host)
                         for h in groups[self.oldGroup]:
                             if h.name == self.oldName:
                                 groups[self.oldGroup].remove(h)
                                 break
                 else:
-                    if self.oldName!=name:
+                    if self.oldName != name:
                         for h in groups[self.oldGroup]:
                             if h.name == name:
                                 msgbox("%s [%s] %s [%s]" % (_("El nombre"), name, _("ya existe para el grupo"), group))
@@ -2506,13 +2384,13 @@ class Whost(SimpleGladeApp):
                         for h in groups[self.oldGroup]:
                             if h.name == self.oldName:
                                 index = groups[self.oldGroup].index(h)
-                                groups[self.oldGroup][ index ] = host
+                                groups[self.oldGroup][index] = host
                                 break
                     else:
                         for h in groups[self.oldGroup]:
                             if h.name == self.oldName:
                                 index = groups[self.oldGroup].index(h)
-                                groups[self.oldGroup][ index ] = host
+                                groups[self.oldGroup][index] = host
                                 break
         except:
             traceback.print_exc()
@@ -2523,18 +2401,19 @@ class Whost(SimpleGladeApp):
         wMain.writeConfig()
 
         self.get_widget("wHost").destroy()
-    #-- Whost.on_okbutton1_clicked }
 
-    #-- Whost.on_cmbType_changed {
+    # -- Whost.on_okbutton1_clicked }
+
+    # -- Whost.on_cmbType_changed {
     def on_cmbType_changed(self, widget, *args):
-        is_local = widget.get_active_text()=="local"
+        is_local = widget.get_active_text() == "local"
         self.txtUser.set_sensitive(not is_local)
         self.txtPassword.set_sensitive(not is_local)
         self.txtPort.set_sensitive(not is_local)
         self.txtHost.set_sensitive(not is_local)
         self.txtExtraParams.set_sensitive(not is_local)
 
-        if widget.get_active_text()=="ssh":
+        if widget.get_active_text() == "ssh":
             self.get_widget("table2").show_all()
             self.txtKeepAlive.set_sensitive(True)
             self.chkKeepAlive.set_sensitive(True)
@@ -2563,31 +2442,35 @@ class Whost(SimpleGladeApp):
                 self.txtPort.set_text('')
                 self.txtHost.set_text('')
         self.txtPort.set_text(port)
-    #-- Whost.on_cmbType_changed }
 
-    #-- Whost.on_chkKeepAlive_toggled {
+    # -- Whost.on_cmbType_changed }
+
+    # -- Whost.on_chkKeepAlive_toggled {
     def on_chkKeepAlive_toggled(self, widget, *args):
         if (widget.get_active()):
             self.txtKeepAlive.set_text('120')
         else:
             self.txtKeepAlive.set_text('0')
         self.txtKeepAlive.set_sensitive(widget.get_active())
-    #-- Whost.on_chkKeepAlive_toggled }
 
-    #-- Whost.on_chkCompression_toggled {
+    # -- Whost.on_chkKeepAlive_toggled }
+
+    # -- Whost.on_chkCompression_toggled {
     def on_chkCompression_toggled(self, widget, *args):
         self.txtCompressionLevel.set_text('')
         self.txtCompressionLevel.set_sensitive(widget.get_active())
-    #-- Whost.on_chkCompression_toggled }
+
+    # -- Whost.on_chkCompression_toggled }
 
 
-    #-- Whost.on_chkDynamic_toggled {
+    # -- Whost.on_chkDynamic_toggled {
     def on_chkDynamic_toggled(self, widget, *args):
         self.txtRemoteHost.set_sensitive(not widget.get_active())
         self.txtRemotePort.set_sensitive(not widget.get_active())
-    #-- Whost.on_chkDynamic_toggled }
 
-    #-- Whost.on_btnAdd_clicked {
+    # -- Whost.on_chkDynamic_toggled }
+
+    # -- Whost.on_btnAdd_clicked {
     def on_btnAdd_clicked(self, widget, *args):
         local = self.txtLocalPort.get_text().strip()
         host = self.txtRemoteHost.get_text().strip()
@@ -2597,7 +2480,7 @@ class Whost(SimpleGladeApp):
             host = '*'
             remote = '*'
 
-        #Validar datos del tunel
+        # Validar datos del tunel
         if host == "":
             msgbox(_("Debe ingresar host remoto"))
             return
@@ -2607,80 +2490,87 @@ class Whost(SimpleGladeApp):
                 msgbox(_("Puerto local ya fue asignado"))
                 return
 
-        tunel = self.treeModel.append( [local, host, remote, '%s:%s:%s' % (local, host, remote) ] )
-    #-- Whost.on_btnAdd_clicked }
+        tunel = self.treeModel.append([local, host, remote, '%s:%s:%s' % (local, host, remote)])
 
-    #-- Whost.on_btnDel_clicked {
+    # -- Whost.on_btnAdd_clicked }
+
+    # -- Whost.on_btnDel_clicked {
     def on_btnDel_clicked(self, widget, *args):
-        if self.treeTunel.get_selection().get_selected()[1]!=None:
+        if self.treeTunel.get_selection().get_selected()[1] != None:
             self.treeModel.remove(self.treeTunel.get_selection().get_selected()[1])
-    #-- Whost.on_btnDel_clicked }
 
-    #-- Whost.on_chkCommands_toggled {
+    # -- Whost.on_btnDel_clicked }
+
+    # -- Whost.on_chkCommands_toggled {
     def on_chkCommands_toggled(self, widget, *args):
         self.txtCommands.set_sensitive(widget.get_active())
-    #-- Whost.on_chkCommands_toggled }
 
-    #-- Whost.on_btnBColor_clicked {
+    # -- Whost.on_chkCommands_toggled }
+
+    # -- Whost.on_btnBColor_clicked {
     def on_btnBColor_clicked(self, widget, *args):
         widget.selected_color = widget.get_color().to_string()
-    #-- Whost.on_btnBColor_clicked }
 
-    #-- Whost.on_chkDefaultColors_toggled {
+    # -- Whost.on_btnBColor_clicked }
+
+    # -- Whost.on_chkDefaultColors_toggled {
     def on_chkDefaultColors_toggled(self, widget, *args):
         self.btnFColor.set_sensitive(not widget.get_active())
         self.btnBColor.set_sensitive(not widget.get_active())
-    #-- Whost.on_chkDefaultColors_toggled }
 
-    #-- Whost.on_btnFColor_clicked {
+    # -- Whost.on_chkDefaultColors_toggled }
+
+    # -- Whost.on_btnFColor_clicked {
     def on_btnFColor_clicked(self, widget, *args):
         widget.selected_color = widget.get_color().to_string()
-    #-- Whost.on_btnFColor_clicked }
 
-    #-- Whost.on_btnBrowse_clicked {
+    # -- Whost.on_btnFColor_clicked }
+
+    # -- Whost.on_btnBrowse_clicked {
     def on_btnBrowse_clicked(self, widget, *args):
         global wMain
         filename = show_open_dialog(parent=wMain.wMain, title=_("Abrir"), action=gtk.FILE_CHOOSER_ACTION_OPEN)
         if filename != None:
             self.txtPrivateKey.set_text(filename)
-    #-- Whost.on_btnBrowse_clicked }
+            # -- Whost.on_btnBrowse_clicked }
+
 
 class Wabout(SimpleGladeApp):
-
     def __init__(self, path="gnome-connection-manager.glade",
                  root="wAbout",
                  domain=DOMAIN_NAME, **kwargs):
         path = os.path.join(GLADE_DIR, path)
         SimpleGladeApp.__init__(self, path, root, domain, **kwargs)
         self.wAbout.set_icon_from_file(ICON_PATH)
-    #-- Wabout.new {
+
+    # -- Wabout.new {
     def new(self):
         self.wAbout.set_name(app_name)
         self.wAbout.set_version(app_version)
         self.wAbout.set_website(app_web)
-    #-- Wabout.new }
 
-    #-- Wabout custom methods {
+    # -- Wabout.new }
+
+    # -- Wabout custom methods {
     #   Write your own methods here
-    #-- Wabout custom methods }
+    # -- Wabout custom methods }
 
-    #-- Wabout.on_wAbout_close {
+    # -- Wabout.on_wAbout_close {
     def on_wAbout_close(self, widget, *args):
         self.wAbout.destroy()
-    #-- Wabout.on_wAbout_close }
+        # -- Wabout.on_wAbout_close }
 
 
 class Wconfig(SimpleGladeApp):
-
     def __init__(self, path="gnome-connection-manager.glade",
                  root="wConfig",
                  domain=DOMAIN_NAME, **kwargs):
         path = os.path.join(GLADE_DIR, path)
         SimpleGladeApp.__init__(self, path, root, domain, **kwargs)
 
-    #-- Wconfig.new {
+    # -- Wconfig.new {
     def new(self):
-        #Agregar controles
+        # Agregar controles
         self.tblGeneral = self.get_widget("tblGeneral")
         self.btnFColor = self.get_widget("btnFColor")
         self.btnBColor = self.get_widget("btnBColor")
@@ -2692,53 +2582,54 @@ class Wconfig(SimpleGladeApp):
         self.capture_keys = False
 
         self.tblGeneral.rows = 0
-        self.addParam(_("Separador de Palabras"), "conf.WORD_SEPARATORS", str)
-        self.addParam(_(u"Tamaño del buffer"), "conf.BUFFER_LINES", int, 1, 1000000)
-        self.addParam(_("Transparencia"), "conf.TRANSPARENCY", int, 0, 100)
-        self.addParam(_("Ruta de logs"), "conf.LOG_PATH", str)
-        self.addParam(_("Abrir consola local al inicio"), "conf.STARTUP_LOCAL", bool)
-        self.addParam(_(u"Pegar con botón derecho"), "conf.PASTE_ON_RIGHT_CLICK", bool)
-        self.addParam(_(u"Copiar selección al portapapeles"), "conf.AUTO_COPY_SELECTION", bool)
-        self.addParam(_("Confirmar al cerrar una consola"), "conf.CONFIRM_ON_CLOSE_TAB", bool)
-        self.addParam(_("Cerrar consola"), "conf.AUTO_CLOSE_TAB", list, [_("Nunca"), _("Siempre"), _(u"Sólo si no hay errores")])
-        self.addParam(_("Confirmar al salir"), "conf.CONFIRM_ON_EXIT", bool)
-        self.addParam(_("Comprobar actualizaciones"), "conf.CHECK_UPDATES", bool)
-        self.addParam(_(u"Ocultar botón donar"), "conf.HIDE_DONATE", bool)
+        self.addParam(_("Separador de Palabras"), "Config.WORD_SEPARATORS", str)
+        self.addParam(_(u"Tamaño del buffer"), "Config.BUFFER_LINES", int, 1, 1000000)
+        self.addParam(_("Transparencia"), "Config.TRANSPARENCY", int, 0, 100)
+        self.addParam(_("Ruta de logs"), "Config.LOG_PATH", str)
+        self.addParam(_("Abrir consola local al inicio"), "Config.STARTUP_LOCAL", bool)
+        self.addParam(_(u"Pegar con botón derecho"), "Config.PASTE_ON_RIGHT_CLICK", bool)
+        self.addParam(_(u"Copiar selección al portapapeles"), "Config.AUTO_COPY_SELECTION", bool)
+        self.addParam(_("Confirmar al cerrar una consola"), "Config.CONFIRM_ON_CLOSE_TAB", bool)
+        self.addParam(_("Cerrar consola"), "Config.AUTO_CLOSE_TAB", list,
+                      [_("Nunca"), _("Siempre"), _(u"Sólo si no hay errores")])
+        self.addParam(_("Confirmar al salir"), "Config.CONFIRM_ON_EXIT", bool)
+        self.addParam(_("Comprobar actualizaciones"), "Config.CHECK_UPDATES", bool)
+        self.addParam(_(u"Ocultar botón donar"), "Config.HIDE_DONATE", bool)
 
-        if len(conf.FONT_COLOR)==0:
+        if len(Config.FONT_COLOR) == 0:
             self.get_widget("chkDefaultColors").set_active(True)
             self.btnFColor.set_sensitive(False)
             self.btnBColor.set_sensitive(False)
-            fcolor="#FFFFFF"
-            bcolor="#000000"
+            fcolor = "#FFFFFF"
+            bcolor = "#000000"
         else:
             self.get_widget("chkDefaultColors").set_active(False)
             self.btnFColor.set_sensitive(True)
             self.btnBColor.set_sensitive(True)
-            fcolor=conf.FONT_COLOR
-            bcolor=conf.BACK_COLOR
+            fcolor = Config.FONT_COLOR
+            bcolor = Config.BACK_COLOR
 
         self.btnFColor.set_color(gtk.gdk.Color(fcolor))
         self.btnBColor.set_color(gtk.gdk.Color(bcolor))
-        self.btnFColor.selected_color=fcolor
-        self.btnBColor.selected_color=bcolor
+        self.btnFColor.selected_color = fcolor
+        self.btnBColor.selected_color = bcolor
 
-        #Fuente
-        if len(conf.FONT)==0 or conf.FONT == 'monospace':
-            conf.FONT = 'monospace'
+        # Fuente
+        if len(Config.FONT) == 0 or Config.FONT == 'monospace':
+            Config.FONT = 'monospace'
         else:
             self.chkDefaultFont.set_active(False)
-        self.btnFont.selected_font = pango.FontDescription(conf.FONT)
+        self.btnFont.selected_font = pango.FontDescription(Config.FONT)
         self.btnFont.set_label(self.btnFont.selected_font.to_string())
         self.btnFont.get_child().modify_font(self.btnFont.selected_font)
 
-        #commandos
+        # commandos
         self.treeModel = gtk.TreeStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
         self.treeCmd.set_model(self.treeModel)
         column = gtk.TreeViewColumn(_(u"Acción"), gtk.CellRendererText(), text=0)
         column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
         column.set_expand(True)
-        self.treeCmd.append_column( column )
+        self.treeCmd.append_column(column)
 
         renderer = gtk.CellRendererText()
         renderer.set_property("editable", True)
@@ -2747,7 +2638,7 @@ class Wconfig(SimpleGladeApp):
         column = gtk.TreeViewColumn(_("Atajo"), renderer, text=1)
         column.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
         column.set_expand(False)
-        self.treeCmd.append_column( column )
+        self.treeCmd.append_column(column)
 
         self.treeModel2 = gtk.TreeStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
         self.treeCustom.set_model(self.treeModel2)
@@ -2757,7 +2648,7 @@ class Wconfig(SimpleGladeApp):
         column = gtk.TreeViewColumn(_("Comando"), renderer, text=0)
         column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
         column.set_expand(True)
-        self.treeCustom.append_column( column )
+        self.treeCustom.append_column(column)
         renderer = gtk.CellRendererText()
         renderer.set_property("editable", True)
         renderer.connect('edited', self.on_edited, self.treeModel2, 1)
@@ -2765,73 +2656,74 @@ class Wconfig(SimpleGladeApp):
         column = gtk.TreeViewColumn(_("Atajo"), renderer, text=1)
         column.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
         column.set_expand(False)
-        self.treeCustom.append_column( column )
+        self.treeCustom.append_column(column)
 
-        slist = sorted(shortcuts.iteritems(), key=lambda (k,v): (v,k))
+        slist = sorted(shortcuts.iteritems(), key=lambda (k, v): (v, k))
 
         for s in slist:
-            if type(s[1])==list:
-                self.treeModel.append(None, [ s[1][0], s[0] ])
+            if type(s[1]) == list:
+                self.treeModel.append(None, [s[1][0], s[0]])
         for s in slist:
-            if type(s[1])!=list:
-                self.treeModel2.append(None, [ s[1], s[0] ])
+            if type(s[1]) != list:
+                self.treeModel2.append(None, [s[1], s[0]])
 
-        self.treeModel2.append(None, [ '', '' ])
-    #-- Wconfig.new }
+        self.treeModel2.append(None, ['', ''])
 
-    #-- Wconfig custom methods {
+    # -- Wconfig.new }
+
+    # -- Wconfig custom methods {
     def addParam(self, name, field, ptype, *args):
         x = self.tblGeneral.rows
         self.tblGeneral.rows += 1
         value = eval(field)
-        if ptype==bool:
+        if ptype == bool:
             obj = gtk.CheckButton()
             obj.set_label(name)
             obj.set_active(value)
             obj.set_alignment(0, 0.5)
             obj.show()
-            obj.field=field
-            self.tblGeneral.attach(obj, 0, 2, x, x+1, gtk.EXPAND|gtk.FILL, 0)
-        elif ptype==int:
+            obj.field = field
+            self.tblGeneral.attach(obj, 0, 2, x, x + 1, gtk.EXPAND | gtk.FILL, 0)
+        elif ptype == int:
             obj = gtk.SpinButton(climb_rate=10)
-            if len(args)==2:
+            if len(args) == 2:
                 obj.set_range(args[0], args[1])
             obj.set_increments(1, 10)
             obj.set_numeric(True)
             obj.set_value(value)
             obj.show()
-            obj.field=field
+            obj.field = field
             lbl = gtk.Label(name)
             lbl.set_alignment(0, 0.5)
             lbl.show()
-            self.tblGeneral.attach(lbl, 0, 1, x, x+1, gtk.FILL, 0)
-            self.tblGeneral.attach(obj, 1, 2, x, x+1, gtk.EXPAND|gtk.FILL, 0)
-        elif ptype==list:
+            self.tblGeneral.attach(lbl, 0, 1, x, x + 1, gtk.FILL, 0)
+            self.tblGeneral.attach(obj, 1, 2, x, x + 1, gtk.EXPAND | gtk.FILL, 0)
+        elif ptype == list:
             obj = gtk.combo_box_new_text()
             for s in args[0]:
                 obj.append_text(s)
             obj.set_active(value)
             obj.show()
-            obj.field=field
+            obj.field = field
             lbl = gtk.Label(name)
             lbl.set_alignment(0, 0.5)
             lbl.show()
-            self.tblGeneral.attach(lbl, 0, 1, x, x+1, gtk.FILL, 0)
-            self.tblGeneral.attach(obj, 1, 2, x, x+1, gtk.EXPAND|gtk.FILL, 0)
+            self.tblGeneral.attach(lbl, 0, 1, x, x + 1, gtk.FILL, 0)
+            self.tblGeneral.attach(obj, 1, 2, x, x + 1, gtk.EXPAND | gtk.FILL, 0)
         else:
             obj = gtk.Entry()
             obj.set_text(value)
             obj.show()
-            obj.field=field
+            obj.field = field
             lbl = gtk.Label(name)
             lbl.set_alignment(0, 0.5)
             lbl.show()
-            self.tblGeneral.attach(lbl, 0, 1, x, x+1, gtk.FILL, 0)
-            self.tblGeneral.attach(obj, 1, 2, x, x+1, gtk.EXPAND|gtk.FILL, 0)
+            self.tblGeneral.attach(lbl, 0, 1, x, x + 1, gtk.FILL, 0)
+            self.tblGeneral.attach(obj, 1, 2, x, x + 1, gtk.EXPAND | gtk.FILL, 0)
 
     def on_edited(self, widget, rownum, value, model, colnum):
         model[rownum][colnum] = value
-        if model==self.treeModel2:
+        if model == self.treeModel2:
             i = self.treeModel2.get_iter_first()
             while i != None:
                 j = self.treeModel2.iter_next(i)
@@ -2839,21 +2731,23 @@ class Wconfig(SimpleGladeApp):
                 if self.treeModel2[i][0] == self.treeModel2[i][1] == "":
                     self.treeModel2.remove(i)
                 i = j
-            self.treeModel2.append(None, [ '', '' ])
+            self.treeModel2.append(None, ['', ''])
             if self.capture_keys:
                 self.capture_keys = False
 
     def on_editing_started(self, widget, entry, rownum, model, colnum):
         self.capture_keys = True
         entry.connect('key-press-event', self.on_treeCommands_key_press_event, model, rownum, colnum)
-    #-- Wconfig custom methods }
 
-    #-- Wconfig.on_cancelbutton1_clicked {
+    # -- Wconfig custom methods }
+
+    # -- Wconfig.on_cancelbutton1_clicked {
     def on_cancelbutton1_clicked(self, widget, *args):
         self.get_widget("wConfig").destroy()
-    #-- Wconfig.on_cancelbutton1_clicked }
 
-    #-- Wconfig.on_okbutton1_clicked {
+    # -- Wconfig.on_cancelbutton1_clicked }
+
+    # -- Wconfig.on_okbutton1_clicked {
     def on_okbutton1_clicked(self, widget, *args):
         for obj in self.tblGeneral:
             if hasattr(obj, "field"):
@@ -2865,79 +2759,85 @@ class Wconfig(SimpleGladeApp):
                     value = obj.get_active()
                 else:
                     value = '"%s"' % (obj.get_text())
-                exec("%s=%s" % (obj.field, value))
+                exec ("%s=%s" % (obj.field, value))
 
         if self.get_widget("chkDefaultColors").get_active():
-            conf.FONT_COLOR=""
-            conf.BACK_COLOR=""
+            Config.FONT_COLOR = ""
+            Config.BACK_COLOR = ""
         else:
-            conf.FONT_COLOR = self.btnFColor.selected_color
-            conf.BACK_COLOR = self.btnBColor.selected_color
+            Config.FONT_COLOR = self.btnFColor.selected_color
+            Config.BACK_COLOR = self.btnBColor.selected_color
 
         if self.btnFont.selected_font.to_string() != 'monospace' and not self.chkDefaultFont.get_active():
-            conf.FONT = self.btnFont.selected_font.to_string()
+            Config.FONT = self.btnFont.selected_font.to_string()
         else:
-            conf.FONT = ''
+            Config.FONT = ''
 
-        #Guardar shortcuts
-        scuts={}
+        # Guardar shortcuts
+        scuts = {}
         for x in self.treeModel:
-            if x[0]!='' and x[1]!='':
+            if x[0] != '' and x[1] != '':
                 scuts[x[1]] = [x[0]]
         for x in self.treeModel2:
-            if x[0]!='' and x[1]!='':
+            if x[0] != '' and x[1] != '':
                 scuts[x[1]] = x[0]
         global shortcuts
         shortcuts = scuts
 
-        #Boton donate
+        # Boton donate
         global wMain
-        if conf.HIDE_DONATE:
+        if Config.HIDE_DONATE:
             wMain.get_widget("btnDonate").hide_all()
         else:
             wMain.get_widget("btnDonate").show_all()
 
-        #Recrear menu de comandos personalizados
+        # Recrear menu de comandos personalizados
         wMain.populateCommandsMenu()
         wMain.writeConfig()
 
         self.get_widget("wConfig").destroy()
-    #-- Wconfig.on_okbutton1_clicked }
 
-    #-- Wconfig.on_btnBColor_clicked {
+    # -- Wconfig.on_okbutton1_clicked }
+
+    # -- Wconfig.on_btnBColor_clicked {
     def on_btnBColor_clicked(self, widget, *args):
         widget.selected_color = widget.get_color().to_string()
-    #-- Wconfig.on_btnBColor_clicked }
 
-    #-- Wconfig.on_btnFColor_clicked {
+    # -- Wconfig.on_btnBColor_clicked }
+
+    # -- Wconfig.on_btnFColor_clicked {
     def on_btnFColor_clicked(self, widget, *args):
         widget.selected_color = widget.get_color().to_string()
-    #-- Wconfig.on_btnFColor_clicked }
 
-    #-- Wconfig.on_chkDefaultColors_toggled {
+    # -- Wconfig.on_btnFColor_clicked }
+
+    # -- Wconfig.on_chkDefaultColors_toggled {
     def on_chkDefaultColors_toggled(self, widget, *args):
         self.btnFColor.set_sensitive(not widget.get_active())
         self.btnBColor.set_sensitive(not widget.get_active())
-    #-- Wconfig.on_chkDefaultColors_toggled }
 
-    #-- Wconfig.on_chkDefaultFont_toggled {
+    # -- Wconfig.on_chkDefaultColors_toggled }
+
+    # -- Wconfig.on_chkDefaultFont_toggled {
     def on_chkDefaultFont_toggled(self, widget, *args):
         self.btnFont.set_sensitive(not widget.get_active())
         self.lblFont.set_sensitive(not widget.get_active())
-    #-- Wconfig.on_chkDefaultFont_toggled }
 
-    #-- Wconfig.on_btnFont_clicked {
+    # -- Wconfig.on_chkDefaultFont_toggled }
+
+    # -- Wconfig.on_btnFont_clicked {
     def on_btnFont_clicked(self, widget, *args):
         show_font_dialog(self, _("Seleccione la fuente"), self.btnFont)
-    #-- Wconfig.on_btnFont_clicked }
 
-    #-- Wconfig.on_treeCommands_key_press_event {
+    # -- Wconfig.on_btnFont_clicked }
+
+    # -- Wconfig.on_treeCommands_key_press_event {
     def on_treeCommands_key_press_event(self, widget, event, *args):
-        if self.capture_keys and len(args)==3 and (event.keyval != gtk.keysyms.Return or
-                                                   event.state != 0):
+        if self.capture_keys and len(args) == 3 and (event.keyval != gtk.keysyms.Return or
+                                                             event.state != 0):
             model, rownum, colnum = args
             widget.set_text(get_key_name(event))
-    #-- Wconfig.on_treeCommands_key_press_event }
+            # -- Wconfig.on_treeCommands_key_press_event }
 
 
 class Wcluster(SimpleGladeApp):
@@ -2950,24 +2850,25 @@ class Wcluster(SimpleGladeApp):
         path = os.path.join(GLADE_DIR, path)
         SimpleGladeApp.__init__(self, path, root, domain, **kwargs)
 
-    #-- Wcluster.new {
+    # -- Wcluster.new {
     def new(self):
         self.treeHosts = self.get_widget('treeHosts')
-        self.treeStore = gtk.TreeStore( gobject.TYPE_BOOLEAN, gobject.TYPE_STRING, gobject.TYPE_OBJECT )
+        self.treeStore = gtk.TreeStore(gobject.TYPE_BOOLEAN, gobject.TYPE_STRING, gobject.TYPE_OBJECT)
         for x in self.terms:
-            self.treeStore.append( None, (False, x[0], x[1]) )
-        self.treeHosts.set_model( self.treeStore )
+            self.treeStore.append(None, (False, x[0], x[1]))
+        self.treeHosts.set_model(self.treeStore)
 
         crt = gtk.CellRendererToggle()
         crt.set_property('activatable', True)
         crt.connect('toggled', self.on_active_toggled)
         col = gtk.TreeViewColumn(_("Activar"), crt, active=0)
-        self.treeHosts.append_column( col )
-        self.treeHosts.append_column(gtk.TreeViewColumn(_("Host"), gtk.CellRendererText(), text=1 ))
+        self.treeHosts.append_column(col)
+        self.treeHosts.append_column(gtk.TreeViewColumn(_("Host"), gtk.CellRendererText(), text=1))
         self.get_widget("txtCommands").history = []
-    #-- Wcluster.new }
 
-    #-- Wcluster custom methods {
+    # -- Wcluster.new }
+
+    # -- Wcluster custom methods {
     #   Write your own methods here
 
     def on_active_toggled(self, widget, path):
@@ -2986,52 +2887,57 @@ class Wcluster(SimpleGladeApp):
         else:
             nb.get_tab_label(obj).restore_color()
 
-    #-- Wcluster custom methods }
+    # -- Wcluster custom methods }
 
-    #-- Wcluster.on_wCluster_destroy {
+    # -- Wcluster.on_wCluster_destroy {
     def on_wCluster_destroy(self, widget, *args):
         self.on_btnNone_clicked(None)
-    #-- Wcluster.on_wCluster_destroy }
 
-    #-- Wcluster.on_cancelbutton2_clicked {
+    # -- Wcluster.on_wCluster_destroy }
+
+    # -- Wcluster.on_cancelbutton2_clicked {
     def on_cancelbutton2_clicked(self, widget, *args):
         self.get_widget("wCluster").destroy()
-    #-- Wcluster.on_cancelbutton2_clicked }
 
-    #-- Wcluster.on_btnAll_clicked {
+    # -- Wcluster.on_cancelbutton2_clicked }
+
+    # -- Wcluster.on_btnAll_clicked {
     def on_btnAll_clicked(self, widget, *args):
         for x in self.treeStore:
             x[0] = True
             self.change_color(x[2], x[0])
-    #-- Wcluster.on_btnAll_clicked }
 
-    #-- Wcluster.on_btnNone_clicked {
+    # -- Wcluster.on_btnAll_clicked }
+
+    # -- Wcluster.on_btnNone_clicked {
     def on_btnNone_clicked(self, widget, *args):
         for x in self.treeStore:
             x[0] = False
             self.change_color(x[2], x[0])
-    #-- Wcluster.on_btnNone_clicked }
 
-    #-- Wcluster.on_btnInvert_clicked {
+    # -- Wcluster.on_btnNone_clicked }
+
+    # -- Wcluster.on_btnInvert_clicked {
     def on_btnInvert_clicked(self, widget, *args):
         for x in self.treeStore:
             x[0] = not x[0]
             self.change_color(x[2], x[0])
-    #-- Wcluster.on_btnInvert_clicked }
 
-    #-- Wcluster.on_txtCommands_key_press_event {
+    # -- Wcluster.on_btnInvert_clicked }
+
+    # -- Wcluster.on_txtCommands_key_press_event {
     def on_txtCommands_key_press_event(self, widget, event, *args):
         if not event.state & gtk.gdk.CONTROL_MASK and gtk.gdk.keyval_name(event.keyval).upper() == 'RETURN':
-           buf = widget.get_buffer()
-           text = buf.get_text(buf.get_start_iter(), buf.get_end_iter())
-           buf.set_text('')
-           for x in self.treeStore:
-               if x[0]:
-                   x[2].feed_child(text + '\r')
-           widget.history.append(text)
-           widget.history_index = -1
-           return True
-        if event.state & gtk.gdk.CONTROL_MASK and gtk.gdk.keyval_name(event.keyval).upper() in ['UP','DOWN']:
+            buf = widget.get_buffer()
+            text = buf.get_text(buf.get_start_iter(), buf.get_end_iter())
+            buf.set_text('')
+            for x in self.treeStore:
+                if x[0]:
+                    x[2].feed_child(text + '\r')
+            widget.history.append(text)
+            widget.history_index = -1
+            return True
+        if event.state & gtk.gdk.CONTROL_MASK and gtk.gdk.keyval_name(event.keyval).upper() in ['UP', 'DOWN']:
             if len(widget.history) > 0:
                 if gtk.gdk.keyval_name(event.keyval).upper() == 'UP':
                     widget.history_index -= 1
@@ -3041,13 +2947,14 @@ class Wcluster(SimpleGladeApp):
                     widget.history_index += 1
                     if widget.history_index >= len(widget.history):
                         widget.history_index = -1
-                widget.get_buffer().set_text(widget.history[widget.history_index] if widget.history_index>=0 else '')
-    #-- Wcluster.on_txtCommands_key_press_event }
+                widget.get_buffer().set_text(widget.history[widget.history_index] if widget.history_index >= 0 else '')
+                # -- Wcluster.on_txtCommands_key_press_event }
 
 
 class NotebookTabLabel(gtk.HBox):
     '''Notebook tab label with close button.
     '''
+
     def __init__(self, title, owner_, widget_, popup_):
         gtk.HBox.__init__(self, False, 0)
 
@@ -3064,12 +2971,12 @@ class NotebookTabLabel(gtk.HBox):
         self.eb.show()
         close_image = gtk.image_new_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_MENU)
         image_w, image_h = gtk.icon_size_lookup(gtk.ICON_SIZE_MENU)
-        self.widget=widget_
+        self.widget = widget_
         self.popup = popup_
         close_btn = gtk.Button()
         close_btn.set_relief(gtk.RELIEF_NONE)
         close_btn.connect('clicked', self.on_close_tab, owner_)
-        close_btn.set_size_request(image_w+7, image_h+6)
+        close_btn.set_size_request(image_w + 7, image_h + 6)
         close_btn.add(close_image)
         style = close_btn.get_style();
         self.eb2 = gtk.EventBox()
@@ -3094,14 +3001,15 @@ class NotebookTabLabel(gtk.HBox):
         self.eb2.modify_bg(gtk.STATE_NORMAL, bg[gtk.STATE_NORMAL])
 
     def on_close_tab(self, widget, notebook, *args):
-        if conf.CONFIRM_ON_CLOSE_TAB and msgconfirm("%s [%s]?" % ( _("Cerrar consola"), self.label.get_text().strip()) ) != gtk.RESPONSE_OK:
+        if Config.CONFIRM_ON_CLOSE_TAB and msgconfirm(
+                        "%s [%s]?" % (_("Cerrar consola"), self.label.get_text().strip())) != gtk.RESPONSE_OK:
             return True
 
         self.close_tab(widget)
 
     def close_tab(self, widget):
         notebook = self.widget.get_parent()
-        page=notebook.page_num(self.widget)
+        page = notebook.page_num(self.widget)
         if page >= 0:
             notebook.is_closed = True
             notebook.remove_page(page)
@@ -3111,9 +3019,10 @@ class NotebookTabLabel(gtk.HBox):
     def mark_tab_as_closed(self):
         self.label.set_markup("<span color='darkgray' strikethrough='true'>%s</span>" % (self.label.get_text()))
         self.is_active = False
-        if conf.AUTO_CLOSE_TAB != 0:
-            if conf.AUTO_CLOSE_TAB == 2:
-                terminal = self.widget.get_parent().get_nth_page(self.widget.get_parent().page_num(self.widget)).get_child()
+        if Config.AUTO_CLOSE_TAB != 0:
+            if Config.AUTO_CLOSE_TAB == 2:
+                terminal = self.widget.get_parent().get_nth_page(
+                    self.widget.get_parent().page_num(self.widget)).get_child()
                 if terminal.get_child_exit_status() != 0:
                     return
             self.close_tab(self.widget)
@@ -3133,14 +3042,16 @@ class NotebookTabLabel(gtk.HBox):
             else:
                 self.popup.mnuReopen.show()
 
-            #enable or disable log checkbox according to terminal
-            self.popup.mnuLog.set_active( hasattr(self.widget.get_child(), "log_handler_id") and self.widget.get_child().log_handler_id != 0 )
-            self.popup.popup( None, None, None, event.button, event.time)
+            # enable or disable log checkbox according to terminal
+            self.popup.mnuLog.set_active(
+                hasattr(self.widget.get_child(), "log_handler_id") and self.widget.get_child().log_handler_id != 0)
+            self.popup.popup(None, None, None, event.button, event.time)
             return True
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 2:
             self.close_tab(self.widget)
 
-class EntryDialog( gtk.Dialog):
+
+class EntryDialog(gtk.Dialog):
     def __init__(self, title, message, default_text='', modal=True, mask=False):
         gtk.Dialog.__init__(self)
         self.set_title(title)
@@ -3185,14 +3096,12 @@ class EntryDialog( gtk.Dialog):
         self.response(gtk.RESPONSE_OK)
 
 
-
 class CellTextView(gtk.TextView, gtk.CellEditable):
-
     __gtype_name__ = "CellTextView"
 
     __gproperties__ = {
-            'editing-canceled': (bool, 'Editing cancelled', 'Editing was cancelled', False, gobject.PARAM_READWRITE),
-        }
+        'editing-canceled': (bool, 'Editing cancelled', 'Editing was cancelled', False, gobject.PARAM_READWRITE),
+    }
 
     def do_editing_done(self, *args):
         self.remove_widget()
@@ -3213,7 +3122,6 @@ class CellTextView(gtk.TextView, gtk.CellEditable):
 
 
 class MultilineCellRenderer(gtk.CellRendererText):
-
     __gtype_name__ = "MultilineCellRenderer"
 
     def __init__(self):
@@ -3236,8 +3144,10 @@ class MultilineCellRenderer(gtk.CellRendererText):
 
     def _on_editor_populate_popup(self, editor, menu):
         self._in_editor_menu = True
+
         def on_menu_unmap(menu, self):
             self._in_editor_menu = False
+
         menu.connect("unmap", on_menu_unmap, self)
 
     def do_start_editing(self, event, widget, path, bg_area, cell_area, flags):
@@ -3255,8 +3165,9 @@ class MultilineCellRenderer(gtk.CellRendererText):
 
 
 from threading import Thread
-class CheckUpdates(Thread):
 
+
+class CheckUpdates(Thread):
     def __init__(self, p):
         Thread.__init__(self)
         self.parent = p
@@ -3276,32 +3187,26 @@ class CheckUpdates(Thread):
             import urllib, socket
             socket.setdefaulttimeout(5)
             web = urllib.urlopen('http://kuthulu.com/gcm/_current.html')
-            if web.getcode()==200:
+            if web.getcode() == 200:
                 new_version = web.readline().strip()
-                if len(new_version)>0 and new_version != app_version:
-                    self.tag = gobject.timeout_add(0, self.msg, "%s\n\nVERSION: %s" % (_("Hay una nueva version disponible en http://kuthulu.com/gcm/?module=download"), new_version), self.parent.get_widget("wMain"))
+                if len(new_version) > 0 and new_version != app_version:
+                    self.tag = gobject.timeout_add(0, self.msg, "%s\n\nVERSION: %s" % (
+                    _("Hay una nueva version disponible en http://kuthulu.com/gcm/?module=download"), new_version),
+                                                   self.parent.get_widget("wMain"))
         except:
             traceback.print_exc()
             pass
 
-#-- main {
 
 def main():
-    global CONFIG_DIR
-    global CONFIG_FILE
-    global KEY_FILE
-
-    CONFIG_DIR = find_config_dir()
-    CONFIG_FILE = os.path.join(CONFIG_DIR, DEFAULT_CONFIG_FILE)
-    KEY_FILE = os.path.join(CONFIG_DIR, DEFAULT_KEY_FILE)
+    conf = Config()
 
     update_localization_files()
 
     w_main = Wmain()
     w_main.run()
 
+
 if __name__ == "__main__":
     main()
-
-#-- main }
 
