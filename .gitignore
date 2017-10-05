@@ -87,3 +87,15 @@ ENV/
 
 # Rope project settings
 .ropeproject
+Будет удалено .idea/
+Будет удалено gcm_new.glade~
+Будет удалено gnome-connection-manager.glade~
+Будет удалено gnome-connection-manager2.glade~
+Будет удалено lang/de/
+Будет удалено lang/en/
+Будет удалено lang/fr/
+Будет удалено lang/it/
+Будет удалено lang/ko/
+Будет удалено lang/pl/
+Будет удалено lang/pt/
+Будет удалено lang/ru/
