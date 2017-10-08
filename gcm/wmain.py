@@ -1174,9 +1174,6 @@ class Wmain(SimpleGladeApp):
                 msgbox(_("Archivo invalido"))
                 return
             # sobreescribir lista de hosts
-            self.config.groups
-            groups = grupos
-
             self.updateTree()
 
     # -- Wmain.on_importar_servidores1_activate }
