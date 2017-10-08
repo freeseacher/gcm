@@ -378,7 +378,7 @@ class Config(object):
                 i = i + 1
         except:
             pass
-        shortcuts = scuts
+        self.shortcuts = scuts
 
         # Leer lista de hosts
         for section in cp.sections():

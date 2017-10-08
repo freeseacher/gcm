@@ -231,16 +231,16 @@ class Wconfig(SimpleGladeApp):
                 exec ("%s=%s" % (obj.field, value))
 
         if self.get_widget("chkDefaultColors").get_active():
-            Config.FONT_COLOR = ""
-            Config.BACK_COLOR = ""
+            self.config.FONT_COLOR = ""
+            self.config.BACK_COLOR = ""
         else:
-            Config.FONT_COLOR = self.btnFColor.selected_color
-            Config.BACK_COLOR = self.btnBColor.selected_color
+            self.config.FONT_COLOR = self.btnFColor.selected_color
+            self.config.BACK_COLOR = self.btnBColor.selected_color
 
         if self.btnFont.selected_font.to_string() != 'monospace' and not self.chkDefaultFont.get_active():
-            Config.FONT = self.btnFont.selected_font.to_string()
+            self.config.FONT = self.btnFont.selected_font.to_string()
         else:
-            Config.FONT = ''
+            self.config.FONT = ''
 
         # Guardar shortcuts
         scuts = {}
@@ -250,8 +250,7 @@ class Wconfig(SimpleGladeApp):
         for x in self.treeModel2:
             if x[0] != '' and x[1] != '':
                 scuts[x[1]] = x[0]
-        global shortcuts
-        shortcuts = scuts
+        self.config.shortcuts = scuts
 
         self.config.writeConfig()
         # Recrear menu de comandos personalizados
