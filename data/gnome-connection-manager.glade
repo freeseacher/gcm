@@ -30,7 +30,7 @@ if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.</property>
     <property name="translator_credits" translatable="yes" comments="TRANSLATORS: Replace this string with your names, one name per line.">translator-credits</property>
     <property name="logo">icon.png</property>
-    <signal name="response" handler="on_wAbout_close" swapped="no"/>
+    <signal name="response" handler="on_wAbout_close"/>
     <child internal-child="vbox">
       <widget class="GtkVBox" id="dialog-vbox2">
         <property name="can_focus">False</property>
@@ -55,7 +55,7 @@ if not, write to the Free Software Foundation, Inc.,
     <property name="icon">icon.png</property>
     <property name="type_hint">dialog</property>
     <property name="has_separator">True</property>
-    <signal name="destroy" handler="on_wCluster_destroy" swapped="no"/>
+    <signal name="destroy" handler="on_wCluster_destroy"/>
     <child internal-child="vbox">
       <widget class="GtkVBox" id="dialog-vbox2">
         <property name="visible">True</property>
@@ -74,7 +74,7 @@ if not, write to the Free Software Foundation, Inc.,
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
-                <signal name="clicked" handler="on_cancelbutton2_clicked" swapped="no"/>
+                <signal name="clicked" handler="on_cancelbutton2_clicked"/>
               </widget>
               <packing>
                 <property name="expand">False</property>
@@ -140,7 +140,7 @@ if not, write to the Free Software Foundation, Inc.,
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
-                        <signal name="clicked" handler="on_btnAll_clicked" swapped="no"/>
+                        <signal name="clicked" handler="on_btnAll_clicked"/>
                         <child>
                           <widget class="GtkAlignment" id="alignment10">
                             <property name="visible">True</property>
@@ -193,7 +193,7 @@ if not, write to the Free Software Foundation, Inc.,
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
-                        <signal name="clicked" handler="on_btnNone_clicked" swapped="no"/>
+                        <signal name="clicked" handler="on_btnNone_clicked"/>
                         <child>
                           <widget class="GtkAlignment" id="alignment11">
                             <property name="visible">True</property>
@@ -246,7 +246,7 @@ if not, write to the Free Software Foundation, Inc.,
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
-                        <signal name="clicked" handler="on_btnInvert_clicked" swapped="no"/>
+                        <signal name="clicked" handler="on_btnInvert_clicked"/>
                         <child>
                           <widget class="GtkAlignment" id="alignment12">
                             <property name="visible">True</property>
@@ -343,7 +343,7 @@ if not, write to the Free Software Foundation, Inc.,
                     <property name="height_request">60</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <signal name="key_press_event" handler="on_txtCommands_key_press_event" swapped="no"/>
+                    <signal name="key_press_event" handler="on_txtCommands_key_press_event"/>
                   </widget>
                 </child>
               </widget>
@@ -403,7 +403,7 @@ if not, write to the Free Software Foundation, Inc.,
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
-                <signal name="clicked" handler="on_cancelbutton1_clicked" swapped="no"/>
+                <signal name="clicked" handler="on_cancelbutton1_clicked"/>
               </widget>
               <packing>
                 <property name="expand">False</property>
@@ -420,7 +420,7 @@ if not, write to the Free Software Foundation, Inc.,
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
-                <signal name="clicked" handler="on_okbutton1_clicked" swapped="no"/>
+                <signal name="clicked" handler="on_okbutton1_clicked"/>
               </widget>
               <packing>
                 <property name="expand">False</property>
@@ -513,7 +513,7 @@ if not, write to the Free Software Foundation, Inc.,
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="title" translatable="yes">Seleccione el color de fondo</property>
-                    <signal name="color_set" handler="on_btnBColor_clicked" swapped="no"/>
+                    <signal name="color_set" handler="on_btnBColor_clicked"/>
                   </widget>
                   <packing>
                     <property name="left_attach">1</property>
@@ -530,7 +530,7 @@ if not, write to the Free Software Foundation, Inc.,
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="title" translatable="yes">Seleccione el color del texto</property>
-                    <signal name="color_set" handler="on_btnFColor_clicked" swapped="no"/>
+                    <signal name="color_set" handler="on_btnFColor_clicked"/>
                   </widget>
                   <packing>
                     <property name="left_attach">1</property>
@@ -550,7 +550,7 @@ if not, write to the Free Software Foundation, Inc.,
                     <property name="use_underline">True</property>
                     <property name="active">True</property>
                     <property name="draw_indicator">True</property>
-                    <signal name="toggled" handler="on_chkDefaultColors_toggled" swapped="no"/>
+                    <signal name="toggled" handler="on_chkDefaultColors_toggled"/>
                   </widget>
                   <packing>
                     <property name="right_attach">2</property>
@@ -567,7 +567,7 @@ if not, write to the Free Software Foundation, Inc.,
                     <property name="use_underline">True</property>
                     <property name="active">True</property>
                     <property name="draw_indicator">True</property>
-                    <signal name="toggled" handler="on_chkDefaultFont_toggled" swapped="no"/>
+                    <signal name="toggled" handler="on_chkDefaultFont_toggled"/>
                   </widget>
                   <packing>
                     <property name="right_attach">2</property>
@@ -599,7 +599,7 @@ if not, write to the Free Software Foundation, Inc.,
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="use_underline">True</property>
-                    <signal name="clicked" handler="on_btnFont_clicked" swapped="no"/>
+                    <signal name="clicked" handler="on_btnFont_clicked"/>
                   </widget>
                   <packing>
                     <property name="left_attach">1</property>
@@ -672,7 +672,7 @@ if not, write to the Free Software Foundation, Inc.,
                             <property name="can_focus">True</property>
                             <property name="rules_hint">True</property>
                             <property name="enable_search">False</property>
-                            <signal name="key_press_event" handler="on_treeCommands_key_press_event" swapped="no"/>
+                            <signal name="key_press_event" handler="on_treeCommands_key_press_event"/>
                           </widget>
                           <packing>
                             <property name="expand">True</property>
@@ -712,7 +712,7 @@ if not, write to the Free Software Foundation, Inc.,
                             <property name="can_focus">True</property>
                             <property name="rules_hint">True</property>
                             <property name="enable_search">False</property>
-                            <signal name="key_press_event" handler="on_treeCommands_key_press_event" swapped="no"/>
+                            <signal name="key_press_event" handler="on_treeCommands_key_press_event"/>
                           </widget>
                           <packing>
                             <property name="expand">True</property>
@@ -777,7 +777,7 @@ if not, write to the Free Software Foundation, Inc.,
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
-                <signal name="clicked" handler="on_cancelbutton1_clicked" swapped="no"/>
+                <signal name="clicked" handler="on_cancelbutton1_clicked"/>
               </widget>
               <packing>
                 <property name="expand">False</property>
@@ -794,7 +794,7 @@ if not, write to the Free Software Foundation, Inc.,
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
-                <signal name="clicked" handler="on_okbutton1_clicked" swapped="no"/>
+                <signal name="clicked" handler="on_okbutton1_clicked"/>
               </widget>
               <packing>
                 <property name="expand">False</property>
@@ -1024,7 +1024,7 @@ if not, write to the Free Software Foundation, Inc.,
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
-                        <signal name="clicked" handler="on_btnBrowse_clicked" swapped="no"/>
+                        <signal name="clicked" handler="on_btnBrowse_clicked"/>
                         <child>
                           <widget class="GtkImage" id="image1">
                             <property name="visible">True</property>
@@ -1136,7 +1136,7 @@ if not, write to the Free Software Foundation, Inc.,
                     <property name="items">ssh
 telnet
 local</property>
-                    <signal name="changed" handler="on_cmbType_changed" swapped="no"/>
+                    <signal name="changed" handler="on_cmbType_changed"/>
                   </widget>
                   <packing>
                     <property name="left_attach">1</property>
@@ -1155,7 +1155,7 @@ local</property>
                     <property name="receives_default">False</property>
                     <property name="use_underline">True</property>
                     <property name="draw_indicator">True</property>
-                    <signal name="toggled" handler="on_chkKeepAlive_toggled" swapped="no"/>
+                    <signal name="toggled" handler="on_chkKeepAlive_toggled"/>
                   </widget>
                   <packing>
                     <property name="top_attach">9</property>
@@ -1256,7 +1256,7 @@ local</property>
                     <property name="receives_default">False</property>
                     <property name="use_underline">True</property>
                     <property name="draw_indicator">True</property>
-                    <signal name="toggled" handler="on_chkCompression_toggled" swapped="no"/>
+                    <signal name="toggled" handler="on_chkCompression_toggled"/>
                   </widget>
                   <packing>
                     <property name="top_attach">12</property>
@@ -1458,7 +1458,7 @@ blanco: por defecto
                             <property name="tooltip" translatable="yes">Crear redirección dinámica de puertos</property>
                             <property name="use_underline">True</property>
                             <property name="draw_indicator">True</property>
-                            <signal name="toggled" handler="on_chkDynamic_toggled" swapped="no"/>
+                            <signal name="toggled" handler="on_chkDynamic_toggled"/>
                           </widget>
                           <packing>
                             <property name="right_attach">2</property>
@@ -1581,7 +1581,7 @@ blanco: por defecto
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <signal name="clicked" handler="on_btnAdd_clicked" swapped="no"/>
+                            <signal name="clicked" handler="on_btnAdd_clicked"/>
                             <child>
                               <widget class="GtkAlignment" id="alignment6">
                                 <property name="visible">True</property>
@@ -1634,7 +1634,7 @@ blanco: por defecto
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <signal name="clicked" handler="on_btnDel_clicked" swapped="no"/>
+                            <signal name="clicked" handler="on_btnDel_clicked"/>
                             <child>
                               <widget class="GtkAlignment" id="alignment7">
                                 <property name="visible">True</property>
@@ -1720,7 +1720,7 @@ blanco: por defecto
                     <property name="receives_default">False</property>
                     <property name="use_underline">True</property>
                     <property name="draw_indicator">True</property>
-                    <signal name="toggled" handler="on_chkCommands_toggled" swapped="no"/>
+                    <signal name="toggled" handler="on_chkCommands_toggled"/>
                   </widget>
                   <packing>
                     <property name="expand">False</property>
@@ -1828,7 +1828,7 @@ Ej: ##D=1000&lt;/span&gt;</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="title" translatable="yes">Seleccione el color de fondo</property>
-                        <signal name="color_set" handler="on_btnBColor_clicked" swapped="no"/>
+                        <signal name="color_set" handler="on_btnBColor_clicked"/>
                       </widget>
                     </child>
                   </widget>
@@ -1850,7 +1850,7 @@ Ej: ##D=1000&lt;/span&gt;</property>
                     <property name="use_underline">True</property>
                     <property name="active">True</property>
                     <property name="draw_indicator">True</property>
-                    <signal name="toggled" handler="on_chkDefaultColors_toggled" swapped="no"/>
+                    <signal name="toggled" handler="on_chkDefaultColors_toggled"/>
                   </widget>
                   <packing>
                     <property name="right_attach">2</property>
@@ -1873,7 +1873,7 @@ Ej: ##D=1000&lt;/span&gt;</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="title" translatable="yes">Seleccione el color del texto</property>
-                        <signal name="color_set" handler="on_btnFColor_clicked" swapped="no"/>
+                        <signal name="color_set" handler="on_btnFColor_clicked"/>
                       </widget>
                     </child>
                   </widget>
@@ -2016,8 +2016,8 @@ TTY Erase</property>
     <property name="title">Gnome Connection Manager</property>
     <property name="destroy_with_parent">True</property>
     <property name="icon">icon.png</property>
-    <signal name="destroy" handler="on_wMain_destroy" swapped="no"/>
-    <signal name="delete_event" handler="on_wMain_delete_event" swapped="no"/>
+    <signal name="destroy" handler="on_wMain_destroy"/>
+    <signal name="delete_event" handler="on_wMain_delete_event"/>
     <child>
       <widget class="GtkVBox" id="vbox1">
         <property name="visible">True</property>
@@ -2043,7 +2043,7 @@ TTY Erase</property>
                         <property name="tooltip" translatable="yes">Guardar buffer de la consola activa en un archivo</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">False</property>
-                        <signal name="activate" handler="on_guardar_como1_activate" swapped="no"/>
+                        <signal name="activate" handler="on_guardar_como1_activate"/>
                         <child internal-child="image">
                           <widget class="GtkImage" id="image34">
                             <property name="visible">True</property>
@@ -2062,7 +2062,7 @@ TTY Erase</property>
                         <property name="tooltip" translatable="yes">Importar lista de servidores desde un archivo</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">False</property>
-                        <signal name="activate" handler="on_importar_servidores1_activate" swapped="no"/>
+                        <signal name="activate" handler="on_importar_servidores1_activate"/>
                         <child internal-child="image">
                           <widget class="GtkImage" id="image35">
                             <property name="visible">True</property>
@@ -2081,7 +2081,7 @@ TTY Erase</property>
                         <property name="tooltip" translatable="yes">Exportar lista de servidores a un archivo</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">False</property>
-                        <signal name="activate" handler="on_exportar_servidores1_activate" swapped="no"/>
+                        <signal name="activate" handler="on_exportar_servidores1_activate"/>
                         <child internal-child="image">
                           <widget class="GtkImage" id="image36">
                             <property name="visible">True</property>
@@ -2105,7 +2105,7 @@ TTY Erase</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">False</property>
-                        <signal name="activate" handler="on_salir1_activate" swapped="no"/>
+                        <signal name="activate" handler="on_salir1_activate"/>
                         <child internal-child="image">
                           <widget class="GtkImage" id="image37">
                             <property name="visible">True</property>
@@ -2135,7 +2135,7 @@ TTY Erase</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_stock">False</property>
-                        <signal name="activate" handler="on_menuCopy_activate" swapped="no"/>
+                        <signal name="activate" handler="on_menuCopy_activate"/>
                         <child internal-child="image">
                           <widget class="GtkImage" id="image1">
                             <property name="visible">True</property>
@@ -2152,7 +2152,7 @@ TTY Erase</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_stock">False</property>
-                        <signal name="activate" handler="on_menuPaste_activate" swapped="no"/>
+                        <signal name="activate" handler="on_menuPaste_activate"/>
                         <child internal-child="image">
                           <widget class="GtkImage" id="image2">
                             <property name="visible">True</property>
@@ -2169,7 +2169,7 @@ TTY Erase</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_stock">False</property>
-                        <signal name="activate" handler="on_menuCopyPaste_activate" swapped="no"/>
+                        <signal name="activate" handler="on_menuCopyPaste_activate"/>
                         <child internal-child="image">
                           <widget class="GtkImage" id="image3">
                             <property name="visible">True</property>
@@ -2186,7 +2186,7 @@ TTY Erase</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_stock">False</property>
-                        <signal name="activate" handler="on_menuSelectAll_activate" swapped="no"/>
+                        <signal name="activate" handler="on_menuSelectAll_activate"/>
                         <child internal-child="image">
                           <widget class="GtkImage" id="image4">
                             <property name="visible">True</property>
@@ -2203,7 +2203,7 @@ TTY Erase</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_stock">False</property>
-                        <signal name="activate" handler="on_menuCopyAll_activate" swapped="no"/>
+                        <signal name="activate" handler="on_menuCopyAll_activate"/>
                         <child internal-child="image">
                           <widget class="GtkImage" id="image5">
                             <property name="visible">True</property>
@@ -2252,7 +2252,7 @@ TTY Erase</property>
                         <property name="label" translatable="yes">Mostrar Toolbar</property>
                         <property name="use_underline">True</property>
                         <property name="active">True</property>
-                        <signal name="toggled" handler="on_show_toolbar_toggled" swapped="no"/>
+                        <signal name="toggled" handler="on_show_toolbar_toggled"/>
                       </widget>
                     </child>
                     <child>
@@ -2261,7 +2261,7 @@ TTY Erase</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Mostrar Panel</property>
                         <property name="use_underline">True</property>
-                        <signal name="toggled" handler="on_show_panel_toggled" swapped="no"/>
+                        <signal name="toggled" handler="on_show_panel_toggled"/>
                       </widget>
                     </child>
                   </widget>
@@ -2296,7 +2296,7 @@ TTY Erase</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">A_cerca de</property>
                         <property name="use_underline">True</property>
-                        <signal name="activate" handler="on_acerca_de1_activate" swapped="no"/>
+                        <signal name="activate" handler="on_acerca_de1_activate"/>
                       </widget>
                     </child>
                   </widget>
@@ -2315,7 +2315,7 @@ TTY Erase</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="toolbar_style">both</property>
-            <signal name="button_press_event" handler="on_double_click" swapped="no"/>
+            <signal name="button_press_event" handler="on_double_click"/>
             <child>
               <widget class="GtkToolItem" id="toolitem21">
                 <property name="visible">True</property>
@@ -2326,7 +2326,7 @@ TTY Erase</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="tooltip" translatable="yes">Abrir consola local</property>
-                    <signal name="clicked" handler="on_btnLocal_clicked" swapped="no"/>
+                    <signal name="clicked" handler="on_btnLocal_clicked"/>
                     <child>
                       <widget class="GtkAlignment" id="alignment8">
                         <property name="visible">True</property>
@@ -2384,7 +2384,7 @@ TTY Erase</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="tooltip" translatable="yes">Conectar a host seleccionado o a todos los host del grupo</property>
-                    <signal name="clicked" handler="on_btnConnect_clicked" swapped="no"/>
+                    <signal name="clicked" handler="on_btnConnect_clicked"/>
                     <accelerator key="C" signal="clicked" modifiers="GDK_MOD1_MASK"/>
                     <child>
                       <widget class="GtkAlignment" id="alignment4">
@@ -2443,7 +2443,7 @@ TTY Erase</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="tooltip" translatable="yes">Agregar nuevo host</property>
-                    <signal name="clicked" handler="on_btnAdd_clicked" swapped="no"/>
+                    <signal name="clicked" handler="on_btnAdd_clicked"/>
                     <accelerator key="a" signal="clicked" modifiers="GDK_MOD1_MASK"/>
                     <child>
                       <widget class="GtkAlignment" id="alignment2">
@@ -2502,7 +2502,7 @@ TTY Erase</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="tooltip" translatable="yes">Editar propiedades de host seleccionado</property>
-                    <signal name="clicked" handler="on_bntEdit_clicked" swapped="no"/>
+                    <signal name="clicked" handler="on_bntEdit_clicked"/>
                     <accelerator key="e" signal="clicked" modifiers="GDK_MOD1_MASK"/>
                     <child>
                       <widget class="GtkAlignment" id="alignment3">
@@ -2561,7 +2561,7 @@ TTY Erase</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="tooltip" translatable="yes">Eliminar host seleccionado</property>
-                    <signal name="clicked" handler="on_btnDel_clicked" swapped="no"/>
+                    <signal name="clicked" handler="on_btnDel_clicked"/>
                     <accelerator key="e" signal="clicked" modifiers="GDK_MOD1_MASK"/>
                     <child>
                       <widget class="GtkAlignment" id="alignment1">
@@ -2630,7 +2630,7 @@ TTY Erase</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="tooltip" translatable="yes">Separar consola horizontalmente</property>
-                    <signal name="clicked" handler="on_btnHSplit_clicked" swapped="no"/>
+                    <signal name="clicked" handler="on_btnHSplit_clicked"/>
                     <child>
                       <widget class="GtkImage" id="image10">
                         <property name="visible">True</property>
@@ -2655,7 +2655,7 @@ TTY Erase</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="tooltip" translatable="yes">Separar consola verticalmente</property>
-                    <signal name="clicked" handler="on_btnVSplit_clicked" swapped="no"/>
+                    <signal name="clicked" handler="on_btnVSplit_clicked"/>
                     <child>
                       <widget class="GtkImage" id="image11">
                         <property name="visible">True</property>
@@ -2680,7 +2680,7 @@ TTY Erase</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="tooltip" translatable="yes">Unir todas las consolas</property>
-                    <signal name="clicked" handler="on_btnUnsplit_clicked" swapped="no"/>
+                    <signal name="clicked" handler="on_btnUnsplit_clicked"/>
                     <child>
                       <widget class="GtkImage" id="image12">
                         <property name="visible">True</property>
@@ -2715,7 +2715,7 @@ TTY Erase</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="tooltip" translatable="yes">Configuración</property>
-                    <signal name="clicked" handler="on_btnConfig_clicked" swapped="no"/>
+                    <signal name="clicked" handler="on_btnConfig_clicked"/>
                     <child>
                       <widget class="GtkImage" id="image13">
                         <property name="visible">True</property>
@@ -2754,8 +2754,8 @@ TTY Erase</property>
                     <property name="secondary_icon_activatable">False</property>
                     <property name="primary_icon_sensitive">True</property>
                     <property name="secondary_icon_sensitive">True</property>
-                    <signal name="focus_in_event" handler="on_txtSearch_focus" swapped="no"/>
-                    <signal name="focus_out_event" handler="on_txtSearch_focus_out_event" swapped="no"/>
+                    <signal name="focus_in_event" handler="on_txtSearch_focus"/>
+                    <signal name="focus_out_event" handler="on_txtSearch_focus_out_event"/>
                   </widget>
                 </child>
               </widget>
@@ -2773,7 +2773,7 @@ TTY Erase</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="relief">none</property>
-                    <signal name="clicked" handler="on_btnSearchBack_clicked" swapped="no"/>
+                    <signal name="clicked" handler="on_btnSearchBack_clicked"/>
                     <child>
                       <widget class="GtkImage" id="image16">
                         <property name="visible">True</property>
@@ -2798,7 +2798,7 @@ TTY Erase</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="relief">none</property>
-                    <signal name="clicked" handler="on_btnSearch_clicked" swapped="no"/>
+                    <signal name="clicked" handler="on_btnSearch_clicked"/>
                     <child>
                       <widget class="GtkImage" id="image18">
                         <property name="visible">True</property>
@@ -2833,7 +2833,7 @@ TTY Erase</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="tooltip" translatable="yes">Enviar comandos a varios hosts al mismo tiempo</property>
-                    <signal name="clicked" handler="on_btnCluster_clicked" swapped="no"/>
+                    <signal name="clicked" handler="on_btnCluster_clicked"/>
                     <child>
                       <widget class="GtkAlignment" id="alignment9">
                         <property name="visible">True</property>
@@ -2906,7 +2906,7 @@ TTY Erase</property>
               <widget class="GtkHPaned" id="hpMain">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <signal name="button_press_event" handler="on_hpMain_button_press_event" swapped="no"/>
+                <signal name="button_press_event" handler="on_hpMain_button_press_event"/>
                 <child>
                   <widget class="GtkVBox" id="vbox2">
                     <property name="visible">True</property>
@@ -2922,8 +2922,8 @@ TTY Erase</property>
                         <property name="secondary_icon_activatable">False</property>
                         <property name="primary_icon_sensitive">True</property>
                         <property name="secondary_icon_sensitive">True</property>
-                        <signal name="focus_in_event" handler="on_filtertree_focus_in_event" swapped="no"/>
-                        <signal name="focus_out_event" handler="on_filtertree_focus_out_event" swapped="no"/>
+                        <signal name="focus_in_event" handler="on_filtertree_focus_in_event"/>
+                        <signal name="focus_out_event" handler="on_filtertree_focus_out_event"/>
                       </widget>
                       <packing>
                         <property name="expand">False</property>
@@ -2943,8 +2943,8 @@ TTY Erase</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="enable_search">False</property>
-                            <signal name="button_press_event" handler="on_tvServers_button_press_event" swapped="no"/>
-                            <signal name="row_activated" handler="on_tvServers_row_activated" swapped="no"/>
+                            <signal name="button_press_event" handler="on_tvServers_button_press_event"/>
+                            <signal name="row_activated" handler="on_tvServers_row_activated"/>
                           </widget>
                         </child>
                       </widget>
@@ -2964,7 +2964,7 @@ TTY Erase</property>
                   <widget class="GtkNotebook" id="nbConsole">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <signal name="button_press_event" handler="on_double_click" swapped="no"/>
+                    <signal name="button_press_event" handler="on_double_click"/>
                     <child>
                       <widget class="GtkLabel" id="placeholder">
                         <property name="can_focus">False</property>
