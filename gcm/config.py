@@ -56,15 +56,12 @@ class Config(object):
         self.configdir = self.get_config_dir()
         self.config_file = self.get_config_file()
         self.key_file = self.get_key_file()
-        self.enc_passwd = ''
         self.groups = {}
         self.shortcuts = {}
         self.collapsed_folders = []
         self.hp_position = 100
 
-        if self.VERSION == 0:
-            self.initialise_encryption_key()
-
+        self.load_encryption_key()
         self.loadConfig()
 
     def get_config_dir(self):
@@ -131,7 +128,7 @@ class Config(object):
         user = cp.get(section, "user")
         tpw = cp.get(section, "pass")
         if tpw:
-            password = self.decrypt(self.enc_passwd, tpw)
+            password = self.decrypt(tpw)
         else:
             password = ''
         description = self.get_val(cp, section, "description", "")
@@ -164,7 +161,7 @@ class Config(object):
         cp.set(section, "host", host.host)
         cp.set(section, "user", host.user)
         if host.password:
-            cp.set(section, "pass", self.encrypt(self.enc_passwd, host.password))
+            cp.set(section, "pass", self.encrypt(host.password))
         else:
             cp.set(section, "pass", "")
         cp.set(section, "private_key", host.private_key)
@@ -201,20 +198,22 @@ class Config(object):
             s = ""
         return s
 
-
-    def encrypt(self, passw, string):
-        aes = pyaes.AESModeOfOperationCTR(passw)
+    def encrypt(self, string):
+        aes = pyaes.AESModeOfOperationCTR(self.enc_passwd)
         try:
             s = aes.encrypt(string)
         except:
             s = ""
-        return s
+        return base64.b64encode(s)
 
-
-    def decrypt(self, passw, string):
-        aes = pyaes.AESModeOfOperationCTR(passw)
+    def decrypt(self, string):
+        aes = pyaes.AESModeOfOperationCTR(self.enc_passwd)
         try:
-            s = self.decrypt_old(passw, string) if self.VERSION == 0 else aes.decrypt(string)
+            if self.VERSION == 0:
+                s = self.decrypt_old(self.enc_passwd, string)
+            else:
+                s = base64.b64decode(string)
+                s = aes.decrypt(s)
         except:
             s = ""
         return s
