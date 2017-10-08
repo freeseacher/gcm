@@ -828,8 +828,6 @@ class Wmain(SimpleGladeApp):
         return False
 
     def initLeftPane(self):
-        self.config.groups
-
         self.treeModel = gtk.TreeStore(gobject.TYPE_STRING, gobject.TYPE_PYOBJECT, gtk.gdk.Pixbuf)
         self.treeServers.set_model(self.treeModel)
 
