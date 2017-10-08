@@ -65,7 +65,7 @@ class Wconfig(SimpleGladeApp):
                       [_("Nunca"), _("Siempre"), _(u"Sólo si no hay errores")])
         self.addParam(_("Confirmar al salir"), "self.config.CONFIRM_ON_EXIT", bool)
 
-        if len(Config.FONT_COLOR) == 0:
+        if len(self.config.FONT_COLOR) == 0:
             self.get_widget("chkDefaultColors").set_active(True)
             self.btnFColor.set_sensitive(False)
             self.btnBColor.set_sensitive(False)
@@ -75,8 +75,8 @@ class Wconfig(SimpleGladeApp):
             self.get_widget("chkDefaultColors").set_active(False)
             self.btnFColor.set_sensitive(True)
             self.btnBColor.set_sensitive(True)
-            fcolor = Config.FONT_COLOR
-            bcolor = Config.BACK_COLOR
+            fcolor = self.config.FONT_COLOR
+            bcolor = self.config.BACK_COLOR
 
         self.btnFColor.set_color(gtk.gdk.Color(fcolor))
         self.btnBColor.set_color(gtk.gdk.Color(bcolor))
@@ -84,11 +84,11 @@ class Wconfig(SimpleGladeApp):
         self.btnBColor.selected_color = bcolor
 
         # Fuente
-        if len(Config.FONT) == 0 or Config.FONT == 'monospace':
-            Config.FONT = 'monospace'
+        if len(self.config.FONT) == 0 or self.config.FONT == 'monospace':
+            self.config.FONT = 'monospace'
         else:
             self.chkDefaultFont.set_active(False)
-        self.btnFont.selected_font = pango.FontDescription(Config.FONT)
+        self.btnFont.selected_font = pango.FontDescription(self.config.FONT)
         self.btnFont.set_label(self.btnFont.selected_font.to_string())
         self.btnFont.get_child().modify_font(self.btnFont.selected_font)
 
@@ -250,7 +250,7 @@ class Wconfig(SimpleGladeApp):
         for x in self.treeModel2:
             if x[0] != '' and x[1] != '':
                 scuts[x[1]] = x[0]
-        self.config.shortcuts = scuts
+        shortcuts = scuts
 
         self.config.writeConfig()
         # Recrear menu de comandos personalizados
