@@ -5,7 +5,6 @@ import gtk
 import operator
 import os
 import sys
-import tempfile
 import time
 import traceback
 
@@ -14,17 +13,15 @@ import vte
 
 from SimpleGladeApp import SimpleGladeApp
 from config import Config
-from utils import EntryDialog, get_key_name, msgbox, msgconfirm, show_open_dialog, SingletonMeta
-from vars import app_fileversion, SSH_BIN, TEL_BIN, SHELL, SSH_COMMAND, DOMAIN_NAME, HSPLIT, VSPLIT, _COPY, _PASTE, \
+from models import Host
+from utils import EntryDialog, get_key_name, msgbox, msgconfirm, show_open_dialog
+from vars import SSH_BIN, TEL_BIN, SHELL, SSH_COMMAND, DOMAIN_NAME, HSPLIT, VSPLIT, _COPY, _PASTE, \
     _COPY_ALL, _SAVE, _FIND, _CLEAR, _FIND_NEXT, _FIND_BACK, _CONSOLE_PREV, _CONSOLE_NEXT, _CONSOLE_CLOSE, \
-    _CONSOLE_RECONNECT, _CONNECT, ICON_PATH, GLADE_DIR, _CONSOLE_1,_CONSOLE_2,_CONSOLE_3,_CONSOLE_4,\
-    _CONSOLE_5,_CONSOLE_6,_CONSOLE_7,_CONSOLE_8,_CONSOLE_9
-
+    _CONSOLE_RECONNECT, _CONNECT, ICON_PATH, GLADE_DIR
 from wabout import Wabout
 from wcluster import Wcluster
 from wconfig import Wconfig
 from whost import Whost
-from models import Host
 
 
 def inputbox(title, text, default='', password=False):
@@ -92,8 +89,8 @@ class Wmain(SimpleGladeApp):
             if i != -1:
                 group = arg[:i]
                 name = arg[i + 1:]
-                if group != '' and name != '' and groups.has_key(group):
-                    for h in groups[group]:
+                if group != '' and name != '' and self.config.groups.has_key(group):
+                    for h in self.config.groups[group]:
                         if h.name == name:
                             self.addTab(self.nbConsole, h)
                             break
@@ -106,7 +103,6 @@ class Wmain(SimpleGladeApp):
     def get_username(self):
         return os.getenv('USER') or os.getenv('LOGNAME') or os.getenv('USERNAME')
 
-    # -- Wmain.new {
     def new(self):
         self.hpMain = self.get_widget("hpMain")
         self.nbConsole = self.get_widget("nbConsole")
@@ -212,8 +208,9 @@ class Wmain(SimpleGladeApp):
             self.search['index'] = len(self.search['lines']) if backwards else 0
 
     def init_search(self):
-        if hasattr(self, 'search') and self.get_widget('txtSearch').get_text() == self.search[
-            'word'] and self.current == self.search['terminal']:
+        if hasattr(self, 'search') and \
+                        self.get_widget('txtSearch').get_text() == self.search['word'] and \
+                        self.current == self.search['terminal']:
             return True
 
         terminal = self.find_active_terminal(self.hpMain)
@@ -301,7 +298,8 @@ class Wmain(SimpleGladeApp):
                 newhost.name = newname
                 self.config.groups[group].append(newhost)
                 self.updateTree()
-                self.config.writeConfig(collapsed_nodes=self.get_collapsed_nodes(), hp_position=self.hpMain.get_position())
+                self.config.writeConfig(collapsed_nodes=self.get_collapsed_nodes(),
+                                        hp_position=self.hpMain.get_position())
             return True
         elif item == 'R':  # RENAME TAB
             text = inputbox(_('Renombrar consola'), _('Ingrese nuevo nombre'),
@@ -863,7 +861,7 @@ class Wmain(SimpleGladeApp):
             host = list(widget.get_model()[pos[0]])[1]
             if host:
                 text = "<span><b>%s</b>\n%s:%s@%s\n</span><span size='smaller'>%s</span>" % (
-                host.name, host.type, host.user, host.host, host.description)
+                    host.name, host.type, host.user, host.host, host.description)
                 tooltip.set_markup(text)
                 return True
         return False
@@ -1109,25 +1107,16 @@ class Wmain(SimpleGladeApp):
         self.get_widget("show_toolbar").set_active(visibility)
         self.config.SHOW_TOOLBAR = visibility
 
-    # -- Wmain custom methods }
-
-    # -- Wmain.on_wMain_destroy {
     def on_wMain_destroy(self, widget, *args):
         self.config.writeConfig(collapsed_nodes=self.get_collapsed_nodes(), hp_position=self.hpMain.get_position())
         gtk.main_quit()
 
-    # -- Wmain.on_wMain_destroy }
-
-    # -- Wmain.on_wMain_delete_event {
     def on_wMain_delete_event(self, widget, *args):
         (self.config.WINDOW_WIDTH, self.config.WINDOW_HEIGHT) = self.get_widget("wMain").get_size()
         if self.config.CONFIRM_ON_EXIT and self.count > 0 and msgconfirm("%s %d %s" % (
-        _("Hay"), self.count, _("consolas abiertas, confirma que desea salir?"))) != gtk.RESPONSE_OK:
+                _("Hay"), self.count, _("consolas abiertas, confirma que desea salir?"))) != gtk.RESPONSE_OK:
             return True
 
-    # -- Wmain.on_wMain_delete_event }
-
-    # -- Wmain.on_guardar_como1_activate {
     def on_guardar_como1_activate(self, widget, *args):
         term = self.find_active_terminal(self.hpMain)
         if term == None:
@@ -1135,9 +1124,6 @@ class Wmain(SimpleGladeApp):
         if term != None:
             self.show_save_buffer(term)
 
-    # -- Wmain.on_guardar_como1_activate }
-
-    # -- Wmain.on_importar_servidores1_activate {
     def on_importar_servidores1_activate(self, widget, *args):
         filename = show_open_dialog(parent=self.wMain, title=_("Abrir"), action=gtk.FILE_CHOOSER_ACTION_OPEN)
         if filename != None:
@@ -1176,9 +1162,6 @@ class Wmain(SimpleGladeApp):
             # sobreescribir lista de hosts
             self.updateTree()
 
-    # -- Wmain.on_importar_servidores1_activate }
-
-    # -- Wmain.on_exportar_servidores1_activate {
     def on_exportar_servidores1_activate(self, widget, *args):
         filename = show_open_dialog(parent=self.wMain, title=_("Guardar como"), action=gtk.FILE_CHOOSER_ACTION_SAVE)
         if filename != None:
@@ -1207,35 +1190,20 @@ class Wmain(SimpleGladeApp):
                 traceback.print_exc()
                 msgbox(_("Archivo invalido"))
 
-    # -- Wmain.on_exportar_servidores1_activate }
-
-    # -- Wmain.on_salir1_activate {
     def on_salir1_activate(self, widget, *args):
         (self.config.WINDOW_WIDTH, self.config.WINDOW_HEIGHT) = self.get_widget("wMain").get_size()
         self.config.writeConfig(collapsed_nodes=self.get_collapsed_nodes(), hp_position=self.hpMain.get_position())
         gtk.main_quit()
 
-    # -- Wmain.on_salir1_activate }
-
-    # -- Wmain.on_show_toolbar_activate {
     def on_show_toolbar_toggled(self, widget, *args):
         self.set_toolbar_visible(widget.get_active())
 
-    # -- Wmain.on_show_toolbar_activate }
-
-    # -- Wmain.on_show_panel_activate {
     def on_show_panel_toggled(self, widget, *args):
         self.set_panel_visible(widget.get_active())
 
-    # -- Wmain.on_show_panel_activate }
-
-    # -- Wmain.on_acerca_de1_activate {
     def on_acerca_de1_activate(self, widget, *args):
         w_about = Wabout()
 
-    # -- Wmain.on_acerca_de1_activate }
-
-    # -- Wmain.on_double_click {
     def on_double_click(self, widget, event, *args):
         if event.type in [gtk.gdk._2BUTTON_PRESS, gtk.gdk._3BUTTON_PRESS] and event.button == 1:
             if isinstance(widget, gtk.Notebook):
@@ -1243,14 +1211,11 @@ class Wmain(SimpleGladeApp):
                 size = widget.get_tab_label(widget.get_nth_page(widget.get_n_pages() - 1)).get_allocation()
                 if pos <= size.x + size.width + 2 * widget.get_property(
                         "tab-vborder") + 8 or event.x >= widget.get_allocation().width - widget.style_get_property(
-                        "scroll-arrow-hlength"):
+                    "scroll-arrow-hlength"):
                     return True
             self.addTab(widget if isinstance(widget, gtk.Notebook) else self.nbConsole, 'local')
             return True
 
-    # -- Wmain.on_double_click }
-
-    # -- Wmain.on_btnLocal_clicked {
     def on_btnLocal_clicked(self, widget, *args):
         if self.current != None and self.current.get_parent() != None and isinstance(
                 self.current.get_parent().get_parent(), gtk.Notebook):
@@ -1259,9 +1224,6 @@ class Wmain(SimpleGladeApp):
             ntbk = self.nbConsole
         self.addTab(ntbk, 'local')
 
-    # -- Wmain.on_btnLocal_clicked }
-
-    # -- Wmain.on_btnConnect_clicked {
     def on_btnConnect_clicked(self, widget, *args):
         if self.treeServers.get_selection().get_selected()[1] != None:
             if not self.treeModel.iter_has_child(self.treeServers.get_selection().get_selected()[1]):
@@ -1278,9 +1240,6 @@ class Wmain(SimpleGladeApp):
                         for host in self.config.groups[g]:
                             self.addTab(self.nbConsole, host)
 
-    # -- Wmain.on_btnConnect_clicked }
-
-    # -- Wmain.on_btnAdd_clicked {
     def on_btnAdd_clicked(self, widget, *args):
         group = ""
         if self.treeServers.get_selection().get_selected()[1] != None:
@@ -1296,8 +1255,6 @@ class Wmain(SimpleGladeApp):
         wHost.init(group)
         self.updateTree()
 
-    # -- Wmain.on_btnAdd_clicked }
-
     def get_group(self, i):
         if self.treeModel.iter_parent(i):
             p = self.get_group(self.treeModel.iter_parent(i))
@@ -1305,7 +1262,6 @@ class Wmain(SimpleGladeApp):
         else:
             return ''
 
-    # -- Wmain.on_bntEdit_clicked {
     def on_bntEdit_clicked(self, widget, *args):
         if self.treeServers.get_selection().get_selected()[1] != None and not self.treeModel.iter_has_child(
                 self.treeServers.get_selection().get_selected()[1]):
@@ -1315,9 +1271,6 @@ class Wmain(SimpleGladeApp):
             wHost.init(host.group, host)
             # self.updateTree()
 
-    # -- Wmain.on_bntEdit_clicked }
-
-    # -- Wmain.on_btnDel_clicked {
     def on_btnDel_clicked(self, widget, *args):
         if self.treeServers.get_selection().get_selected()[1] != None:
             if not self.treeModel.iter_has_child(self.treeServers.get_selection().get_selected()[1]):
@@ -1331,7 +1284,7 @@ class Wmain(SimpleGladeApp):
                 # Eliminar todo el grupo
                 group = self.get_group(self.treeModel.iter_children(self.treeServers.get_selection().get_selected()[1]))
                 if msgconfirm("%s [%s]?" % (
-                _("Confirma que desea eliminar todos los hosts del grupo"), group)) == gtk.RESPONSE_OK:
+                        _("Confirma que desea eliminar todos los hosts del grupo"), group)) == gtk.RESPONSE_OK:
                     try:
                         del self.config.groups[group]
                     except:
@@ -1342,21 +1295,12 @@ class Wmain(SimpleGladeApp):
                     self.updateTree()
         self.config.writeConfig(collapsed_nodes=self.get_collapsed_nodes(), hp_position=self.hpMain.get_position())
 
-    # -- Wmain.on_btnDel_clicked }
-
-    # -- Wmain.on_btnHSplit_clicked {
     def on_btnHSplit_clicked(self, widget, *args):
         self.split_notebook(HSPLIT)
 
-    # -- Wmain.on_btnHSplit_clicked }
-
-    # -- Wmain.on_btnVSplit_clicked {
     def on_btnVSplit_clicked(self, widget, *args):
         self.split_notebook(VSPLIT)
 
-    # -- Wmain.on_btnVSplit_clicked }
-
-    # -- Wmain.on_btnUnsplit_clicked {
     def on_btnUnsplit_clicked(self, widget, *args):
         wid = self.find_notebook(self.hpMain, self.nbConsole)
         while wid != None:
@@ -1372,44 +1316,28 @@ class Wmain(SimpleGladeApp):
                 self.nbConsole.set_tab_detachable(csp, True)
             wid = self.find_notebook(self.hpMain, self.nbConsole)
 
-    # -- Wmain.on_btnUnsplit_clicked }
-
-    # -- Wmain.on_btnConfig_clicked {
     def on_btnConfig_clicked(self, widget, *args):
         wConfig = Wconfig()
         self.populateCommandsMenu()
 
-    # -- Wmain.on_txtSearch_focus {
     def on_txtSearch_focus(self, widget, *args):
         if widget.get_text() == _('buscar...'):
             widget.modify_text(gtk.STATE_NORMAL, gtk.gdk.Color('black'))
             widget.set_text('')
 
-    # -- Wmain.on_txtSearch_focus }
-
-    # -- Wmain.on_txtSearch_focus_out_event {
     def on_txtSearch_focus_out_event(self, widget, *args):
         if widget.get_text() == '':
             widget.modify_text(gtk.STATE_NORMAL, gtk.gdk.Color('darkgray'))
             widget.set_text(_('buscar...'))
 
-    # -- Wmain.on_txtSearch_focus_out_event }
-
-    # -- Wmain.on_btnSearchBack_clicked {
     def on_btnSearchBack_clicked(self, widget, *args):
         if self.init_search():
             self.find_word(backwards=True)
 
-    # -- Wmain.on_btnSearchBack_clicked }
-
-    # -- Wmain.on_btnSearch_clicked {
     def on_btnSearch_clicked(self, widget, *args):
         if self.init_search():
             self.find_word()
 
-    # -- Wmain.on_btnSearch_clicked }
-
-    # -- Wmain.on_btnCluster_clicked {
     def on_btnCluster_clicked(self, widget, *args):
         if hasattr(self, 'wCluster'):
             if not self.wCluster.get_property("visible"):
@@ -1447,26 +1375,17 @@ class Wmain(SimpleGladeApp):
 
         self.wCluster = Wcluster(terms=consoles).get_widget('wCluster')
 
-    # -- Wmain.on_btnCluster_clicked }
-
-    # -- Wmain.on_hpMain_button_press_event {
     def on_hpMain_button_press_event(self, widget, event, *args):
         if event.type in [gtk.gdk._2BUTTON_PRESS]:
             p = self.hpMain.get_position()
             self.set_panel_visible(p == 0)
 
-    # -- Wmain.on_hpMain_button_press_event }
-
-    # -- Wmain.on_tvServers_row_activated {
     def on_tvServers_row_activated(self, widget, *args):
         if not self.treeModel.iter_has_child(widget.get_selection().get_selected()[1]):
             selected = widget.get_selection().get_selected()[1]
             host = self.treeModel.get_value(selected, 1)
             self.addTab(self.nbConsole, host)
 
-    # -- Wmain.on_tvServers_row_activated }
-
-    # -- Wmain.on_tvServers_button_press_event {
     def on_tvServers_button_press_event(self, widget, event, *args):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             x = int(event.x)
@@ -1500,7 +1419,6 @@ class Wmain(SimpleGladeApp):
                 self.treeServers.set_cursor(path, col, 0)
             self.popupMenuFolder.popup(None, None, None, event.button, event.time)
             return True
-            # -- Wmain.on_tvServers_button_press_event }
 
 
 class NotebookTabLabel(gtk.HBox):
@@ -1530,7 +1448,7 @@ class NotebookTabLabel(gtk.HBox):
         close_btn.connect('clicked', self.on_close_tab, owner_)
         close_btn.set_size_request(image_w + 7, image_h + 6)
         close_btn.add(close_image)
-        style = close_btn.get_style();
+        style = close_btn.get_style()
         self.eb2 = gtk.EventBox()
         self.eb2.add(close_btn)
         self.pack_start(self.eb2, False, False)
@@ -1602,5 +1520,3 @@ class NotebookTabLabel(gtk.HBox):
             return True
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 2:
             self.close_tab(self.widget)
-
-

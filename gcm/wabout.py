@@ -13,19 +13,12 @@ class Wabout(SimpleGladeApp):
         SimpleGladeApp.__init__(self, path, root, domain, **kwargs)
         self.wAbout.set_icon_from_file(ICON_PATH)
 
-    # -- Wabout.new {
     def new(self):
         self.wAbout.set_name(app_name)
         self.wAbout.set_version(app_version)
         self.wAbout.set_website(app_web)
 
-    # -- Wabout.new }
-
-    # -- Wabout custom methods {
     #   Write your own methods here
-    # -- Wabout custom methods }
 
-    # -- Wabout.on_wAbout_close {
     def on_wAbout_close(self, widget, *args):
         self.wAbout.destroy()
-        # -- Wabout.on_wAbout_close }

@@ -17,7 +17,6 @@ class Wcluster(SimpleGladeApp):
         path = os.path.join(GLADE_DIR, path)
         SimpleGladeApp.__init__(self, path, root, domain, **kwargs)
 
-    # -- Wcluster.new {
     def new(self):
         self.treeHosts = self.get_widget('treeHosts')
         self.treeStore = gtk.TreeStore(gobject.TYPE_BOOLEAN, gobject.TYPE_STRING, gobject.TYPE_OBJECT)
@@ -33,9 +32,6 @@ class Wcluster(SimpleGladeApp):
         self.treeHosts.append_column(gtk.TreeViewColumn(_("Host"), gtk.CellRendererText(), text=1))
         self.get_widget("txtCommands").history = []
 
-    # -- Wcluster.new }
-
-    # -- Wcluster custom methods {
     #   Write your own methods here
 
     def on_active_toggled(self, widget, path):
@@ -54,45 +50,27 @@ class Wcluster(SimpleGladeApp):
         else:
             nb.get_tab_label(obj).restore_color()
 
-    # -- Wcluster custom methods }
-
-    # -- Wcluster.on_wCluster_destroy {
     def on_wCluster_destroy(self, widget, *args):
         self.on_btnNone_clicked(None)
 
-    # -- Wcluster.on_wCluster_destroy }
-
-    # -- Wcluster.on_cancelbutton2_clicked {
     def on_cancelbutton2_clicked(self, widget, *args):
         self.get_widget("wCluster").destroy()
 
-    # -- Wcluster.on_cancelbutton2_clicked }
-
-    # -- Wcluster.on_btnAll_clicked {
     def on_btnAll_clicked(self, widget, *args):
         for x in self.treeStore:
             x[0] = True
             self.change_color(x[2], x[0])
 
-    # -- Wcluster.on_btnAll_clicked }
-
-    # -- Wcluster.on_btnNone_clicked {
     def on_btnNone_clicked(self, widget, *args):
         for x in self.treeStore:
             x[0] = False
             self.change_color(x[2], x[0])
 
-    # -- Wcluster.on_btnNone_clicked }
-
-    # -- Wcluster.on_btnInvert_clicked {
     def on_btnInvert_clicked(self, widget, *args):
         for x in self.treeStore:
             x[0] = not x[0]
             self.change_color(x[2], x[0])
 
-    # -- Wcluster.on_btnInvert_clicked }
-
-    # -- Wcluster.on_txtCommands_key_press_event {
     def on_txtCommands_key_press_event(self, widget, event, *args):
         if not event.state & gtk.gdk.CONTROL_MASK and gtk.gdk.keyval_name(event.keyval).upper() == 'RETURN':
             buf = widget.get_buffer()
@@ -115,4 +93,3 @@ class Wcluster(SimpleGladeApp):
                     if widget.history_index >= len(widget.history):
                         widget.history_index = -1
                 widget.get_buffer().set_text(widget.history[widget.history_index] if widget.history_index >= 0 else '')
-                # -- Wcluster.on_txtCommands_key_press_event }

@@ -250,7 +250,7 @@ class Wconfig(SimpleGladeApp):
         for x in self.treeModel2:
             if x[0] != '' and x[1] != '':
                 scuts[x[1]] = x[0]
-        shortcuts = scuts
+        self.config.shortcuts = scuts
 
         self.config.writeConfig()
         # Recrear menu de comandos personalizados

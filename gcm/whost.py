@@ -8,10 +8,10 @@ import traceback
 import pango
 
 from SimpleGladeApp import SimpleGladeApp
+from config import Config
 from models import Host
 from utils import msgbox, show_open_dialog
 from vars import DOMAIN_NAME, GLADE_DIR
-from config import Config
 
 
 class Whost(SimpleGladeApp):
@@ -31,9 +31,6 @@ class Whost(SimpleGladeApp):
         column = gtk.TreeViewColumn(_("Remoto"), gtk.CellRendererText(), text=2)
         self.treeTunel.append_column(column)
 
-
-
-    # -- Whost.new {
     def new(self):
         self.config = Config()
         self.cmbGroup = self.get_widget("cmbGroup")
@@ -78,9 +75,6 @@ class Whost(SimpleGladeApp):
         self.cmbBackspace.set_active(0)
         self.cmbDelete.set_active(0)
 
-    # -- Whost.new }
-
-    # -- Whost custom methods {
     def init(self, group, host=None):
         self.cmbGroup.get_child().set_text(group)
         if host == None:
@@ -170,16 +164,9 @@ class Whost(SimpleGladeApp):
                 buf.apply_tag_by_name("DELAY2", n, end)
             text_iter = end
 
-    # -- Whost custom methods }
-
-    # -- Whost.on_cancelbutton1_clicked {
     def on_cancelbutton1_clicked(self, widget, *args):
         self.get_widget("wHost").destroy()
 
-    # -- Whost.on_cancelbutton1_clicked }
-
-
-    # -- Whost.on_okbutton1_clicked {
     def on_okbutton1_clicked(self, widget, *args):
         group = self.cmbGroup.get_active_text().strip()
         name = self.txtName.get_text().strip()
@@ -283,9 +270,6 @@ class Whost(SimpleGladeApp):
         self.config.writeConfig()
         self.get_widget("wHost").destroy()
 
-    # -- Whost.on_okbutton1_clicked }
-
-    # -- Whost.on_cmbType_changed {
     def on_cmbType_changed(self, widget, *args):
         is_local = widget.get_active_text() == "local"
         self.txtUser.set_sensitive(not is_local)
@@ -324,9 +308,6 @@ class Whost(SimpleGladeApp):
                 self.txtHost.set_text('')
         self.txtPort.set_text(port)
 
-    # -- Whost.on_cmbType_changed }
-
-    # -- Whost.on_chkKeepAlive_toggled {
     def on_chkKeepAlive_toggled(self, widget, *args):
         if (widget.get_active()):
             self.txtKeepAlive.set_text('120')
@@ -334,24 +315,14 @@ class Whost(SimpleGladeApp):
             self.txtKeepAlive.set_text('0')
         self.txtKeepAlive.set_sensitive(widget.get_active())
 
-    # -- Whost.on_chkKeepAlive_toggled }
-
-    # -- Whost.on_chkCompression_toggled {
     def on_chkCompression_toggled(self, widget, *args):
         self.txtCompressionLevel.set_text('')
         self.txtCompressionLevel.set_sensitive(widget.get_active())
 
-    # -- Whost.on_chkCompression_toggled }
-
-
-    # -- Whost.on_chkDynamic_toggled {
     def on_chkDynamic_toggled(self, widget, *args):
         self.txtRemoteHost.set_sensitive(not widget.get_active())
         self.txtRemotePort.set_sensitive(not widget.get_active())
 
-    # -- Whost.on_chkDynamic_toggled }
-
-    # -- Whost.on_btnAdd_clicked {
     def on_btnAdd_clicked(self, widget, *args):
         local = self.txtLocalPort.get_text().strip()
         host = self.txtRemoteHost.get_text().strip()
@@ -373,44 +344,24 @@ class Whost(SimpleGladeApp):
 
         tunel = self.treeModel.append([local, host, remote, '%s:%s:%s' % (local, host, remote)])
 
-    # -- Whost.on_btnAdd_clicked }
-
-    # -- Whost.on_btnDel_clicked {
     def on_btnDel_clicked(self, widget, *args):
         if self.treeTunel.get_selection().get_selected()[1] != None:
             self.treeModel.remove(self.treeTunel.get_selection().get_selected()[1])
 
-    # -- Whost.on_btnDel_clicked }
-
-    # -- Whost.on_chkCommands_toggled {
     def on_chkCommands_toggled(self, widget, *args):
         self.txtCommands.set_sensitive(widget.get_active())
 
-    # -- Whost.on_chkCommands_toggled }
-
-    # -- Whost.on_btnBColor_clicked {
     def on_btnBColor_clicked(self, widget, *args):
         widget.selected_color = widget.get_color().to_string()
 
-    # -- Whost.on_btnBColor_clicked }
-
-    # -- Whost.on_chkDefaultColors_toggled {
     def on_chkDefaultColors_toggled(self, widget, *args):
         self.btnFColor.set_sensitive(not widget.get_active())
         self.btnBColor.set_sensitive(not widget.get_active())
 
-    # -- Whost.on_chkDefaultColors_toggled }
-
-    # -- Whost.on_btnFColor_clicked {
     def on_btnFColor_clicked(self, widget, *args):
         widget.selected_color = widget.get_color().to_string()
 
-    # -- Whost.on_btnFColor_clicked }
-
-    # -- Whost.on_btnBrowse_clicked {
     def on_btnBrowse_clicked(self, widget, *args):
         filename = show_open_dialog(parent=self.main_widget, title=_("Abrir"), action=gtk.FILE_CHOOSER_ACTION_OPEN)
         if filename != None:
             self.txtPrivateKey.set_text(filename)
-            # -- Whost.on_btnBrowse_clicked }
-
