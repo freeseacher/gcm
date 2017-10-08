@@ -6,58 +6,12 @@ import sys
 import traceback
 
 import pango
-import vte
+
 from SimpleGladeApp import SimpleGladeApp
-from src.vars import groups
-from vars import DOMAIN_NAME, GLADE_DIR
+from models import Host
 from utils import msgbox, show_open_dialog
-
-
-class Host():
-    def __init__(self, *args):
-        try:
-            self.i = 0
-            self.group = self.get_arg(args, None)
-            self.name = self.get_arg(args, None)
-            self.description = self.get_arg(args, None)
-            self.host = self.get_arg(args, None)
-            self.user = self.get_arg(args, None)
-            self.password = self.get_arg(args, None)
-            self.private_key = self.get_arg(args, None)
-            self.port = self.get_arg(args, 22)
-            self.tunnel = self.get_arg(args, '').split(",")
-            self.type = self.get_arg(args, 'ssh')
-            self.commands = self.get_arg(args, None)
-            self.keep_alive = self.get_arg(args, 0)
-            self.font_color = self.get_arg(args, '')
-            self.back_color = self.get_arg(args, '')
-            self.x11 = self.get_arg(args, False)
-            self.agent = self.get_arg(args, False)
-            self.compression = self.get_arg(args, False)
-            self.compressionLevel = self.get_arg(args, '')
-            self.extra_params = self.get_arg(args, '')
-            self.log = self.get_arg(args, False)
-            self.backspace_key = self.get_arg(args, int(vte.ERASE_AUTO))
-            self.delete_key = self.get_arg(args, int(vte.ERASE_AUTO))
-        except:
-            pass
-
-    def get_arg(self, args, default):
-        arg = args[self.i] if len(args) > self.i else default
-        self.i += 1
-        return arg
-
-    def __repr__(self):
-        return "group=[%s],\t name=[%s],\t host=[%s],\t type=[%s]" % (self.group, self.name, self.host, self.type)
-
-    def tunnel_as_string(self):
-        return ",".join(self.tunnel)
-
-    def clone(self):
-        return Host(self.group, self.name, self.description, self.host, self.user, self.password, self.private_key,
-                    self.port, self.tunnel_as_string(), self.type, self.commands, self.keep_alive, self.font_color,
-                    self.back_color, self.x11, self.agent, self.compression, self.compressionLevel, self.extra_params,
-                    self.log, self.backspace_key, self.delete_key)
+from vars import DOMAIN_NAME, GLADE_DIR
+from config import Config
 
 
 class Whost(SimpleGladeApp):
@@ -77,10 +31,11 @@ class Whost(SimpleGladeApp):
         column = gtk.TreeViewColumn(_("Remoto"), gtk.CellRendererText(), text=2)
         self.treeTunel.append_column(column)
 
+
+
     # -- Whost.new {
     def new(self):
-        global groups
-
+        self.config = Config()
         self.cmbGroup = self.get_widget("cmbGroup")
         self.txtName = self.get_widget("txtName")
         self.txtDescription = self.get_widget("txtDescription")
@@ -92,7 +47,7 @@ class Whost(SimpleGladeApp):
         self.btnBrowse = self.get_widget("btnBrowse")
         self.txtPort = self.get_widget("txtPort")
         self.cmbGroup.get_model().clear()
-        for group in groups:
+        for group in self.config.groups:
             self.cmbGroup.get_model().append([group])
         self.isNew = True
 
@@ -279,55 +234,53 @@ class Whost(SimpleGladeApp):
 
         try:
             # Guardar
-            if not groups.has_key(group):
-                groups[group] = []
+            if not self.config.groups.has_key(group):
+                self.config.groups[group] = []
 
             if self.isNew:
-                for h in groups[group]:
+                for h in self.config.groups[group]:
                     if h.name == name:
                         msgbox("%s [%s] %s [%s]" % (_("El nombre"), name, _("ya existe para el grupo"), group))
                         return
                 # agregar host a grupo
-                groups[group].append(host)
+                self.config.groups[group].append(host)
             else:
                 if self.oldGroup != group:
                     # revisar que no este el nombre en el nuevo grupo
-                    if not groups.has_key(group):
-                        groups[group] = [host]
+                    if not self.config.groups.has_key(group):
+                        self.config.groups[group] = [host]
                     else:
-                        for h in groups[group]:
+                        for h in self.config.groups[group]:
                             if h.name == name:
                                 msgbox("%s [%s] %s [%s]" % (_("El nombre"), name, _("ya existe para el grupo"), group))
                                 return
-                        groups[group].append(host)
-                        for h in groups[self.oldGroup]:
+                        self.config.groups[group].append(host)
+                        for h in self.config.groups[self.oldGroup]:
                             if h.name == self.oldName:
-                                groups[self.oldGroup].remove(h)
+                                self.config.groups[self.oldGroup].remove(h)
                                 break
                 else:
                     if self.oldName != name:
-                        for h in groups[self.oldGroup]:
+                        for h in self.config.groups[self.oldGroup]:
                             if h.name == name:
                                 msgbox("%s [%s] %s [%s]" % (_("El nombre"), name, _("ya existe para el grupo"), group))
                                 return
-                        for h in groups[self.oldGroup]:
+                        for h in self.config.groups[self.oldGroup]:
                             if h.name == self.oldName:
-                                index = groups[self.oldGroup].index(h)
-                                groups[self.oldGroup][index] = host
+                                index = self.config.groups[self.oldGroup].index(h)
+                                self.config.groups[self.oldGroup][index] = host
                                 break
                     else:
-                        for h in groups[self.oldGroup]:
+                        for h in self.config.groups[self.oldGroup]:
                             if h.name == self.oldName:
-                                index = groups[self.oldGroup].index(h)
-                                groups[self.oldGroup][index] = host
+                                index = self.config.groups[self.oldGroup].index(h)
+                                self.config.groups[self.oldGroup][index] = host
                                 break
         except:
             traceback.print_exc()
             msgbox("%s [%s]" % (_("Error al guardar el host. Descripcion"), sys.exc_info()[1]))
 
-        wMain.updateTree()
-        wMain.writeConfig()
-
+        self.config.writeConfig()
         self.get_widget("wHost").destroy()
 
     # -- Whost.on_okbutton1_clicked }
@@ -456,8 +409,8 @@ class Whost(SimpleGladeApp):
 
     # -- Whost.on_btnBrowse_clicked {
     def on_btnBrowse_clicked(self, widget, *args):
-        global wMain
-        filename = show_open_dialog(parent=wMain.wMain, title=_("Abrir"), action=gtk.FILE_CHOOSER_ACTION_OPEN)
+        filename = show_open_dialog(parent=self.main_widget, title=_("Abrir"), action=gtk.FILE_CHOOSER_ACTION_OPEN)
         if filename != None:
             self.txtPrivateKey.set_text(filename)
             # -- Whost.on_btnBrowse_clicked }
+

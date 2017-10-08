@@ -8,7 +8,7 @@ DATA_PATH = os.path.join(BASE_PATH, '..')
 SSH_COMMAND = os.path.join(DATA_PATH, 'data/ssh.expect')
 ICON_PATH = os.path.join(DATA_PATH, 'data/icon.png')
 GLADE_DIR = os.path.join(DATA_PATH, 'data')
-LOCALE_DIR = os.path.join(DATA_PATH, 'lang')
+LOCALE_DIR = os.path.join(DATA_PATH, 'locale')
 
 app_name = "Gnome Connection Manager"
 app_version = "1.1.0"

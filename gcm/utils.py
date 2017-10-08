@@ -128,3 +128,11 @@ def update_localization_files():
     bindtextdomain(DOMAIN_NAME, LOCALE_DIR)
 
 
+class SingletonMeta(type):
+    def __init__(cls, name, bases, dict):
+        super(SingletonMeta, cls).__init__(name, bases, dict)
+        cls.instance = None
+    def __call__(self,*args,**kw):
+        if self.instance is None:
+            self.instance = super(SingletonMeta, self).__call__(*args, **kw)
+        return self.instance

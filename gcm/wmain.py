@@ -14,7 +14,7 @@ import vte
 
 from SimpleGladeApp import SimpleGladeApp
 from config import Config
-from utils import EntryDialog, get_key_name, msgbox, msgconfirm, show_open_dialog
+from utils import EntryDialog, get_key_name, msgbox, msgconfirm, show_open_dialog, SingletonMeta
 from vars import app_fileversion, SSH_BIN, TEL_BIN, SHELL, SSH_COMMAND, DOMAIN_NAME, HSPLIT, VSPLIT, _COPY, _PASTE, \
     _COPY_ALL, _SAVE, _FIND, _CLEAR, _FIND_NEXT, _FIND_BACK, _CONSOLE_PREV, _CONSOLE_NEXT, _CONSOLE_CLOSE, \
     _CONSOLE_RECONNECT, _CONNECT, ICON_PATH, GLADE_DIR, _CONSOLE_1,_CONSOLE_2,_CONSOLE_3,_CONSOLE_4,\
@@ -23,7 +23,8 @@ from vars import app_fileversion, SSH_BIN, TEL_BIN, SHELL, SSH_COMMAND, DOMAIN_N
 from wabout import Wabout
 from wcluster import Wcluster
 from wconfig import Wconfig
-from whost import Host, Whost
+from whost import Whost
+from models import Host
 
 
 def inputbox(title, text, default='', password=False):
@@ -37,10 +38,6 @@ def inputbox(title, text, default='', password=False):
     return response
 
 
-def get_username():
-    return os.getenv('USER') or os.getenv('LOGNAME') or os.getenv('USERNAME')
-
-
 class Wmain(SimpleGladeApp):
     def __init__(self, path="gnome-connection-manager.glade",
                  root="wMain",
@@ -48,8 +45,7 @@ class Wmain(SimpleGladeApp):
         path = os.path.join(GLADE_DIR, path)
         SimpleGladeApp.__init__(self, path, root, domain, **kwargs)
 
-        global wMain
-        wMain = self
+        self.config = Config()
 
         self.initLeftPane()
 
@@ -59,7 +55,7 @@ class Wmain(SimpleGladeApp):
         settings.props.gtk_menu_bar_accel = None
 
         self.real_transparency = False
-        if Config.TRANSPARENCY > 0:
+        if self.config.TRANSPARENCY > 0:
             # Revisar si hay soporte para transparencia
             screen = self.get_widget("wMain").get_screen()
             colormap = screen.get_rgba_colormap()
@@ -67,8 +63,8 @@ class Wmain(SimpleGladeApp):
                 self.get_widget("wMain").set_colormap(colormap)
                 self.real_transparency = True
 
-        if Config.WINDOW_WIDTH != -1 and Config.WINDOW_HEIGHT != -1:
-            self.get_widget("wMain").resize(Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT)
+        if self.config.WINDOW_WIDTH != -1 and self.config.WINDOW_HEIGHT != -1:
+            self.get_widget("wMain").resize(self.config.WINDOW_WIDTH, self.config.WINDOW_HEIGHT)
         else:
             self.get_widget("wMain").maximize()
         self.get_widget("wMain").show()
@@ -82,16 +78,13 @@ class Wmain(SimpleGladeApp):
 
         self.hpMain.previous_position = 150
 
-        if Config.LEFT_PANEL_WIDTH != 0:
-            self.set_panel_visible(Config.SHOW_PANEL)
-        self.set_toolbar_visible(Config.SHOW_TOOLBAR)
+        if self.config.LEFT_PANEL_WIDTH != 0:
+            self.set_panel_visible(self.config.SHOW_PANEL)
+        self.set_toolbar_visible(self.config.SHOW_TOOLBAR)
 
         # a veces no se posiciona correctamente con 400 ms, asi que se repite el llamado
-        gobject.timeout_add(400, lambda: self.hpMain.set_position(Config.LEFT_PANEL_WIDTH))
-        gobject.timeout_add(900, lambda: self.hpMain.set_position(Config.LEFT_PANEL_WIDTH))
-
-        if Config.HIDE_DONATE:
-            self.get_widget("btnDonate").hide_all()
+        gobject.timeout_add(400, lambda: self.hpMain.set_position(self.config.LEFT_PANEL_WIDTH))
+        gobject.timeout_add(900, lambda: self.hpMain.set_position(self.config.LEFT_PANEL_WIDTH))
 
         # Por cada parametro de la linea de comandos buscar el host y agregar un tab
         for arg in sys.argv[1:]:
@@ -107,8 +100,11 @@ class Wmain(SimpleGladeApp):
 
         self.get_widget('txtSearch').modify_text(gtk.STATE_NORMAL, gtk.gdk.Color('darkgray'))
 
-        if Config.STARTUP_LOCAL:
+        if self.config.STARTUP_LOCAL:
             self.addTab(self.nbConsole, 'local')
+
+    def get_username(self):
+        return os.getenv('USER') or os.getenv('LOGNAME') or os.getenv('USERNAME')
 
     # -- Wmain.new {
     def new(self):
@@ -122,7 +118,7 @@ class Wmain(SimpleGladeApp):
 
     def on_terminal_click(self, widget, event, *args):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            if Config.PASTE_ON_RIGHT_CLICK:
+            if self.config.PASTE_ON_RIGHT_CLICK:
                 widget.paste_clipboard()
             else:
                 self.popupMenu.mnuCopy.set_sensitive(widget.get_has_selection())
@@ -132,8 +128,8 @@ class Wmain(SimpleGladeApp):
             return True
 
     def on_terminal_keypress(self, widget, event, *args):
-        if shortcuts.has_key(get_key_name(event)):
-            cmd = shortcuts[get_key_name(event)]
+        if self.config.shortcuts.has_key(get_key_name(event)):
+            cmd = self.config.shortcuts[get_key_name(event)]
             if type(cmd) == list:
                 # comandos predefinidos
                 if cmd == _COPY:
@@ -191,7 +187,7 @@ class Wmain(SimpleGladeApp):
         return False
 
     def on_terminal_selection(self, widget, *args):
-        if Config.AUTO_COPY_SELECTION:
+        if self.config.AUTO_COPY_SELECTION:
             self.terminal_copy(widget)
         return True
 
@@ -299,13 +295,13 @@ class Wmain(SimpleGladeApp):
                 host = self.treeModel.get_value(selected, 1)
                 newname = '%s (copy)' % (host.name)
                 newhost = host.clone()
-                for h in groups[group]:
+                for h in self.config.groups[group]:
                     if h.name == newname:
                         newname = '%s (copy)' % (newname)
                 newhost.name = newname
-                groups[group].append(newhost)
+                self.config.groups[group].append(newhost)
                 self.updateTree()
-                self.writeConfig()
+                self.config.writeConfig(collapsed_nodes=self.get_collapsed_nodes(), hp_position=self.hpMain.get_position())
             return True
         elif item == 'R':  # RENAME TAB
             text = inputbox(_('Renombrar consola'), _('Ingrese nuevo nombre'),
@@ -567,13 +563,13 @@ class Wmain(SimpleGladeApp):
     def populateCommandsMenu(self):
         self.popupMenu.mnuCommands.foreach(lambda x: self.popupMenu.mnuCommands.remove(x))
         self.menuCustomCommands.foreach(lambda x: self.menuCustomCommands.remove(x))
-        for x in shortcuts:
-            if type(shortcuts[x]) != list:
-                menuItem = self.createMenuItem(x, shortcuts[x][0:30])
+        for x in self.config.shortcuts:
+            if type(self.config.shortcuts[x]) != list:
+                menuItem = self.createMenuItem(x, self.config.shortcuts[x][0:30])
                 self.popupMenu.mnuCommands.append(menuItem)
-                menuItem.connect("activate", self.on_popupmenu, 'CP', shortcuts[x])
+                menuItem.connect("activate", self.on_popupmenu, 'CP', self.config.shortcuts[x])
 
-                menuItem = self.createMenuItem(x, shortcuts[x][0:30])
+                menuItem = self.createMenuItem(x, self.config.shortcuts[x][0:30])
                 self.menuCustomCommands.append(menuItem)
                 menuItem.connect("activate", self.on_menuCustomCommands_activate, shortcuts[x])
 
@@ -644,7 +640,7 @@ class Wmain(SimpleGladeApp):
             terminal.log_handler_id = terminal.connect('contents-changed', self.on_contents_changed)
             p = terminal.get_parent()
             title = p.get_parent().get_tab_label(p).get_text().strip()
-            prefix = "%s/%s-%s" % (os.path.expanduser(Config.LOG_PATH), title, time.strftime("%Y%m%d"))
+            prefix = "%s/%s-%s" % (os.path.expanduser(self.config.LOG_PATH), title, time.strftime("%Y%m%d"))
             filename = ''
             for i in range(1, 1000):
                 if not os.path.exists("%s-%03i.log" % (prefix, i)):
@@ -670,8 +666,8 @@ class Wmain(SimpleGladeApp):
     def addTab(self, notebook, host):
         try:
             v = vte.Terminal()
-            v.set_word_chars(Config.WORD_SEPARATORS)
-            v.set_scrollback_lines(Config.BUFFER_LINES)
+            v.set_word_chars(self.config.WORD_SEPARATORS)
+            v.set_scrollback_lines(self.config.BUFFER_LINES)
             if v.get_emulation() != os.getenv("TERM"):
                 os.environ['TERM'] = v.get_emulation()
 
@@ -681,8 +677,8 @@ class Wmain(SimpleGladeApp):
             fcolor = host.font_color
             bcolor = host.back_color
             if fcolor == '' or fcolor == None or bcolor == '' or bcolor == None:
-                fcolor = Config.FONT_COLOR
-                bcolor = Config.BACK_COLOR
+                fcolor = self.config.FONT_COLOR
+                bcolor = self.config.BACK_COLOR
 
             palette_components = [
                 # background
@@ -701,10 +697,10 @@ class Wmain(SimpleGladeApp):
             if len(fcolor) > 0 and len(bcolor) > 0:
                 v.set_colors(gtk.gdk.Color(fcolor), gtk.gdk.Color(bcolor), palette)
 
-            if len(Config.FONT) == 0:
-                Config.FONT = 'monospace'
+            if len(self.config.FONT) == 0:
+                self.config.FONT = 'monospace'
             else:
-                v.set_font(pango.FontDescription(Config.FONT))
+                v.set_font(pango.FontDescription(self.config.FONT))
 
             scrollPane = gtk.ScrolledWindow()
             scrollPane.connect('button_press_event', lambda *args: True)
@@ -717,14 +713,14 @@ class Wmain(SimpleGladeApp):
             v.connect('key_press_event', self.on_terminal_keypress)
             v.connect('selection-changed', self.on_terminal_selection)
 
-            if Config.TRANSPARENCY > 0:
+            if self.config.TRANSPARENCY > 0:
                 if not self.real_transparency:
                     v.set_background_transparent(True)
-                    v.set_background_saturation(Config.TRANSPARENCY / 100.0)
+                    v.set_background_saturation(self.config.TRANSPARENCY / 100.0)
                     if len(bcolor) > 0:
                         v.set_background_tint_color(gtk.gdk.Color(bcolor))
                 else:
-                    v.set_opacity(int((100 - Config.TRANSPARENCY) / 100.0 * 65535))
+                    v.set_opacity(int((100 - self.config.TRANSPARENCY) / 100.0 * 65535))
 
             v.set_backspace_binding(host.backspace_key)
             v.set_delete_binding(host.delete_key)
@@ -754,7 +750,7 @@ class Wmain(SimpleGladeApp):
                 password = host.password
                 if host.type == 'ssh':
                     if len(host.user) == 0:
-                        host.user = get_username()
+                        host.user = self.get_username()
                     if host.password == '':
                         cmd = SSH_BIN
                         args = [SSH_BIN, '-l', host.user, '-p', host.port]
@@ -832,7 +828,7 @@ class Wmain(SimpleGladeApp):
         return False
 
     def initLeftPane(self):
-        global groups
+        self.config.groups
 
         self.treeModel = gtk.TreeStore(gobject.TYPE_STRING, gobject.TYPE_PYOBJECT, gtk.gdk.Pixbuf)
         self.treeServers.set_model(self.treeModel)
@@ -860,7 +856,6 @@ class Wmain(SimpleGladeApp):
 
         self.treeServers.set_has_tooltip(True)
         self.treeServers.connect('query-tooltip', self.on_treeServers_tooltip)
-        self.loadConfig()
         self.updateTree()
 
     def on_treeServers_tooltip(self, widget, x, y, keyboard, tooltip):
@@ -875,134 +870,6 @@ class Wmain(SimpleGladeApp):
                 return True
         return False
 
-    def loadConfig(self):
-        global groups
-
-        cp = ConfigParser.RawConfigParser()
-        conf = Config()
-        cp.read(conf.config_file)
-
-        # Leer configuracion general
-        try:
-            Config.WORD_SEPARATORS = cp.get("options", "word-separators")
-            Config.BUFFER_LINES = cp.getint("options", "buffer-lines")
-            Config.CONFIRM_ON_EXIT = cp.getboolean("options", "confirm-exit")
-            Config.FONT_COLOR = cp.get("options", "font-color")
-            Config.BACK_COLOR = cp.get("options", "back-color")
-            Config.TRANSPARENCY = cp.getint("options", "transparency")
-            Config.PASTE_ON_RIGHT_CLICK = cp.getboolean("options", "paste-right-click")
-            Config.CONFIRM_ON_CLOSE_TAB = cp.getboolean("options", "confirm-close-tab")
-            Config.COLLAPSED_FOLDERS = cp.get("window", "collapsed-folders")
-            Config.LEFT_PANEL_WIDTH = cp.getint("window", "left-panel-width")
-            Config.WINDOW_WIDTH = cp.getint("window", "window-width")
-            Config.WINDOW_HEIGHT = cp.getint("window", "window-height")
-            Config.FONT = cp.get("options", "font")
-            Config.HIDE_DONATE = cp.getboolean("options", "donate")
-            Config.AUTO_COPY_SELECTION = cp.getboolean("options", "auto-copy-selection")
-            Config.LOG_PATH = cp.get("options", "log-path")
-            Config.VERSION = cp.get("options", "version")
-            Config.AUTO_CLOSE_TAB = cp.getint("options", "auto-close-tab")
-            Config.SHOW_PANEL = cp.getboolean("window", "show-panel")
-            Config.SHOW_TOOLBAR = cp.getboolean("window", "show-toolbar")
-            Config.STARTUP_LOCAL = cp.getboolean("options", "startup-local")
-        except:
-            print "%s: %s" % (_("Entrada invalida en archivo de configuracion"), sys.exc_info()[1])
-
-        # Leer shorcuts
-        scuts = {}
-        try:
-            scuts[cp.get("shortcuts", "copy")] = _COPY
-        except:
-            scuts["CTRL+SHIFT+C"] = _COPY
-        try:
-            scuts[cp.get("shortcuts", "paste")] = _PASTE
-        except:
-            scuts["CTRL+SHIFT+V"] = _PASTE
-        try:
-            scuts[cp.get("shortcuts", "copy_all")] = _COPY_ALL
-        except:
-            scuts["CTRL+SHIFT+A"] = _COPY_ALL
-        try:
-            scuts[cp.get("shortcuts", "save")] = _SAVE
-        except:
-            scuts["CTRL+S"] = _SAVE
-        try:
-            scuts[cp.get("shortcuts", "find")] = _FIND
-        except:
-            scuts["CTRL+F"] = _FIND
-        try:
-            scuts[cp.get("shortcuts", "find_next")] = _FIND_NEXT
-        except:
-            scuts["F3"] = _FIND_NEXT
-        try:
-            scuts[cp.get("shortcuts", "find_back")] = _FIND_BACK
-        except:
-            scuts["SHIFT+F3"] = _FIND_BACK
-
-        try:
-            scuts[cp.get("shortcuts", "console_previous")] = _CONSOLE_PREV
-        except:
-            scuts["CTRL+SHIFT+LEFT"] = _CONSOLE_PREV
-
-        try:
-            scuts[cp.get("shortcuts", "console_next")] = _CONSOLE_NEXT
-        except:
-            scuts["CTRL+SHIFT+RIGHT"] = _CONSOLE_NEXT
-
-        try:
-            scuts[cp.get("shortcuts", "console_close")] = _CONSOLE_CLOSE
-        except:
-            scuts["CTRL+W"] = _CONSOLE_CLOSE
-
-        try:
-            scuts[cp.get("shortcuts", "console_reconnect")] = _CONSOLE_RECONNECT
-        except:
-            scuts["CTRL+N"] = _CONSOLE_RECONNECT
-
-        try:
-            scuts[cp.get("shortcuts", "connect")] = _CONNECT
-        except:
-            scuts["CTRL+RETURN"] = _CONNECT
-
-        ##kaman
-        try:
-            scuts[cp.get("shortcuts", "reset")] = _CLEAR
-        except:
-            scuts["CTRL+K"] = _CLEAR
-
-        # shortcuts para cambiar consola1-consola9
-        for x in range(1, 10):
-            try:
-                scuts[cp.get("shortcuts", "console_%d" % (x))] = eval("_CONSOLE_%d" % (x))
-            except:
-                scuts["F%d" % (x)] = eval("_CONSOLE_%d" % (x))
-        try:
-            i = 1
-            while True:
-                scuts[cp.get("shortcuts", "shortcut%d" % (i))] = cp.get("shortcuts", "command%d" % (i)).replace('\\n',
-                                                                                                                '\n')
-                i = i + 1
-        except:
-            pass
-        global shortcuts
-        shortcuts = scuts
-
-        # Leer lista de hosts
-        groups = {}
-        for section in cp.sections():
-            if not section.startswith("host "):
-                continue
-            host = cp.options(section)
-            try:
-                host = Config.load_host_from_ini(cp, section)
-
-                if not groups.has_key(host.group):
-                    groups[host.group] = []
-
-                groups[host.group].append(host)
-            except:
-                print "%s: %s" % (_("Entrada invalida en archivo de configuracion"), sys.exc_info()[1])
-
     def is_node_collapsed(self, model, path, iter, nodes):
         if self.treeModel.get_value(iter, 1) == None and not self.treeServers.row_expanded(path):
             nodes.append(self.treeModel.get_string_from_iter(iter))
@@ -1015,17 +882,17 @@ class Wmain(SimpleGladeApp):
     def set_collapsed_nodes(self):
         self.treeServers.expand_all()
         if self.treeModel.get_iter_root():
-            for node in Config.COLLAPSED_FOLDERS.split(","):
+            for node in self.config.COLLAPSED_FOLDERS.split(","):
                 if node != '':
                     self.treeServers.collapse_row(node)
 
     def updateTree(self):
-        for grupo in dict(groups):
-            if len(groups[grupo]) == 0:
-                del groups[grupo]
+        for grupo in dict(self.config.groups):
+            if len(self.config.groups[grupo]) == 0:
+                del self.config.groups[grupo]
 
-        if Config.COLLAPSED_FOLDERS == None:
-            Config.COLLAPSED_FOLDERS = ','.join(self.get_collapsed_nodes())
+        if self.config.COLLAPSED_FOLDERS == None:
+            self.config.COLLAPSED_FOLDERS = ','.join(self.get_collapsed_nodes())
 
         self.menuServers.foreach(self.menuServers.remove)
         self.treeModel.clear()
@@ -1033,7 +900,7 @@ class Wmain(SimpleGladeApp):
         iconHost = self.treeServers.render_icon("gtk-network", size=gtk.ICON_SIZE_BUTTON, detail=None)
         iconDir = self.treeServers.render_icon("gtk-directory", size=gtk.ICON_SIZE_BUTTON, detail=None)
 
-        grupos = groups.keys()
+        grupos = self.config.groups.keys()
         grupos.sort(lambda x, y: cmp(y, x))
 
         for grupo in grupos:
@@ -1060,8 +927,8 @@ class Wmain(SimpleGladeApp):
                 else:
                     menuNode = menu
 
-            groups[grupo].sort(key=operator.attrgetter('name'))
-            for host in groups[grupo]:
+            self.config.groups[grupo].sort(key=operator.attrgetter('name'))
+            for host in self.config.groups[grupo]:
                 self.treeModel.append(group, [host.name, host, iconHost])
                 mnuItem = gtk.ImageMenuItem(host.name)
                 mnuItem.set_image(gtk.image_new_from_stock(gtk.STOCK_NETWORK, gtk.ICON_SIZE_MENU))
@@ -1070,7 +937,7 @@ class Wmain(SimpleGladeApp):
                 menuNode.append(mnuItem)
 
         self.set_collapsed_nodes()
-        Config.COLLAPSED_FOLDERS = None
+        self.config.COLLAPSED_FOLDERS = None
 
     def get_folder(self, obj, folder, path):
         if not obj:
@@ -1233,7 +1100,7 @@ class Wmain(SimpleGladeApp):
             self.hpMain.previous_position = self.hpMain.get_position()
             gobject.timeout_add(200, lambda: self.hpMain.set_position(0))
         self.get_widget("show_panel").set_active(visibility)
-        Config.SHOW_PANEL = visibility
+        self.config.SHOW_PANEL = visibility
 
     def set_toolbar_visible(self, visibility):
         # self.get_widget("toolbar1").set_visible(visibility)
@@ -1242,21 +1109,21 @@ class Wmain(SimpleGladeApp):
         else:
             self.get_widget("toolbar1").hide()
         self.get_widget("show_toolbar").set_active(visibility)
-        Config.SHOW_TOOLBAR = visibility
+        self.config.SHOW_TOOLBAR = visibility
 
     # -- Wmain custom methods }
 
     # -- Wmain.on_wMain_destroy {
     def on_wMain_destroy(self, widget, *args):
-        Config.writeConfig()
+        self.config.writeConfig(collapsed_nodes=self.get_collapsed_nodes(), hp_position=self.hpMain.get_position())
         gtk.main_quit()
 
     # -- Wmain.on_wMain_destroy }
 
     # -- Wmain.on_wMain_delete_event {
     def on_wMain_delete_event(self, widget, *args):
-        (Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT) = self.get_widget("wMain").get_size()
-        if Config.CONFIRM_ON_EXIT and self.count > 0 and msgconfirm("%s %d %s" % (
+        (self.config.WINDOW_WIDTH, self.config.WINDOW_HEIGHT) = self.get_widget("wMain").get_size()
+        if self.config.CONFIRM_ON_EXIT and self.count > 0 and msgconfirm("%s %d %s" % (
         _("Hay"), self.count, _("consolas abiertas, confirma que desea salir?"))) != gtk.RESPONSE_OK:
             return True
 
@@ -1298,7 +1165,7 @@ class Wmain(SimpleGladeApp):
                 for section in cp.sections():
                     if not section.startswith("host "):
                         continue
-                    host = Config.load_host_from_ini(cp, section, password)
+                    host = self.config.load_host_from_ini(cp, section, password)
 
                     if not grupos.has_key(host.group):
                         grupos[host.group] = []
@@ -1309,7 +1176,7 @@ class Wmain(SimpleGladeApp):
                 msgbox(_("Archivo invalido"))
                 return
             # sobreescribir lista de hosts
-            global groups
+            self.config.groups
             groups = grupos
 
             self.updateTree()
@@ -1330,12 +1197,12 @@ class Wmain(SimpleGladeApp):
                 i = 1
                 cp.add_section("gcm")
                 cp.set("gcm", "gcm", encrypt(password, password[::-1]))
-                global groups
-                for grupo in groups:
-                    for host in groups[grupo]:
+
+                for grupo in self.config.groups:
+                    for host in self.config.groups[grupo]:
                         section = "host " + str(i)
                         cp.add_section(section)
-                        Config.save_host_to_ini(cp, section, host, password)
+                        self.config.save_host_to_ini(cp, section, host, password)
                         i += 1
                 f = open(filename + ".tmp", "w")
                 cp.write(f)
@@ -1349,8 +1216,8 @@ class Wmain(SimpleGladeApp):
 
     # -- Wmain.on_salir1_activate {
     def on_salir1_activate(self, widget, *args):
-        (Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT) = self.get_widget("wMain").get_size()
-        self.writeConfig()
+        (self.config.WINDOW_WIDTH, self.config.WINDOW_HEIGHT) = self.get_widget("wMain").get_size()
+        self.config.writeConfig(collapsed_nodes=self.get_collapsed_nodes(), hp_position=self.hpMain.get_position())
         gtk.main_quit()
 
     # -- Wmain.on_salir1_activate }
@@ -1411,9 +1278,9 @@ class Wmain(SimpleGladeApp):
                 if parent_group != '':
                     group = parent_group + '/' + group
 
-                for g in groups:
+                for g in self.config.groups:
                     if g == group or g.startswith(group + '/'):
-                        for host in groups[g]:
+                        for host in self.config.groups[g]:
                             self.addTab(self.nbConsole, host)
 
     # -- Wmain.on_btnConnect_clicked }
@@ -1463,7 +1330,7 @@ class Wmain(SimpleGladeApp):
                 name = self.treeModel.get_value(self.treeServers.get_selection().get_selected()[1], 0)
                 if msgconfirm("%s [%s]?" % (_("Confirma que desea eliminar el host"), name)) == gtk.RESPONSE_OK:
                     host = self.treeModel.get_value(self.treeServers.get_selection().get_selected()[1], 1)
-                    groups[host.group].remove(host)
+                    self.config.groups[host.group].remove(host)
                     self.updateTree()
             else:
                 # Eliminar todo el grupo
@@ -1471,14 +1338,14 @@ class Wmain(SimpleGladeApp):
                 if msgconfirm("%s [%s]?" % (
                 _("Confirma que desea eliminar todos los hosts del grupo"), group)) == gtk.RESPONSE_OK:
                     try:
-                        del groups[group]
+                        del self.config.groups[group]
                     except:
                         pass
-                    for h in dict(groups):
+                    for h in dict(self.config.groups):
                         if h.startswith(group + '/'):
-                            del groups[h]
+                            del self.config.groups[h]
                     self.updateTree()
-        self.writeConfig()
+        self.config.writeConfig(collapsed_nodes=self.get_collapsed_nodes(), hp_position=self.hpMain.get_position())
 
     # -- Wmain.on_btnDel_clicked }
 
@@ -1515,27 +1382,7 @@ class Wmain(SimpleGladeApp):
     # -- Wmain.on_btnConfig_clicked {
     def on_btnConfig_clicked(self, widget, *args):
         wConfig = Wconfig()
-
-    # -- Wmain.on_btnConfig_clicked }
-
-    # -- Wmain.on_btnDonate_clicked {
-    def on_btnDonate_clicked(self, widget, *args):
-        with tempfile.NamedTemporaryFile(suffix='.html', delete=False) as f:
-            f.write('<html> \
-                     <body onload="document.forms[0].submit()"> \
-                     <form action="https://www.paypal.com/cgi-bin/webscr" method="post"> \
-                     <input type="hidden" name="cmd" value="_s-xclick"> \
-                     <input type="hidden" name="hosted_button_id" value="10257762"> \
-                     </form> \
-                     </body> \
-                     </html>')
-
-            if os.name == "nt":
-                os.filestart(f.name)
-            elif os.name == "posix":
-                os.system("/usr/bin/xdg-open %s" % (f.name))
-
-    # -- Wmain.on_btnDonate_clicked }
+        self.populateCommandsMenu()
 
     # -- Wmain.on_txtSearch_focus {
     def on_txtSearch_focus(self, widget, *args):
@@ -1581,8 +1428,7 @@ class Wmain(SimpleGladeApp):
 
         # obtener lista de consolas abiertas
         consoles = []
-        global wMain
-        obj = wMain.hpMain
+        obj = self.hpMain
         s = []
         s.append(obj)
         while len(s) > 0:
@@ -1697,6 +1543,7 @@ class NotebookTabLabel(gtk.HBox):
         close_btn.show_all()
         self.is_active = True
         self.show()
+        self.config = Config()
 
     def change_color(self, color):
         self.eb.modify_bg(gtk.STATE_ACTIVE, color)
@@ -1712,7 +1559,7 @@ class NotebookTabLabel(gtk.HBox):
         self.eb2.modify_bg(gtk.STATE_NORMAL, bg[gtk.STATE_NORMAL])
 
     def on_close_tab(self, widget, notebook, *args):
-        if Config.CONFIRM_ON_CLOSE_TAB and msgconfirm(
+        if self.config.CONFIRM_ON_CLOSE_TAB and msgconfirm(
                         "%s [%s]?" % (_("Cerrar consola"), self.label.get_text().strip())) != gtk.RESPONSE_OK:
             return True
 
@@ -1730,8 +1577,8 @@ class NotebookTabLabel(gtk.HBox):
     def mark_tab_as_closed(self):
         self.label.set_markup("<span color='darkgray' strikethrough='true'>%s</span>" % (self.label.get_text()))
         self.is_active = False
-        if Config.AUTO_CLOSE_TAB != 0:
-            if Config.AUTO_CLOSE_TAB == 2:
+        if self.config.AUTO_CLOSE_TAB != 0:
+            if self.config.AUTO_CLOSE_TAB == 2:
                 terminal = self.widget.get_parent().get_nth_page(
                     self.widget.get_parent().page_num(self.widget)).get_child()
                 if terminal.get_child_exit_status() != 0:

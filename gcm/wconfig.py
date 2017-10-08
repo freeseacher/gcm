@@ -7,9 +7,8 @@ import pango
 
 from SimpleGladeApp import SimpleGladeApp
 from config import Config
-from src.vars import shortcuts
-from vars import DOMAIN_NAME, GLADE_DIR
 from utils import get_key_name
+from vars import DOMAIN_NAME, GLADE_DIR
 
 
 def show_font_dialog(parent, title, button):
@@ -35,10 +34,13 @@ class Wconfig(SimpleGladeApp):
                  root="wConfig",
                  domain=DOMAIN_NAME, **kwargs):
         path = os.path.join(GLADE_DIR, path)
+
         SimpleGladeApp.__init__(self, path, root, domain, **kwargs)
+
 
     # -- Wconfig.new {
     def new(self):
+        self.config = Config()
         # Agregar controles
         self.tblGeneral = self.get_widget("tblGeneral")
         self.btnFColor = self.get_widget("btnFColor")
@@ -51,19 +53,17 @@ class Wconfig(SimpleGladeApp):
         self.capture_keys = False
 
         self.tblGeneral.rows = 0
-        self.addParam(_("Separador de Palabras"), "Config.WORD_SEPARATORS", str)
-        self.addParam(_(u"Tamaño del buffer"), "Config.BUFFER_LINES", int, 1, 1000000)
-        self.addParam(_("Transparencia"), "Config.TRANSPARENCY", int, 0, 100)
-        self.addParam(_("Ruta de logs"), "Config.LOG_PATH", str)
-        self.addParam(_("Abrir consola local al inicio"), "Config.STARTUP_LOCAL", bool)
-        self.addParam(_(u"Pegar con botón derecho"), "Config.PASTE_ON_RIGHT_CLICK", bool)
-        self.addParam(_(u"Copiar selección al portapapeles"), "Config.AUTO_COPY_SELECTION", bool)
-        self.addParam(_("Confirmar al cerrar una consola"), "Config.CONFIRM_ON_CLOSE_TAB", bool)
-        self.addParam(_("Cerrar consola"), "Config.AUTO_CLOSE_TAB", list,
+        self.addParam(_("Separador de Palabras"), "self.config.WORD_SEPARATORS", str)
+        self.addParam(_(u"Tamaño del buffer"), "self.config.BUFFER_LINES", int, 1, 1000000)
+        self.addParam(_("Transparencia"), "self.config.TRANSPARENCY", int, 0, 100)
+        self.addParam(_("Ruta de logs"), "self.config.LOG_PATH", str)
+        self.addParam(_("Abrir consola local al inicio"), "self.config.STARTUP_LOCAL", bool)
+        self.addParam(_(u"Pegar con botón derecho"), "self.config.PASTE_ON_RIGHT_CLICK", bool)
+        self.addParam(_(u"Copiar selección al portapapeles"), "self.config.AUTO_COPY_SELECTION", bool)
+        self.addParam(_("Confirmar al cerrar una consola"), "self.config.CONFIRM_ON_CLOSE_TAB", bool)
+        self.addParam(_("Cerrar consola"), "self.config.AUTO_CLOSE_TAB", list,
                       [_("Nunca"), _("Siempre"), _(u"Sólo si no hay errores")])
-        self.addParam(_("Confirmar al salir"), "Config.CONFIRM_ON_EXIT", bool)
-        self.addParam(_("Comprobar actualizaciones"), "Config.CHECK_UPDATES", bool)
-        self.addParam(_(u"Ocultar botón donar"), "Config.HIDE_DONATE", bool)
+        self.addParam(_("Confirmar al salir"), "self.config.CONFIRM_ON_EXIT", bool)
 
         if len(Config.FONT_COLOR) == 0:
             self.get_widget("chkDefaultColors").set_active(True)
@@ -127,7 +127,7 @@ class Wconfig(SimpleGladeApp):
         column.set_expand(False)
         self.treeCustom.append_column(column)
 
-        slist = sorted(shortcuts.iteritems(), key=lambda (k, v): (v, k))
+        slist = sorted(self.config.shortcuts.iteritems(), key=lambda (k, v): (v, k))
 
         for s in slist:
             if type(s[1]) == list:
@@ -253,17 +253,8 @@ class Wconfig(SimpleGladeApp):
         global shortcuts
         shortcuts = scuts
 
-        # Boton donate
-        global wMain
-        if Config.HIDE_DONATE:
-            wMain.get_widget("btnDonate").hide_all()
-        else:
-            wMain.get_widget("btnDonate").show_all()
-
+        self.config.writeConfig()
         # Recrear menu de comandos personalizados
-        wMain.populateCommandsMenu()
-        wMain.writeConfig()
-
         self.get_widget("wConfig").destroy()
 
     # -- Wconfig.on_okbutton1_clicked }
