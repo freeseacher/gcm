@@ -385,6 +385,7 @@ if not, write to the Free Software Foundation, Inc.,
     <property name="icon">icon.png</property>
     <property name="type_hint">dialog</property>
     <property name="has_separator">True</property>
+    <signal name="close" handler="updateTree"/>
     <child internal-child="vbox">
       <widget class="GtkVBox" id="vbox2">
         <property name="visible">True</property>
@@ -447,6 +448,12 @@ if not, write to the Free Software Foundation, Inc.,
                 <property name="border_width">4</property>
                 <property name="n_columns">2</property>
                 <property name="column_spacing">5</property>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
                 <child>
                   <placeholder/>
                 </child>
@@ -834,24 +841,28 @@ if not, write to the Free Software Foundation, Inc.,
                     <property name="y_options"/>
                   </packing>
                 </child>
-              <child>
-                <widget class="GtkComboBoxEntry" id="cmbGroup">
-                  <property name="visible">True</property>
-          <property name="tooltip" translatable="yes">Usar formato grupo1/grupo2/grupo3 para crear subgrupos</property>
-                  <property name="items" translatable="no">dummy</property>
-                  <property name="add_tearoffs">False</property>
-                  <property name="has_frame">True</property>
-                  <property name="focus_on_click">True</property>
-                </widget>
-                <packing>
-                  <property name="left_attach">1</property>
-                  <property name="right_attach">2</property>
-                  <property name="top_attach">0</property>
-                  <property name="bottom_attach">1</property>
-                  <property name="y_options">fill</property>
-                </packing>
-              </child>
-
+                <child>
+                  <widget class="GtkComboBoxEntry" id="cmbGroup">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="tooltip" translatable="yes">Usar formato grupo1/grupo2/grupo3 para crear subgrupos</property>
+                    <property name="items">dummy</property>
+                    <child internal-child="entry">
+                      <widget class="GtkEntry" id="comboboxentry-entry2">
+                        <property name="can_focus">False</property>
+                        <property name="primary_icon_activatable">False</property>
+                        <property name="secondary_icon_activatable">False</property>
+                        <property name="primary_icon_sensitive">True</property>
+                        <property name="secondary_icon_sensitive">True</property>
+                      </widget>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="right_attach">2</property>
+                    <property name="y_options">GTK_FILL</property>
+                  </packing>
+                </child>
                 <child>
                   <widget class="GtkLabel" id="label3">
                     <property name="visible">True</property>
@@ -1367,12 +1378,6 @@ blanco: por defecto
                   </packing>
                 </child>
                 <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
-                </child>
-                <child>
                   <widget class="GtkCheckButton" id="chkLogging">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
@@ -1407,6 +1412,9 @@ blanco: por defecto
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="n_rows">2</property>
+                <child>
+                  <placeholder/>
+                </child>
                 <child>
                   <placeholder/>
                 </child>
