@@ -37,8 +37,6 @@ class Wconfig(SimpleGladeApp):
 
         SimpleGladeApp.__init__(self, path, root, domain, **kwargs)
 
-
-    # -- Wconfig.new {
     def new(self):
         self.config = Config()
         # Agregar controles
@@ -138,9 +136,6 @@ class Wconfig(SimpleGladeApp):
 
         self.treeModel2.append(None, ['', ''])
 
-    # -- Wconfig.new }
-
-    # -- Wconfig custom methods {
     def addParam(self, name, field, ptype, *args):
         x = self.tblGeneral.rows
         self.tblGeneral.rows += 1
@@ -196,7 +191,6 @@ class Wconfig(SimpleGladeApp):
             i = self.treeModel2.get_iter_first()
             while i != None:
                 j = self.treeModel2.iter_next(i)
-                self.treeModel2[i]
                 if self.treeModel2[i][0] == self.treeModel2[i][1] == "":
                     self.treeModel2.remove(i)
                 i = j
@@ -208,15 +202,9 @@ class Wconfig(SimpleGladeApp):
         self.capture_keys = True
         entry.connect('key-press-event', self.on_treeCommands_key_press_event, model, rownum, colnum)
 
-    # -- Wconfig custom methods }
-
-    # -- Wconfig.on_cancelbutton1_clicked {
     def on_cancelbutton1_clicked(self, widget, *args):
         self.get_widget("wConfig").destroy()
 
-    # -- Wconfig.on_cancelbutton1_clicked }
-
-    # -- Wconfig.on_okbutton1_clicked {
     def on_okbutton1_clicked(self, widget, *args):
         for obj in self.tblGeneral:
             if hasattr(obj, "field"):
@@ -256,47 +244,28 @@ class Wconfig(SimpleGladeApp):
         # Recrear menu de comandos personalizados
         self.get_widget("wConfig").destroy()
 
-    # -- Wconfig.on_okbutton1_clicked }
-
-    # -- Wconfig.on_btnBColor_clicked {
     def on_btnBColor_clicked(self, widget, *args):
         widget.selected_color = widget.get_color().to_string()
 
-    # -- Wconfig.on_btnBColor_clicked }
-
-    # -- Wconfig.on_btnFColor_clicked {
     def on_btnFColor_clicked(self, widget, *args):
         widget.selected_color = widget.get_color().to_string()
 
-    # -- Wconfig.on_btnFColor_clicked }
-
-    # -- Wconfig.on_chkDefaultColors_toggled {
     def on_chkDefaultColors_toggled(self, widget, *args):
         self.btnFColor.set_sensitive(not widget.get_active())
         self.btnBColor.set_sensitive(not widget.get_active())
 
-    # -- Wconfig.on_chkDefaultColors_toggled }
-
-    # -- Wconfig.on_chkDefaultFont_toggled {
     def on_chkDefaultFont_toggled(self, widget, *args):
         self.btnFont.set_sensitive(not widget.get_active())
         self.lblFont.set_sensitive(not widget.get_active())
 
-    # -- Wconfig.on_chkDefaultFont_toggled }
-
-    # -- Wconfig.on_btnFont_clicked {
     def on_btnFont_clicked(self, widget, *args):
         show_font_dialog(self, _("Seleccione la fuente"), self.btnFont)
 
-    # -- Wconfig.on_btnFont_clicked }
-
-    # -- Wconfig.on_treeCommands_key_press_event {
     def on_treeCommands_key_press_event(self, widget, event, *args):
         if self.capture_keys and len(args) == 3 and (event.keyval != gtk.keysyms.Return or
                                                              event.state != 0):
             model, rownum, colnum = args
             widget.set_text(get_key_name(event))
-            # -- Wconfig.on_treeCommands_key_press_event }
 
 
 class MultilineCellRenderer(gtk.CellRendererText):
