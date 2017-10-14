@@ -220,8 +220,7 @@ class Config(object):
 
     def writeConfig(self, **kwargs):
         cp = ConfigParser.RawConfigParser()
-        conf = Config()
-        cp.read(conf.config_file + ".tmp")
+        cp.read(self.config_file + ".tmp")
 
         cp.add_section("options")
         cp.set("options", "word-separators", self.WORD_SEPARATORS)
@@ -266,10 +265,10 @@ class Config(object):
                 cp.set("shortcuts", "command%d" % (i), self.shortcuts[s].replace('\n', '\\n'))
                 i = i + 1
 
-        f = open(conf.config_file + ".tmp", "w")
+        f = open(self.config_file + ".tmp", "w")
         cp.write(f)
         f.close()
-        os.rename(conf.config_file + ".tmp", conf.config_file)
+        os.rename(self.config_file + ".tmp", self.config_file)
 
     def loadConfig(self):
 

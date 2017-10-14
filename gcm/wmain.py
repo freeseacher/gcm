@@ -96,6 +96,7 @@ class Wmain(SimpleGladeApp):
                             break
 
         self.get_widget('txtSearch').modify_text(gtk.STATE_NORMAL, gtk.gdk.Color('darkgray'))
+        self.get_widget('filtertree').modify_text(gtk.STATE_NORMAL, gtk.gdk.Color('darkgray'))
 
         if self.config.STARTUP_LOCAL:
             self.addTab(self.nbConsole, 'local')
@@ -270,7 +271,10 @@ class Wmain(SimpleGladeApp):
                     self.treeServers.get_selection().get_selected()[1]):
                 host = self.treeModel.get_value(self.treeServers.get_selection().get_selected()[1], 1)
                 cb = gtk.Clipboard()
-                scpstr = "scp " + host.user + "@" + host.host + ":"
+                scpstr = "scp"
+                if host.port != "22":
+                    scpstr += " -P " + host.port
+                scpstr += host.user + "@" + host.host + ":"
                 cb.set_text(scpstr)
                 cb.store()
             return True
@@ -280,6 +284,8 @@ class Wmain(SimpleGladeApp):
                 host = self.treeModel.get_value(self.treeServers.get_selection().get_selected()[1], 1)
                 cb = gtk.Clipboard()
                 scpstr = "scp ./ " + host.user + "@" + host.host + ":"
+                if host.port != "22":
+                    scpstr += " -P " + host.port
                 cb.set_text(scpstr)
                 cb.store()
             return True
@@ -569,7 +575,7 @@ class Wmain(SimpleGladeApp):
 
                 menuItem = self.createMenuItem(x, self.config.shortcuts[x][0:30])
                 self.menuCustomCommands.append(menuItem)
-                menuItem.connect("activate", self.on_menuCustomCommands_activate, shortcuts[x])
+                menuItem.connect("activate", self.on_menuCustomCommands_activate, self.config.shortcuts[x])
 
     def on_menuCustomCommands_activate(self, widget, command):
         terminal = self.find_active_terminal(self.hpMain)
@@ -882,12 +888,17 @@ class Wmain(SimpleGladeApp):
                 if node != '':
                     self.treeServers.collapse_row(node)
 
+    def on_refresh_clicked(self, widget, *args):
+        self.updateTree()
+        #self.config.loadConfig()
+
     def updateTree(self):
+        # clean empty groups
         for grupo in dict(self.config.groups):
             if len(self.config.groups[grupo]) == 0:
                 del self.config.groups[grupo]
 
-        if self.config.COLLAPSED_FOLDERS == None:
+        if not self.config.COLLAPSED_FOLDERS:
             self.config.COLLAPSED_FOLDERS = ','.join(self.get_collapsed_nodes())
 
         self.menuServers.foreach(self.menuServers.remove)
@@ -907,13 +918,13 @@ class Wmain(SimpleGladeApp):
             for folder in grupo.split("/"):
                 path = path + '/' + folder
                 row = self.get_folder(self.treeModel, '', path)
-                if row == None:
+                if not row:
                     group = self.treeModel.prepend(group, [folder, None, iconDir])
                 else:
                     group = row.iter
 
                 menu = self.get_folder_menu(self.menuServers, '', path)
-                if menu == None:
+                if not menu:
                     menu = gtk.ImageMenuItem(folder)
                     # menu.set_image(gtk.image_new_from_stock(gtk.STOCK_DIRECTORY, gtk.ICON_SIZE_MENU))
                     menuNode.prepend(menu)
@@ -1253,7 +1264,6 @@ class Wmain(SimpleGladeApp):
                     group = parent_group + '/' + group
         wHost = Whost()
         wHost.init(group)
-        self.updateTree()
 
     def get_group(self, i):
         if self.treeModel.iter_parent(i):
@@ -1324,6 +1334,16 @@ class Wmain(SimpleGladeApp):
         if widget.get_text() == _('buscar...'):
             widget.modify_text(gtk.STATE_NORMAL, gtk.gdk.Color('black'))
             widget.set_text('')
+
+    def on_filtertree_focus_in_event(self, widget, *args):
+        if widget.get_text() == _('filter...'):
+            widget.modify_text(gtk.STATE_NORMAL, gtk.gdk.Color('black'))
+            widget.set_text('')
+
+    def on_filtertree_focus_out_event(self, widget, *args):
+        if widget.get_text() == '':
+            widget.modify_text(gtk.STATE_NORMAL, gtk.gdk.Color('darkgray'))
+            widget.set_text(_('filter...'))
 
     def on_txtSearch_focus_out_event(self, widget, *args):
         if widget.get_text() == '':
