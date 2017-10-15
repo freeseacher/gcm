@@ -100,7 +100,7 @@ if not, write to the Free Software Foundation, Inc.,
                 <property name="can_focus">False</property>
                 <property name="xalign">0.019999999552965164</property>
                 <property name="ypad">2</property>
-                <property name="label" translatable="yes">Seleccione las consolas a utilizar:</property>
+                <property name="label" translatable="yes">Select consoles to use:</property>
               </widget>
               <packing>
                 <property name="expand">False</property>
@@ -168,7 +168,7 @@ if not, write to the Free Software Foundation, Inc.,
                                   <widget class="GtkLabel" id="label47">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="label" translatable="yes">Seleccionar todo</property>
+                                    <property name="label" translatable="yes">Select all</property>
                                     <property name="use_underline">True</property>
                                   </widget>
                                   <packing>
@@ -221,7 +221,7 @@ if not, write to the Free Software Foundation, Inc.,
                                   <widget class="GtkLabel" id="label48">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="label" translatable="yes">Limpiar selección</property>
+                                    <property name="label" translatable="yes">Clear selection</property>
                                     <property name="use_underline">True</property>
                                   </widget>
                                   <packing>
@@ -274,7 +274,7 @@ if not, write to the Free Software Foundation, Inc.,
                                   <widget class="GtkLabel" id="label49">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="label" translatable="yes">Invertir selección</property>
+                                    <property name="label" translatable="yes">Invert selection</property>
                                     <property name="use_underline">True</property>
                                   </widget>
                                   <packing>
@@ -325,7 +325,7 @@ if not, write to the Free Software Foundation, Inc.,
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="xalign">0.019999999552965164</property>
-                <property name="label" translatable="yes">Ingrese el texto a enviar a las consolas: </property>
+                <property name="label" translatable="yes">Enter text to send to hosts: </property>
               </widget>
               <packing>
                 <property name="expand">False</property>
@@ -380,7 +380,7 @@ if not, write to the Free Software Foundation, Inc.,
   <widget class="GtkDialog" id="wConfig">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes">Configuración</property>
+    <property name="title" translatable="yes">Settings</property>
     <property name="modal">True</property>
     <property name="icon">icon.png</property>
     <property name="type_hint">dialog</property>
@@ -497,7 +497,7 @@ if not, write to the Free Software Foundation, Inc.,
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Color del fondo:</property>
+                    <property name="label" translatable="yes">Background color:</property>
                   </widget>
                   <packing>
                     <property name="top_attach">2</property>
@@ -511,7 +511,7 @@ if not, write to the Free Software Foundation, Inc.,
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Color del texto:</property>
+                    <property name="label" translatable="yes">Foreground color:</property>
                   </widget>
                   <packing>
                     <property name="top_attach">1</property>
@@ -525,7 +525,7 @@ if not, write to the Free Software Foundation, Inc.,
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
-                    <property name="title" translatable="yes">Seleccione el color de fondo</property>
+                    <property name="title" translatable="yes">Select background color</property>
                     <signal name="color_set" handler="on_btnBColor_clicked"/>
                   </widget>
                   <packing>
@@ -542,7 +542,7 @@ if not, write to the Free Software Foundation, Inc.,
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
-                    <property name="title" translatable="yes">Seleccione el color del texto</property>
+                    <property name="title" translatable="yes">Select foreground color</property>
                     <signal name="color_set" handler="on_btnFColor_clicked"/>
                   </widget>
                   <packing>
@@ -556,7 +556,7 @@ if not, write to the Free Software Foundation, Inc.,
                 </child>
                 <child>
                   <widget class="GtkCheckButton" id="chkDefaultColors">
-                    <property name="label" translatable="yes">Usar colores por defecto</property>
+                    <property name="label" translatable="yes">Default colors</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
@@ -573,7 +573,7 @@ if not, write to the Free Software Foundation, Inc.,
                 </child>
                 <child>
                   <widget class="GtkCheckButton" id="chkDefaultFont">
-                    <property name="label" translatable="yes">Usar fuente de ancho fijo por defecto</property>
+                    <property name="label" translatable="yes">Use default fixed width font</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
@@ -596,7 +596,7 @@ if not, write to the Free Software Foundation, Inc.,
                     <property name="sensitive">False</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Fuente:</property>
+                    <property name="label" translatable="yes">Font:</property>
                   </widget>
                   <packing>
                     <property name="top_attach">5</property>
@@ -646,7 +646,7 @@ if not, write to the Free Software Foundation, Inc.,
               <widget class="GtkLabel" id="label31">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Colores</property>
+                <property name="label" translatable="yes">Colors</property>
               </widget>
               <packing>
                 <property name="position">1</property>
@@ -671,7 +671,7 @@ if not, write to the Free Software Foundation, Inc.,
                           <widget class="GtkLabel" id="label38">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Comandos Predefinidos</property>
+                            <property name="label" translatable="yes">Standard Commands</property>
                           </widget>
                           <packing>
                             <property name="expand">False</property>
@@ -711,7 +711,7 @@ if not, write to the Free Software Foundation, Inc.,
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="ypad">1</property>
-                            <property name="label" translatable="yes">Comandos Personalizados</property>
+                            <property name="label" translatable="yes">Custom Commands</property>
                           </widget>
                           <packing>
                             <property name="expand">False</property>
@@ -746,7 +746,7 @@ if not, write to the Free Software Foundation, Inc.,
               <widget class="GtkLabel" id="label37">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Atajos</property>
+                <property name="label" translatable="yes">Shortcuts</property>
               </widget>
               <packing>
                 <property name="position">2</property>
@@ -767,7 +767,7 @@ if not, write to the Free Software Foundation, Inc.,
   <widget class="GtkDialog" id="wHost">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes">Editar Host</property>
+    <property name="title" translatable="yes">Edit Host</property>
     <property name="modal">True</property>
     <property name="icon">icon.png</property>
     <property name="type_hint">dialog</property>
@@ -840,7 +840,7 @@ if not, write to the Free Software Foundation, Inc.,
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Grupo</property>
+                    <property name="label" translatable="yes">Group</property>
                   </widget>
                   <packing>
                     <property name="x_options">GTK_FILL</property>
@@ -851,7 +851,7 @@ if not, write to the Free Software Foundation, Inc.,
                   <widget class="GtkComboBoxEntry" id="cmbGroup">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="tooltip" translatable="yes">Usar formato grupo1/grupo2/grupo3 para crear subgrupos</property>
+                    <property name="tooltip" translatable="yes">To create subgroups use format group1/group2/group3</property>
                     <property name="items">dummy</property>
                     <child internal-child="entry">
                       <widget class="GtkEntry" id="comboboxentry-entry2">
@@ -874,7 +874,7 @@ if not, write to the Free Software Foundation, Inc.,
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Nombre</property>
+                    <property name="label" translatable="yes">Name</property>
                   </widget>
                   <packing>
                     <property name="top_attach">1</property>
@@ -906,7 +906,7 @@ if not, write to the Free Software Foundation, Inc.,
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Descripción</property>
+                    <property name="label" translatable="yes">Description</property>
                   </widget>
                   <packing>
                     <property name="top_attach">2</property>
@@ -983,7 +983,7 @@ if not, write to the Free Software Foundation, Inc.,
                   <widget class="GtkEntry" id="txtPassword">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="tooltip" translatable="yes">Dejar en blanco para autenticación sin password/public key</property>
+                    <property name="tooltip" translatable="yes">Leave blank for passwordless/public key authentication</property>
                     <property name="visibility">False</property>
                     <property name="invisible_char">●</property>
                     <property name="primary_icon_activatable">False</property>
@@ -1004,7 +1004,7 @@ if not, write to the Free Software Foundation, Inc.,
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Clave Privada</property>
+                    <property name="label" translatable="yes">Private key</property>
                   </widget>
                   <packing>
                     <property name="top_attach">8</property>
@@ -1105,7 +1105,7 @@ if not, write to the Free Software Foundation, Inc.,
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Usuario</property>
+                    <property name="label" translatable="yes">User</property>
                   </widget>
                   <packing>
                     <property name="top_attach">6</property>
@@ -1119,7 +1119,7 @@ if not, write to the Free Software Foundation, Inc.,
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Puerto</property>
+                    <property name="label" translatable="yes">Port</property>
                   </widget>
                   <packing>
                     <property name="top_attach">5</property>
@@ -1133,7 +1133,7 @@ if not, write to the Free Software Foundation, Inc.,
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Tipo</property>
+                    <property name="label" translatable="yes">Type</property>
                   </widget>
                   <packing>
                     <property name="top_attach">4</property>
@@ -1182,7 +1182,7 @@ local</property>
                     <property name="visible">True</property>
                     <property name="sensitive">False</property>
                     <property name="can_focus">True</property>
-                    <property name="tooltip" translatable="yes">Intervalo en segundos para enviar paquetes keep-alive</property>
+                    <property name="tooltip" translatable="yes">Seconds between keep-alive packets</property>
                     <property name="primary_icon_activatable">False</property>
                     <property name="secondary_icon_activatable">False</property>
                     <property name="primary_icon_sensitive">True</property>
@@ -1204,7 +1204,7 @@ local</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Redirigir X11</property>
+                    <property name="label" translatable="yes">X11 Forwarding</property>
                   </widget>
                   <packing>
                     <property name="top_attach">10</property>
@@ -1235,7 +1235,7 @@ local</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Redirigir Agente</property>
+                    <property name="label" translatable="yes">Agent Forwarding</property>
                   </widget>
                   <packing>
                     <property name="top_attach">11</property>
@@ -1263,7 +1263,7 @@ local</property>
                 </child>
                 <child>
                   <widget class="GtkCheckButton" id="chkCompression">
-                    <property name="label" translatable="yes">Compresión</property>
+                    <property name="label" translatable="yes">Compression</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
@@ -1308,7 +1308,7 @@ blanco: por defecto
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Opciones extra</property>
+                    <property name="label" translatable="yes">Extra arguments</property>
                   </widget>
                   <packing>
                     <property name="top_attach">13</property>
@@ -1321,7 +1321,7 @@ blanco: por defecto
                   <widget class="GtkEntry" id="txtExtraParams">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="tooltip" translatable="yes">Parámetros extra a pasar a la línea de comandos</property>
+                    <property name="tooltip" translatable="yes">Extra arguments to pass to command line</property>
                     <property name="invisible_char">●</property>
                     <property name="primary_icon_activatable">False</property>
                     <property name="secondary_icon_activatable">False</property>
@@ -1374,7 +1374,7 @@ blanco: por defecto
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Habilitar Log</property>
+                    <property name="label" translatable="yes">Enable Logging</property>
                   </widget>
                   <packing>
                     <property name="top_attach">15</property>
@@ -1406,7 +1406,7 @@ blanco: por defecto
               <widget class="GtkLabel" id="label1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Propiedades</property>
+                <property name="label" translatable="yes">Properties</property>
               </widget>
               <packing>
                 <property name="tab_fill">False</property>
@@ -1464,11 +1464,11 @@ blanco: por defecto
                         <property name="column_spacing">5</property>
                         <child>
                           <widget class="GtkCheckButton" id="chkDynamic">
-                            <property name="label" translatable="yes">Dinámico</property>
+                            <property name="label" translatable="yes">Dynamic</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip" translatable="yes">Crear redirección dinámica de puertos</property>
+                            <property name="tooltip" translatable="yes">Create dynamic port forwarding</property>
                             <property name="use_underline">True</property>
                             <property name="draw_indicator">True</property>
                             <signal name="toggled" handler="on_chkDynamic_toggled"/>
@@ -1484,7 +1484,7 @@ blanco: por defecto
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="xalign">0</property>
-                            <property name="label" translatable="yes">Puerto Local</property>
+                            <property name="label" translatable="yes">Local Port</property>
                           </widget>
                           <packing>
                             <property name="top_attach">1</property>
@@ -1498,7 +1498,7 @@ blanco: por defecto
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="xalign">0</property>
-                            <property name="label" translatable="yes">Host Remoto</property>
+                            <property name="label" translatable="yes">Remote Host</property>
                           </widget>
                           <packing>
                             <property name="top_attach">2</property>
@@ -1512,7 +1512,7 @@ blanco: por defecto
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="xalign">0</property>
-                            <property name="label" translatable="yes">Puerto Remoto</property>
+                            <property name="label" translatable="yes">Remote Port</property>
                           </widget>
                           <packing>
                             <property name="top_attach">3</property>
@@ -1622,7 +1622,7 @@ blanco: por defecto
                                       <widget class="GtkLabel" id="label17">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="label" translatable="yes">Agregar</property>
+                                        <property name="label" translatable="yes">Add</property>
                                         <property name="use_underline">True</property>
                                       </widget>
                                       <packing>
@@ -1675,7 +1675,7 @@ blanco: por defecto
                                       <widget class="GtkLabel" id="label18">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="label" translatable="yes">Eliminar</property>
+                                        <property name="label" translatable="yes">Remove</property>
                                         <property name="use_underline">True</property>
                                       </widget>
                                       <packing>
@@ -1713,7 +1713,7 @@ blanco: por defecto
               <widget class="GtkLabel" id="label12">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Túnel</property>
+                <property name="label" translatable="yes">Tunnel</property>
               </widget>
               <packing>
                 <property name="position">1</property>
@@ -1727,7 +1727,7 @@ blanco: por defecto
                 <property name="can_focus">False</property>
                 <child>
                   <widget class="GtkCheckButton" id="chkCommands">
-                    <property name="label" translatable="yes">Enviar comandos al iniciar sesión</property>
+                    <property name="label" translatable="yes">Send commands after login</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
@@ -1784,7 +1784,7 @@ Ej: ##D=1000&lt;/span&gt;</property>
               <widget class="GtkLabel" id="label36">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Comandos</property>
+                <property name="label" translatable="yes">Commands</property>
               </widget>
               <packing>
                 <property name="position">2</property>
@@ -1803,7 +1803,7 @@ Ej: ##D=1000&lt;/span&gt;</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Color del fondo:</property>
+                    <property name="label" translatable="yes">Background color:</property>
                   </widget>
                   <packing>
                     <property name="top_attach">2</property>
@@ -1817,7 +1817,7 @@ Ej: ##D=1000&lt;/span&gt;</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Color del texto:</property>
+                    <property name="label" translatable="yes">Foreground color:</property>
                   </widget>
                   <packing>
                     <property name="top_attach">1</property>
@@ -1840,7 +1840,7 @@ Ej: ##D=1000&lt;/span&gt;</property>
                         <property name="sensitive">False</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
-                        <property name="title" translatable="yes">Seleccione el color de fondo</property>
+                        <property name="title" translatable="yes">Select background color</property>
                         <signal name="color_set" handler="on_btnBColor_clicked"/>
                       </widget>
                     </child>
@@ -1856,7 +1856,7 @@ Ej: ##D=1000&lt;/span&gt;</property>
                 </child>
                 <child>
                   <widget class="GtkCheckButton" id="chkDefaultColors">
-                    <property name="label" translatable="yes">Usar colores por defecto</property>
+                    <property name="label" translatable="yes">Default colors</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
@@ -1885,7 +1885,7 @@ Ej: ##D=1000&lt;/span&gt;</property>
                         <property name="sensitive">False</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
-                        <property name="title" translatable="yes">Seleccione el color del texto</property>
+                        <property name="title" translatable="yes">Select foreground color</property>
                         <signal name="color_set" handler="on_btnFColor_clicked"/>
                       </widget>
                     </child>
@@ -1918,7 +1918,7 @@ Ej: ##D=1000&lt;/span&gt;</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Sequencias de Teclas:</property>
+                    <property name="label" translatable="yes">Key sequences:</property>
                   </widget>
                   <packing>
                     <property name="right_attach">2</property>
@@ -2004,7 +2004,7 @@ TTY Erase</property>
               <widget class="GtkLabel" id="label40">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Colores y Teclas</property>
+                <property name="label" translatable="yes">Colors and Keys</property>
               </widget>
               <packing>
                 <property name="position">3</property>
@@ -2043,17 +2043,17 @@ TTY Erase</property>
               <widget class="GtkMenuItem" id="menuitem1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">_Archivo</property>
+                <property name="label" translatable="yes">_File</property>
                 <property name="use_underline">True</property>
                 <child>
                   <widget class="GtkMenu" id="menuitem1_menu">
                     <property name="can_focus">False</property>
                     <child>
                       <widget class="GtkImageMenuItem" id="guardar_como1">
-                        <property name="label" translatable="yes">Guardar buffer _como</property>
+                        <property name="label" translatable="yes">Save buffer as</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="tooltip" translatable="yes">Guardar buffer de la consola activa en un archivo</property>
+                        <property name="tooltip" translatable="yes">Save active console buffer to file</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">False</property>
                         <signal name="activate" handler="on_guardar_como1_activate"/>
@@ -2069,10 +2069,10 @@ TTY Erase</property>
                     </child>
                     <child>
                       <widget class="GtkImageMenuItem" id="importar_servidores1">
-                        <property name="label" translatable="yes">_Importar servidores</property>
+                        <property name="label" translatable="yes">_Import servers</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="tooltip" translatable="yes">Importar lista de servidores desde un archivo</property>
+                        <property name="tooltip" translatable="yes">Import server list from file</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">False</property>
                         <signal name="activate" handler="on_importar_servidores1_activate"/>
@@ -2088,10 +2088,10 @@ TTY Erase</property>
                     </child>
                     <child>
                       <widget class="GtkImageMenuItem" id="exportar_servidores1">
-                        <property name="label" translatable="yes">_Exportar servidores</property>
+                        <property name="label" translatable="yes">_Export servers</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="tooltip" translatable="yes">Exportar lista de servidores a un archivo</property>
+                        <property name="tooltip" translatable="yes">Export server list to file</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">False</property>
                         <signal name="activate" handler="on_exportar_servidores1_activate"/>
@@ -2113,7 +2113,7 @@ TTY Erase</property>
                     </child>
                     <child>
                       <widget class="GtkImageMenuItem" id="salir1">
-                        <property name="label" translatable="yes">_Salir</property>
+                        <property name="label" translatable="yes">_Quit</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
@@ -2137,14 +2137,14 @@ TTY Erase</property>
               <widget class="GtkMenuItem" id="menuitem7">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">_Editar</property>
+                <property name="label" translatable="yes">_Edit</property>
                 <property name="use_underline">True</property>
                 <child>
                   <widget class="GtkMenu" id="menuitem5_menu">
                     <property name="can_focus">False</property>
                     <child>
                       <widget class="GtkImageMenuItem" id="menuCopy">
-                        <property name="label" translatable="yes">Copiar</property>
+                        <property name="label" translatable="yes">Copy</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_stock">False</property>
@@ -2161,7 +2161,7 @@ TTY Erase</property>
                     </child>
                     <child>
                       <widget class="GtkImageMenuItem" id="menuPaste">
-                        <property name="label" translatable="yes">Pegar</property>
+                        <property name="label" translatable="yes">Paste</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_stock">False</property>
@@ -2178,7 +2178,7 @@ TTY Erase</property>
                     </child>
                     <child>
                       <widget class="GtkImageMenuItem" id="menuCopyPaste">
-                        <property name="label" translatable="yes">Copiar y Pegar</property>
+                        <property name="label" translatable="yes">Copy and Paste</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_stock">False</property>
@@ -2195,7 +2195,7 @@ TTY Erase</property>
                     </child>
                     <child>
                       <widget class="GtkImageMenuItem" id="menuSelectAll">
-                        <property name="label" translatable="yes">Seleccionar todo</property>
+                        <property name="label" translatable="yes">Select all</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_stock">False</property>
@@ -2212,7 +2212,7 @@ TTY Erase</property>
                     </child>
                     <child>
                       <widget class="GtkImageMenuItem" id="menuCopyAll">
-                        <property name="label" translatable="yes">Copiar todo</property>
+                        <property name="label" translatable="yes">Copy all</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_stock">False</property>
@@ -2237,7 +2237,7 @@ TTY Erase</property>
                       <widget class="GtkMenuItem" id="menuitem9">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Comandos personalizados</property>
+                        <property name="label" translatable="yes">Custom commands</property>
                         <child>
                           <widget class="GtkMenu" id="menuCustomCommands">
                             <property name="can_focus">False</property>
@@ -2253,7 +2253,7 @@ TTY Erase</property>
               <widget class="GtkMenuItem" id="menuitem5">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">_Ver</property>
+                <property name="label" translatable="yes">_View</property>
                 <property name="use_underline">True</property>
                 <child>
                   <widget class="GtkMenu" id="menuitem5_menu1">
@@ -2262,7 +2262,7 @@ TTY Erase</property>
                       <widget class="GtkCheckMenuItem" id="show_toolbar">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Mostrar Toolbar</property>
+                        <property name="label" translatable="yes">Show Toolbar</property>
                         <property name="use_underline">True</property>
                         <property name="active">True</property>
                         <signal name="toggled" handler="on_show_toolbar_toggled"/>
@@ -2272,7 +2272,7 @@ TTY Erase</property>
                       <widget class="GtkCheckMenuItem" id="show_panel">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Mostrar Panel</property>
+                        <property name="label" translatable="yes">Show Panel</property>
                         <property name="use_underline">True</property>
                         <signal name="toggled" handler="on_show_panel_toggled"/>
                       </widget>
@@ -2285,7 +2285,7 @@ TTY Erase</property>
               <widget class="GtkMenuItem" id="menuitem6">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">_Servidores</property>
+                <property name="label" translatable="yes">_Servers</property>
                 <property name="use_underline">True</property>
                 <child>
                   <widget class="GtkMenu" id="menuServers">
@@ -2298,7 +2298,7 @@ TTY Erase</property>
               <widget class="GtkMenuItem" id="menuitem4">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Ay_uda</property>
+                <property name="label" translatable="yes">_Help</property>
                 <property name="use_underline">True</property>
                 <child>
                   <widget class="GtkMenu" id="menuitem4_menu">
@@ -2307,7 +2307,7 @@ TTY Erase</property>
                       <widget class="GtkMenuItem" id="acerca_de1">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">A_cerca de</property>
+                        <property name="label" translatable="yes">_About</property>
                         <property name="use_underline">True</property>
                         <signal name="activate" handler="on_acerca_de1_activate"/>
                       </widget>
@@ -2338,7 +2338,7 @@ TTY Erase</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
-                    <property name="tooltip" translatable="yes">Abrir consola local</property>
+                    <property name="tooltip" translatable="yes">Open local console</property>
                     <signal name="clicked" handler="on_btnLocal_clicked"/>
                     <child>
                       <widget class="GtkAlignment" id="alignment8">
@@ -2396,7 +2396,7 @@ TTY Erase</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
-                    <property name="tooltip" translatable="yes">Conectar a host seleccionado o a todos los host del grupo</property>
+                    <property name="tooltip" translatable="yes">Connect to selected host or all hosts in selected group</property>
                     <signal name="clicked" handler="on_btnConnect_clicked"/>
                     <accelerator key="C" signal="clicked" modifiers="GDK_MOD1_MASK"/>
                     <child>
@@ -2426,7 +2426,7 @@ TTY Erase</property>
                               <widget class="GtkLabel" id="label10">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="label" translatable="yes">Conectar</property>
+                                <property name="label" translatable="yes">Connect</property>
                                 <property name="use_underline">True</property>
                               </widget>
                               <packing>
@@ -2455,7 +2455,7 @@ TTY Erase</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
-                    <property name="tooltip" translatable="yes">Agregar nuevo host</property>
+                    <property name="tooltip" translatable="yes">Add new host</property>
                     <signal name="clicked" handler="on_btnAdd_clicked"/>
                     <accelerator key="a" signal="clicked" modifiers="GDK_MOD1_MASK"/>
                     <child>
@@ -2485,7 +2485,7 @@ TTY Erase</property>
                               <widget class="GtkLabel" id="label8">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="label" translatable="yes">Agregar</property>
+                                <property name="label" translatable="yes">Add</property>
                                 <property name="use_underline">True</property>
                               </widget>
                               <packing>
@@ -2514,7 +2514,7 @@ TTY Erase</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
-                    <property name="tooltip" translatable="yes">Editar propiedades de host seleccionado</property>
+                    <property name="tooltip" translatable="yes">Edit hosts properties</property>
                     <signal name="clicked" handler="on_bntEdit_clicked"/>
                     <accelerator key="e" signal="clicked" modifiers="GDK_MOD1_MASK"/>
                     <child>
@@ -2544,7 +2544,7 @@ TTY Erase</property>
                               <widget class="GtkLabel" id="label9">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="label" translatable="yes">Editar</property>
+                                <property name="label" translatable="yes">Edit</property>
                                 <property name="use_underline">True</property>
                               </widget>
                               <packing>
@@ -2573,7 +2573,7 @@ TTY Erase</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
-                    <property name="tooltip" translatable="yes">Eliminar host seleccionado</property>
+                    <property name="tooltip" translatable="yes">Remove selected host</property>
                     <signal name="clicked" handler="on_btnDel_clicked"/>
                     <accelerator key="e" signal="clicked" modifiers="GDK_MOD1_MASK"/>
                     <child>
@@ -2603,7 +2603,7 @@ TTY Erase</property>
                               <widget class="GtkLabel" id="label7">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="label" translatable="yes">Eliminar</property>
+                                <property name="label" translatable="yes">Remove</property>
                                 <property name="use_underline">True</property>
                               </widget>
                               <packing>
@@ -2642,7 +2642,7 @@ TTY Erase</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
-                    <property name="tooltip" translatable="yes">Separar consola horizontalmente</property>
+                    <property name="tooltip" translatable="yes">Split console horizontally</property>
                     <signal name="clicked" handler="on_btnHSplit_clicked"/>
                     <child>
                       <widget class="GtkImage" id="image10">
@@ -2667,7 +2667,7 @@ TTY Erase</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
-                    <property name="tooltip" translatable="yes">Separar consola verticalmente</property>
+                    <property name="tooltip" translatable="yes">Split console vertically</property>
                     <signal name="clicked" handler="on_btnVSplit_clicked"/>
                     <child>
                       <widget class="GtkImage" id="image11">
@@ -2692,7 +2692,7 @@ TTY Erase</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
-                    <property name="tooltip" translatable="yes">Unir todas las consolas</property>
+                    <property name="tooltip" translatable="yes">Unsplit all consoles</property>
                     <signal name="clicked" handler="on_btnUnsplit_clicked"/>
                     <child>
                       <widget class="GtkImage" id="image12">
@@ -2727,7 +2727,7 @@ TTY Erase</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
-                    <property name="tooltip" translatable="yes">Configuración</property>
+                    <property name="tooltip" translatable="yes">Settings</property>
                     <signal name="clicked" handler="on_btnConfig_clicked"/>
                     <child>
                       <widget class="GtkImage" id="image13">
@@ -2762,7 +2762,7 @@ TTY Erase</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="invisible_char">●</property>
-                    <property name="text" translatable="yes">buscar...</property>
+                    <property name="text" translatable="yes">search...</property>
                     <property name="primary_icon_activatable">False</property>
                     <property name="secondary_icon_activatable">False</property>
                     <property name="primary_icon_sensitive">True</property>
@@ -2845,7 +2845,7 @@ TTY Erase</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
-                    <property name="tooltip" translatable="yes">Enviar comandos a varios hosts al mismo tiempo</property>
+                    <property name="tooltip" translatable="yes">Send commands to several hosts at the same time</property>
                     <signal name="clicked" handler="on_btnCluster_clicked"/>
                     <child>
                       <widget class="GtkAlignment" id="alignment9">

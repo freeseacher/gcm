@@ -1,0 +1,488 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-07-05 14:38+0100\n"
+"PO-Revision-Date: 2017-10-15 04:50+0300\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+msgid "Copy"
+msgstr "Copiar"
+
+msgid "Paste"
+msgstr "Pegar"
+
+msgid "Select all"
+msgstr "Seleccionar todo"
+
+msgid "Save buffer to file"
+msgstr "Guardar buffer en archivo"
+
+msgid "Close console"
+msgstr "Cerrar consola"
+
+msgid "Connect"
+msgstr "Conectar"
+
+msgid "Add Host"
+msgstr "Agregar Host"
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Remove"
+msgstr "Eliminar"
+
+msgid "Expand all"
+msgstr "Expandir todo"
+
+msgid "Collapse all"
+msgstr "Contraer todo"
+
+msgid "Error connecting to server"
+msgstr "Error al conectar con servidor"
+
+msgid "Servers"
+msgstr "Servidores"
+
+msgid "Invalid entry in configuration file"
+msgstr "Entrada invalida en archivo de configuracion"
+
+msgid "Save as"
+msgstr "Guardar como"
+
+msgid "Can't open file for writting"
+msgstr "No se puede abrir archivo para escritura"
+
+msgid "Open"
+msgstr "Abrir"
+
+msgid "There are"
+msgstr "Hay"
+
+msgid "open consoles, exit anyway?"
+msgstr "consolas abiertas, confirma que desea salir?"
+
+msgid "Import Servers"
+msgstr "Importar Servidores"
+
+msgid "Enter password"
+msgstr "Ingrese clave: "
+
+msgid "Invalid password"
+msgstr "Clave invalida"
+
+msgid "Server list will be overwritten, continue?"
+msgstr "Se sobreescribirá la lista de servidores, continuar?"
+
+msgid "Invalid file"
+msgstr "Archivo invalido"
+
+msgid "Export Servers"
+msgstr "Exportar Servidores"
+
+msgid "Do you really want to remove host"
+msgstr "Confirma que desea eliminar el host"
+
+msgid "Do you really want to remove all hosts in group"
+msgstr "Confirma que desea eliminar todos los hosts del grupo"
+
+msgid "search..."
+msgstr "buscar..."
+
+msgid "Local"
+msgstr "Local"
+
+msgid "Host"
+msgstr "Host"
+
+msgid "Remote"
+msgstr "Remoto"
+
+msgid "Import server list from file"
+msgstr "Importar lista de servidores desde un archivo"
+
+msgid "Fields group, name and host are required"
+msgstr "Los campos grupo, nombre y host son obligatorios"
+
+msgid "Invalid port"
+msgstr "Puerto invalido"
+
+msgid "Host name"
+msgstr "El nombre"
+
+msgid "already exists for group"
+msgstr "ya existe para el grupo"
+
+msgid "Error saving host. Description"
+msgstr "Error al guardar el host. Descripcion"
+
+msgid "Enter remote host"
+msgstr "Debe ingresar host remoto"
+
+msgid "Local port already assigned"
+msgstr "Puerto local ya fue asignado"
+
+msgid "Word separator"
+msgstr "Separador de Palabras"
+
+msgid "Buffer size"
+msgstr "Tamaño del buffer"
+
+msgid "Transparency"
+msgstr "Transparencia"
+
+msgid "Paste on right click"
+msgstr "Pegar con botón derecho"
+
+msgid "Confirm on close console"
+msgstr "Confirmar al cerrar una consola"
+
+msgid "Confirm on exit"
+msgstr "Confirmar al salir"
+
+msgid "Action"
+msgstr "Acción"
+
+msgid "Shortcut"
+msgstr "Atajo"
+
+msgid "Command"
+msgstr "Comando"
+
+msgid "Select background color"
+msgstr "Seleccione el color de fondo"
+
+msgid "Select foreground color"
+msgstr "Seleccione el color del texto"
+
+#. -- main }
+msgid "_About"
+msgstr "A_cerca de"
+
+msgid "Open local console"
+msgstr "Abrir consola local"
+
+msgid "Add"
+msgstr "Agregar"
+
+msgid "Add new host"
+msgstr "Agregar nuevo host"
+
+msgid "Shortcuts"
+msgstr "Atajos"
+
+msgid "_Help"
+msgstr "Ay_uda"
+
+msgid "Background color:"
+msgstr "Color del fondo:"
+
+msgid "Foreground color:"
+msgstr "Color del texto:"
+
+msgid "Colors"
+msgstr "Colores"
+
+msgid "Commands"
+msgstr "Comandos"
+
+msgid "Custom Commands"
+msgstr "Comandos Personalizados"
+
+msgid "Standard Commands"
+msgstr "Comandos Predefinidos"
+
+msgid "Connect to selected host or all hosts in selected group"
+msgstr "Conectar a host seleccionado o a todos los host del grupo"
+
+msgid "Settings"
+msgstr "Configuración"
+
+msgid "Edit Host"
+msgstr "Editar Host"
+
+msgid "Edit hosts properties"
+msgstr "Editar propiedades de host seleccionado"
+
+msgid "Remove selected host"
+msgstr "Eliminar host seleccionado"
+
+msgid "Send commands after login"
+msgstr "Enviar comandos al iniciar sesión"
+
+msgid "Export server list to file"
+msgstr "Exportar lista de servidores a un archivo"
+
+msgid "General"
+msgstr "General"
+
+msgid "Group"
+msgstr "Grupo"
+
+msgid "Save buffer as"
+msgstr "Guardar buffer _como"
+
+msgid "Save active console buffer to file"
+msgstr "Guardar buffer de la consola activa en un archivo"
+
+msgid "Remote Host"
+msgstr "Host Remoto"
+
+msgid "Name"
+msgstr "Nombre"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Properties"
+msgstr "Propiedades"
+
+msgid "Port"
+msgstr "Puerto"
+
+msgid "Local Port"
+msgstr "Puerto Local"
+
+msgid "Remote Port"
+msgstr "Puerto Remoto"
+
+msgid "Split console horizontally"
+msgstr "Separar consola horizontalmente"
+
+msgid "Split console vertically"
+msgstr "Separar consola verticalmente"
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "Tunnel"
+msgstr "Túnel"
+
+msgid "Unsplit all consoles"
+msgstr "Unir todas las consolas"
+
+msgid "Default colors"
+msgstr "Usar colores por defecto"
+
+msgid "User"
+msgstr "Usuario"
+
+msgid "_File"
+msgstr "_Archivo"
+
+msgid "_Export servers"
+msgstr "_Exportar servidores"
+
+msgid "_Import servers"
+msgstr "_Importar servidores"
+
+#. TRANSLATORS: Replace this string with your names, one name per line.
+msgid "kuthulu"
+msgstr "translator-credits"
+
+msgid "Check updates"
+msgstr "Comprobar actualizaciones"
+
+msgid "Rename tab"
+msgstr "Renombrar consola"
+
+msgid "Enter new name"
+msgstr "Ingrese nuevo nombre"
+
+msgid "Copy Address"
+msgstr "Copiar Direccion"
+
+msgid "Keep-Alive"
+msgstr "Keep-Alive"
+
+msgid "Seconds between keep-alive packets"
+msgstr "Intervalo en segundos para enviar paquetes keep-alive"
+
+msgid "Reset console"
+msgstr "Reiniciar consola"
+
+msgid "Reset and Clear console"
+msgstr "Reiniciar y Limpiar consola"
+
+msgid "Hide donate button"
+msgstr "Ocultar botón donar"
+
+msgid "Select font"
+msgstr "Seleccione la fuente"
+
+msgid "Leave blank for passwordless/public key authentication"
+msgstr "Dejar en blanco para autenticación sin password/public key"
+
+msgid "X11 Forwarding"
+msgstr "Redirigir X11"
+
+msgid "Use default fixed width font"
+msgstr "Usar fuente de ancho fijo por defecto"
+
+msgid "Font:"
+msgstr "Fuente:"
+
+msgid "Custom commands"
+msgstr "Comandos personalizados"
+
+msgid "Duplicate Host"
+msgstr "Duplicar Host"
+
+msgid "Reconnect to host"
+msgstr "Reconectar al host"
+
+msgid "Clone console"
+msgstr "Clonar consola"
+
+msgid "No open consoles"
+msgstr "No hay consolas abiertas"
+
+msgid "Copy selection to clipboard"
+msgstr "Copiar selección al portapapeles"
+
+msgid "Send commands to several hosts at the same time"
+msgstr "Enviar comandos a varios hosts al mismo tiempo"
+
+msgid "Cluster"
+msgstr "Cluster"
+
+msgid "Select consoles to use:"
+msgstr "Seleccione las consolas a utilizar:"
+
+msgid "Clear selection"
+msgstr "Limpiar selección"
+
+msgid "Invert selection"
+msgstr "Invertir selección"
+
+msgid "Enter text to send to hosts: "
+msgstr "Ingrese el texto a enviar a las consolas: "
+
+msgid "Activate"
+msgstr "Activar"
+
+msgid "Quit"
+msgstr "Salir"
+
+msgid "Copy and Paste"
+msgstr "Copiar y Pegar"
+
+msgid "_Quit"
+msgstr "_Salir"
+
+msgid "To create subgroups use format group1/group2/group3"
+msgstr "Usar formato grupo1/grupo2/grupo3 para crear subgrupos"
+
+msgid "Enable logging"
+msgstr "Habilitar log"
+
+msgid "Can't open log file for writting"
+msgstr "No se puede abrir el archivo de log para escritura"
+
+msgid "Logs path"
+msgstr "Ruta de logs"
+
+msgid "Private key"
+msgstr "Clave Privada"
+
+msgid "Agent Forwarding"
+msgstr "Redirigir Agente"
+
+msgid "Enable Logging"
+msgstr "Habilitar Log"
+
+msgid "Description"
+msgstr "Descripción"
+
+msgid "Dynamic"
+msgstr "Dinámico"
+
+msgid "Create dynamic port forwarding"
+msgstr "Crear redirección dinámica de puertos"
+
+msgid "<span size=\"smaller\">CTRL+UP/CTRL+DOWN for history</span>"
+msgstr "<span size=\"smaller\">CTRL+UP/CTRL+DOWN para historial</span>"
+
+msgid "Never"
+msgstr "Nunca"
+
+msgid "Always"
+msgstr "Siempre"
+
+msgid "Only on clean exit"
+msgstr "Sólo si no hay errores"
+
+msgid "_View"
+msgstr "_Ver"
+
+msgid "Show Toolbar"
+msgstr "Mostrar Toolbar"
+
+msgid "Show Panel"
+msgstr "Mostrar Panel"
+
+msgid "Compression"
+msgstr "Compresión"
+
+msgid "Extra arguments"
+msgstr "Opciones extra"
+
+msgid "Extra arguments to pass to command line"
+msgstr "Parámetros extra a pasar a la línea de comandos"
+
+msgid "Key sequences"
+msgstr "Sequencias de Teclas:"
+
+msgid "Backspace:"
+msgstr "Backspace:"
+
+msgid "Delete:"
+msgstr "Delete:"
+
+msgid "Colors and Keys"
+msgstr "Colores y Teclas"
+
+msgid "Copy all"
+msgstr "Copiar todo"
+
+msgid "Open local console on startup"
+msgstr "Abrir consola local al inicio"
+
+msgid "_Edit"
+msgstr "_Editar"
+
+msgid "_Servers"
+msgstr "_Servidores"
+
+msgid ""
+"Compression level: \n"
+"blank: default compression\n"
+"1: min\n"
+"9: max"
+msgstr ""
+"Nivel de compresión: \n"
+"blanco: por defecto\n"
+"1: min\n"
+"9: max"
+
+msgid ""
+"<span size='smaller'>Use ##D=milliseconds to insert a delay.\n"
+"Eg: ##D=1000</span>"
+msgstr ""
+"<span size='smaller'>Usar ##D=milisegundos para introducir un delay.\n"
+"Ej: ##D=1000</span>"
+
+msgid "There's a new version available at http://kuthulu.com/gcm/?module=download"
+msgstr "Hay una nueva version disponible en http://kuthulu.com/gcm/?module=download"

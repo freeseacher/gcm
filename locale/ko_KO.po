@@ -24,7 +24,7 @@ msgstr ""
 #: ../gnome_connection_manager.py:654 ../gnome_connection_manager.py:672
 #: ../gnome_connection_manager.py:725 ../gnome_connection_manager.py:756
 #: ../gnome-connection-manager.glade:155
-msgid "Copiar"
+msgid "Copy"
 msgstr "복사하기"
 
 #: ../gnome_connection_manager.py:230 ../gnome_connection_manager.py:337
@@ -34,7 +34,7 @@ msgstr "복사하기"
 #: ../gnome_connection_manager.py:660 ../gnome_connection_manager.py:678
 #: ../gnome_connection_manager.py:731 ../gnome_connection_manager.py:762
 #: ../gnome-connection-manager.glade:174
-msgid "Pegar"
+msgid "Paste"
 msgstr "붙혀넣기"
 
 #: ../gnome_connection_manager.py:236 ../gnome_connection_manager.py:343
@@ -48,7 +48,7 @@ msgstr "붙혀넣기"
 #: ../gnome-connection-manager.glade:3762 ../gnome_connection_manager.py:774
 #: ../gnome-connection-manager.glade:212
 #: ../gnome-connection-manager.glade:3901
-msgid "Seleccionar todo"
+msgid "Select all"
 msgstr "모든것 선택하기"
 
 #: ../gnome_connection_manager.py:349 ../gnome_connection_manager.py:358
@@ -57,7 +57,7 @@ msgstr "모든것 선택하기"
 #: ../gnome_connection_manager.py:638 ../gnome_connection_manager.py:678
 #: ../gnome_connection_manager.py:696 ../gnome_connection_manager.py:749
 #: ../gnome_connection_manager.py:786
-msgid "Guardar buffer en archivo"
+msgid "Save buffer to file"
 msgstr "Save buffer to file"
 
 #: ../gnome_connection_manager.py:246 ../gnome_connection_manager.py:359
@@ -73,7 +73,7 @@ msgstr "Save buffer to file"
 #: ../gnome_connection_manager.py:782 ../gnome_connection_manager.py:2405
 #: ../gnome_connection_manager.py:2797 ../gnome_connection_manager.py:819
 #: ../gnome_connection_manager.py:2575 ../gnome_connection_manager.py:2969
-msgid "Cerrar consola"
+msgid "Close console"
 msgstr "콘솔 닫기"
 
 #: ../gnome_connection_manager.py:368 ../gnome-connection-manager.glade.h:16
@@ -84,7 +84,7 @@ msgstr "콘솔 닫기"
 #: ../gnome_connection_manager.py:733 ../gnome_connection_manager.py:751
 #: ../gnome_connection_manager.py:804 ../gnome-connection-manager.glade:361
 #: ../gnome_connection_manager.py:841 ../gnome-connection-manager.glade:500
-msgid "Conectar"
+msgid "Connect"
 msgstr "연결하기"
 
 #: ../gnome_connection_manager.py:374 ../gnome_connection_manager.py:383
@@ -93,7 +93,7 @@ msgstr "연결하기"
 #: ../gnome_connection_manager.py:694 ../gnome_connection_manager.py:745
 #: ../gnome_connection_manager.py:763 ../gnome_connection_manager.py:816
 #: ../gnome_connection_manager.py:853
-msgid "Agregar Host"
+msgid "Add Host"
 msgstr "호스트 추가하기"
 
 #: ../gnome_connection_manager.py:380 ../gnome-connection-manager.glade.h:19
@@ -104,7 +104,7 @@ msgstr "호스트 추가하기"
 #: ../gnome_connection_manager.py:751 ../gnome_connection_manager.py:769
 #: ../gnome_connection_manager.py:822 ../gnome-connection-manager.glade:539
 #: ../gnome_connection_manager.py:859 ../gnome-connection-manager.glade:678
-msgid "Editar"
+msgid "Edit"
 msgstr "편집하기"
 
 #: ../gnome_connection_manager.py:386 ../gnome-connection-manager.glade.h:22
@@ -122,7 +122,7 @@ msgstr "편집하기"
 #: ../gnome-connection-manager.glade:2475 ../gnome_connection_manager.py:865
 #: ../gnome-connection-manager.glade:767
 #: ../gnome-connection-manager.glade:2614
-msgid "Eliminar"
+msgid "Remove"
 msgstr "삭제하기"
 
 #: ../gnome_connection_manager.py:396 ../gnome_connection_manager.py:405
@@ -131,7 +131,7 @@ msgstr "삭제하기"
 #: ../gnome_connection_manager.py:722 ../gnome_connection_manager.py:773
 #: ../gnome_connection_manager.py:791 ../gnome_connection_manager.py:844
 #: ../gnome_connection_manager.py:881
-msgid "Expandir todo"
+msgid "Expand all"
 msgstr "모든것 확장하기"
 
 #: ../gnome_connection_manager.py:401 ../gnome_connection_manager.py:410
@@ -140,7 +140,7 @@ msgstr "모든것 확장하기"
 #: ../gnome_connection_manager.py:727 ../gnome_connection_manager.py:778
 #: ../gnome_connection_manager.py:796 ../gnome_connection_manager.py:849
 #: ../gnome_connection_manager.py:886
-msgid "Contraer todo"
+msgid "Collapse all"
 msgstr "모든것 축소하기"
 
 #: ../gnome_connection_manager.py:321 ../gnome_connection_manager.py:474
@@ -149,7 +149,7 @@ msgstr "모든것 축소하기"
 #: ../gnome_connection_manager.py:833 ../gnome_connection_manager.py:877
 #: ../gnome_connection_manager.py:985 ../gnome_connection_manager.py:1017
 #: ../gnome_connection_manager.py:1085 ../gnome_connection_manager.py:1179
-msgid "Error al conectar con servidor"
+msgid "Error connecting to server"
 msgstr "서버 접속에 이상이 있습니다."
 
 #: ../gnome_connection_manager.py:335 ../gnome_connection_manager.py:491
@@ -158,7 +158,7 @@ msgstr "서버 접속에 이상이 있습니다."
 #: ../gnome_connection_manager.py:847 ../gnome_connection_manager.py:891
 #: ../gnome_connection_manager.py:999 ../gnome_connection_manager.py:1031
 #: ../gnome_connection_manager.py:1099
-msgid "Servidores"
+msgid "Servers"
 msgstr "서버들"
 
 #: ../gnome_connection_manager.py:359 ../gnome_connection_manager.py:387
@@ -173,7 +173,7 @@ msgstr "서버들"
 #: ../gnome_connection_manager.py:1075 ../gnome_connection_manager.py:1160
 #: ../gnome_connection_manager.py:1147 ../gnome_connection_manager.py:1232
 #: ../gnome_connection_manager.py:1259 ../gnome_connection_manager.py:1353
-msgid "Entrada invalida en archivo de configuracion"
+msgid "Invalid entry in configuration file"
 msgstr "설정 파일 정보에 이상이 있습니다."
 
 #: ../gnome_connection_manager.py:768 ../gnome_connection_manager.py:795
@@ -187,7 +187,7 @@ msgstr "설정 파일 정보에 이상이 있습니다."
 #: ../gnome_connection_manager.py:1364 ../gnome_connection_manager.py:1458
 #: ../gnome_connection_manager.py:1441 ../gnome_connection_manager.py:1549
 #: ../gnome_connection_manager.py:1606 ../gnome_connection_manager.py:1718
-msgid "Guardar como"
+msgid "Save as"
 msgstr "다른이름으로 저장하기"
 
 #: ../gnome_connection_manager.py:788 ../gnome_connection_manager.py:799
@@ -196,7 +196,7 @@ msgstr "다른이름으로 저장하기"
 #: ../gnome_connection_manager.py:1276 ../gnome_connection_manager.py:1340
 #: ../gnome_connection_manager.py:1384 ../gnome_connection_manager.py:1461
 #: ../gnome_connection_manager.py:1626
-msgid "No se puede abrir archivo para escritura"
+msgid "Can't open file for writting"
 msgstr "파일을 열수 없습니다."
 
 #: ../gnome_connection_manager.py:795 ../gnome_connection_manager.py:806
@@ -207,7 +207,7 @@ msgstr "파일을 열수 없습니다."
 #: ../gnome_connection_manager.py:2228 ../gnome_connection_manager.py:1507
 #: ../gnome_connection_manager.py:2346 ../gnome_connection_manager.py:1676
 #: ../gnome_connection_manager.py:2515
-msgid "Abrir"
+msgid "Open"
 msgstr "열기"
 
 #: ../gnome_connection_manager.py:530 ../gnome_connection_manager.py:820
@@ -216,7 +216,7 @@ msgstr "열기"
 #: ../gnome_connection_manager.py:1242 ../gnome_connection_manager.py:1309
 #: ../gnome_connection_manager.py:1356 ../gnome_connection_manager.py:1400
 #: ../gnome_connection_manager.py:1491 ../gnome_connection_manager.py:1660
-msgid "Hay"
+msgid "There are"
 msgstr "저기요"
 
 #: ../gnome_connection_manager.py:530 ../gnome_connection_manager.py:820
@@ -225,7 +225,7 @@ msgstr "저기요"
 #: ../gnome_connection_manager.py:1242 ../gnome_connection_manager.py:1309
 #: ../gnome_connection_manager.py:1356 ../gnome_connection_manager.py:1400
 #: ../gnome_connection_manager.py:1491 ../gnome_connection_manager.py:1660
-msgid "consolas abiertas, confirma que desea salir?"
+msgid "open consoles, exit anyway?"
 msgstr "연결된 콘솔에서 나가게 됩니다?"
 
 #: ../gnome_connection_manager.py:838 ../gnome_connection_manager.py:849
@@ -234,7 +234,7 @@ msgstr "연결된 콘솔에서 나가게 됩니다?"
 #: ../gnome_connection_manager.py:1327 ../gnome_connection_manager.py:1374
 #: ../gnome_connection_manager.py:1418 ../gnome_connection_manager.py:1509
 #: ../gnome_connection_manager.py:1678
-msgid "Importar Servidores"
+msgid "Import Servers"
 msgstr "서버목록 들여놓기"
 
 #: ../gnome_connection_manager.py:838 ../gnome_connection_manager.py:880
@@ -248,7 +248,7 @@ msgstr "서버목록 들여놓기"
 #: ../gnome_connection_manager.py:1418 ../gnome_connection_manager.py:1460
 #: ../gnome_connection_manager.py:1509 ../gnome_connection_manager.py:1551
 #: ../gnome_connection_manager.py:1678 ../gnome_connection_manager.py:1720
-msgid "Ingrese clave: "
+msgid "Enter password: "
 msgstr "패스워드를 입력:"
 
 #: ../gnome_connection_manager.py:851 ../gnome_connection_manager.py:862
@@ -257,7 +257,7 @@ msgstr "패스워드를 입력:"
 #: ../gnome_connection_manager.py:1340 ../gnome_connection_manager.py:1386
 #: ../gnome_connection_manager.py:1430 ../gnome_connection_manager.py:1521
 #: ../gnome_connection_manager.py:1690
-msgid "Clave invalida"
+msgid "Invalid password"
 msgstr "패스워드가 정확하지 않아요"
 
 #: ../gnome_connection_manager.py:854 ../gnome_connection_manager.py:865
@@ -266,7 +266,7 @@ msgstr "패스워드가 정확하지 않아요"
 #: ../gnome_connection_manager.py:1343 ../gnome_connection_manager.py:1389
 #: ../gnome_connection_manager.py:1433 ../gnome_connection_manager.py:1524
 #: ../gnome_connection_manager.py:1693
-msgid "Se sobreescribirá la lista de servidores, continuar?"
+msgid "Server list will be overwritten, continue?"
 msgstr "서버 목록이 덮어 쓰여질텐데, 계속하시겠어요?"
 
 #: ../gnome_connection_manager.py:867 ../gnome_connection_manager.py:910
@@ -280,7 +280,7 @@ msgstr "서버 목록이 덮어 쓰여질텐데, 계속하시겠어요?"
 #: ../gnome_connection_manager.py:1447 ../gnome_connection_manager.py:1482
 #: ../gnome_connection_manager.py:1538 ../gnome_connection_manager.py:1573
 #: ../gnome_connection_manager.py:1707 ../gnome_connection_manager.py:1742
-msgid "Archivo invalido"
+msgid "Invalid file"
 msgstr "정확하지 않은 파일입니다."
 
 #: ../gnome_connection_manager.py:880 ../gnome_connection_manager.py:891
@@ -289,7 +289,7 @@ msgstr "정확하지 않은 파일입니다."
 #: ../gnome_connection_manager.py:1373 ../gnome_connection_manager.py:1416
 #: ../gnome_connection_manager.py:1460 ../gnome_connection_manager.py:1551
 #: ../gnome_connection_manager.py:1720
-msgid "Exportar Servidores"
+msgid "Export Servers"
 msgstr "서버목록 내보내기"
 
 #: ../gnome_connection_manager.py:598 ../gnome_connection_manager.py:987
@@ -298,7 +298,7 @@ msgstr "서버목록 내보내기"
 #: ../gnome_connection_manager.py:1423 ../gnome_connection_manager.py:1497
 #: ../gnome_connection_manager.py:1527 ../gnome_connection_manager.py:1576
 #: ../gnome_connection_manager.py:1677 ../gnome_connection_manager.py:1846
-msgid "Confirma que desea eliminar el host"
+msgid "Do you really want to remove host"
 msgstr "호스트 삭제 전 확인 입니다."
 
 #: ../gnome_connection_manager.py:608 ../gnome_connection_manager.py:997
@@ -307,7 +307,7 @@ msgstr "호스트 삭제 전 확인 입니다."
 #: ../gnome_connection_manager.py:1433 ../gnome_connection_manager.py:1507
 #: ../gnome_connection_manager.py:1534 ../gnome_connection_manager.py:1583
 #: ../gnome_connection_manager.py:1684 ../gnome_connection_manager.py:1853
-msgid "Confirma que desea eliminar todos los hosts del grupo"
+msgid "Do you really want to remove all hosts in group"
 msgstr "그룹에 있는 모든 호스트 삭제 전 확인 입니다.."
 
 #: ../gnome_connection_manager.py:1056 ../gnome_connection_manager.py:1065
@@ -324,7 +324,7 @@ msgstr "그룹에 있는 모든 호스트 삭제 전 확인 입니다.."
 #: ../gnome_connection_manager.py:1749 ../gnome_connection_manager.py:1758
 #: ../gnome-connection-manager.glade:864 ../gnome_connection_manager.py:1918
 #: ../gnome_connection_manager.py:1927 ../gnome-connection-manager.glade:1003
-msgid "buscar..."
+msgid "search..."
 msgstr "검색..."
 
 #: ../gnome_connection_manager.py:700 ../gnome_connection_manager.py:1138
@@ -360,11 +360,11 @@ msgstr "호스트"
 #: ../gnome_connection_manager.py:1629 ../gnome_connection_manager.py:1709
 #: ../gnome_connection_manager.py:1828 ../gnome_connection_manager.py:1895
 #: ../gnome_connection_manager.py:1978 ../gnome_connection_manager.py:2147
-msgid "Remoto"
+msgid "Remote"
 msgstr "원격지"
 
 #: ../gnome-connection-manager.glade.h:34 ../gnome-connection-manager.glade:72
-msgid "Importar lista de servidores desde un archivo"
+msgid "Import server list from file"
 msgstr "파일로 부터 서버목록 들여놓기"
 
 #: ../gnome_connection_manager.py:791 ../gnome_connection_manager.py:1242
@@ -373,7 +373,7 @@ msgstr "파일로 부터 서버목록 들여놓기"
 #: ../gnome_connection_manager.py:1769 ../gnome_connection_manager.py:1849
 #: ../gnome_connection_manager.py:1969 ../gnome_connection_manager.py:2062
 #: ../gnome_connection_manager.py:2168 ../gnome_connection_manager.py:2337
-msgid "Los campos grupo, nombre y host son obligatorios"
+msgid "Fields group, name and host are required"
 msgstr "구룹 생성을 위해 이름과 호스트를 넣어주세요."
 
 #: ../gnome_connection_manager.py:795 ../gnome_connection_manager.py:1246
@@ -382,7 +382,7 @@ msgstr "구룹 생성을 위해 이름과 호스트를 넣어주세요."
 #: ../gnome_connection_manager.py:1773 ../gnome_connection_manager.py:1853
 #: ../gnome_connection_manager.py:1973 ../gnome_connection_manager.py:2066
 #: ../gnome_connection_manager.py:2172 ../gnome_connection_manager.py:2341
-msgid "Puerto invalido"
+msgid "Invalid port"
 msgstr "포트가 부정확합니다."
 
 #: ../gnome_connection_manager.py:806 ../gnome_connection_manager.py:817
@@ -403,7 +403,7 @@ msgstr "포트가 부정확합니다."
 #: ../gnome_connection_manager.py:2197 ../gnome_connection_manager.py:2208
 #: ../gnome_connection_manager.py:2354 ../gnome_connection_manager.py:2366
 #: ../gnome_connection_manager.py:2377
-msgid "El nombre"
+msgid "Host name"
 msgstr "호스트 이름"
 
 #: ../gnome_connection_manager.py:806 ../gnome_connection_manager.py:817
@@ -424,7 +424,7 @@ msgstr "호스트 이름"
 #: ../gnome_connection_manager.py:2197 ../gnome_connection_manager.py:2208
 #: ../gnome_connection_manager.py:2354 ../gnome_connection_manager.py:2366
 #: ../gnome_connection_manager.py:2377
-msgid "ya existe para el grupo"
+msgid "already exists for group"
 msgstr "구룹이 이미 존재합니다."
 
 #: ../gnome_connection_manager.py:851 ../gnome_connection_manager.py:1304
@@ -433,7 +433,7 @@ msgstr "구룹이 이미 존재합니다."
 #: ../gnome_connection_manager.py:1840 ../gnome_connection_manager.py:1920
 #: ../gnome_connection_manager.py:2023 ../gnome_connection_manager.py:2116
 #: ../gnome_connection_manager.py:2222 ../gnome_connection_manager.py:2391
-msgid "Error al guardar el host. Descripcion"
+msgid "Error saving host. Description"
 msgstr "Error saving host. Description"
 
 #: ../gnome_connection_manager.py:879 ../gnome_connection_manager.py:1332
@@ -442,7 +442,7 @@ msgstr "Error saving host. Description"
 #: ../gnome_connection_manager.py:1895 ../gnome_connection_manager.py:1976
 #: ../gnome_connection_manager.py:2085 ../gnome_connection_manager.py:2187
 #: ../gnome_connection_manager.py:2305 ../gnome_connection_manager.py:2474
-msgid "Debe ingresar host remoto"
+msgid "Enter remote host"
 msgstr "원격지 호스트를 입력하세요."
 
 #: ../gnome_connection_manager.py:884 ../gnome_connection_manager.py:1337
@@ -451,7 +451,7 @@ msgstr "원격지 호스트를 입력하세요."
 #: ../gnome_connection_manager.py:1900 ../gnome_connection_manager.py:1981
 #: ../gnome_connection_manager.py:2090 ../gnome_connection_manager.py:2192
 #: ../gnome_connection_manager.py:2310 ../gnome_connection_manager.py:2479
-msgid "Puerto local ya fue asignado"
+msgid "Local port already assigned"
 msgstr "Local port already assigned"
 
 #: ../gnome_connection_manager.py:940 ../gnome_connection_manager.py:1401
@@ -460,7 +460,7 @@ msgstr "Local port already assigned"
 #: ../gnome_connection_manager.py:1982 ../gnome_connection_manager.py:2063
 #: ../gnome_connection_manager.py:2179 ../gnome_connection_manager.py:2280
 #: ../gnome_connection_manager.py:2398 ../gnome_connection_manager.py:2567
-msgid "Separador de Palabras"
+msgid "Word separator"
 msgstr "Word separator"
 
 #: ../gnome_connection_manager.py:941 ../gnome_connection_manager.py:1402
@@ -469,7 +469,7 @@ msgstr "Word separator"
 #: ../gnome_connection_manager.py:1983 ../gnome_connection_manager.py:2064
 #: ../gnome_connection_manager.py:2180 ../gnome_connection_manager.py:2281
 #: ../gnome_connection_manager.py:2399 ../gnome_connection_manager.py:2568
-msgid "Tamaño del buffer"
+msgid "Buffer size"
 msgstr "버퍼 크기"
 
 #: ../gnome_connection_manager.py:942 ../gnome_connection_manager.py:1403
@@ -478,7 +478,7 @@ msgstr "버퍼 크기"
 #: ../gnome_connection_manager.py:1984 ../gnome_connection_manager.py:2065
 #: ../gnome_connection_manager.py:2181 ../gnome_connection_manager.py:2282
 #: ../gnome_connection_manager.py:2400 ../gnome_connection_manager.py:2569
-msgid "Transparencia"
+msgid "Transparency"
 msgstr "투명화"
 
 #: ../gnome_connection_manager.py:943 ../gnome_connection_manager.py:1404
@@ -487,7 +487,7 @@ msgstr "투명화"
 #: ../gnome_connection_manager.py:1985 ../gnome_connection_manager.py:2066
 #: ../gnome_connection_manager.py:2183 ../gnome_connection_manager.py:2284
 #: ../gnome_connection_manager.py:2402 ../gnome_connection_manager.py:2572
-msgid "Pegar con botón derecho"
+msgid "Paste on right click"
 msgstr "오른쪽 클릭으로 붙혀넣습니다."
 
 #: ../gnome_connection_manager.py:944 ../gnome_connection_manager.py:1405
@@ -496,7 +496,7 @@ msgstr "오른쪽 클릭으로 붙혀넣습니다."
 #: ../gnome_connection_manager.py:1987 ../gnome_connection_manager.py:2068
 #: ../gnome_connection_manager.py:2185 ../gnome_connection_manager.py:2286
 #: ../gnome_connection_manager.py:2404 ../gnome_connection_manager.py:2574
-msgid "Confirmar al cerrar una consola"
+msgid "Confirm on close console"
 msgstr "콘솔 닫인 전 확인"
 
 #: ../gnome_connection_manager.py:945 ../gnome_connection_manager.py:1406
@@ -505,7 +505,7 @@ msgstr "콘솔 닫인 전 확인"
 #: ../gnome_connection_manager.py:1988 ../gnome_connection_manager.py:2069
 #: ../gnome_connection_manager.py:2186 ../gnome_connection_manager.py:2287
 #: ../gnome_connection_manager.py:2406 ../gnome_connection_manager.py:2576
-msgid "Confirmar al salir"
+msgid "Confirm on exit"
 msgstr "종료 시 확인"
 
 #: ../gnome_connection_manager.py:1431 ../gnome_connection_manager.py:1443
@@ -514,7 +514,7 @@ msgstr "종료 시 확인"
 #: ../gnome_connection_manager.py:2105 ../gnome_connection_manager.py:2222
 #: ../gnome_connection_manager.py:2323 ../gnome_connection_manager.py:2440
 #: ../gnome_connection_manager.py:2610
-msgid "Acción"
+msgid "Action"
 msgstr "시작"
 
 #: ../gnome_connection_manager.py:1439 ../gnome_connection_manager.py:1457
@@ -552,7 +552,7 @@ msgstr "명령"
 #: ../gnome-connection-manager.glade:3238
 #: ../gnome-connection-manager.glade:2897
 #: ../gnome-connection-manager.glade:3377
-msgid "Seleccione el color de fondo"
+msgid "Select background color"
 msgstr "바탕 색깔을 선택하세요"
 
 #: ../gnome_connection_manager.py:1057 ../gnome_connection_manager.py:1591
@@ -567,20 +567,20 @@ msgstr "바탕 색깔을 선택하세요"
 #: ../gnome-connection-manager.glade:3258
 #: ../gnome-connection-manager.glade:2956
 #: ../gnome-connection-manager.glade:3397
-msgid "Seleccione el color del texto"
+msgid "Select foreground color"
 msgstr "텍스트 색깔을 선택하세요"
 
 #. -- main }
 #: ../gnome-connection-manager.glade.h:4 ../gnome-connection-manager.glade:144
 #: ../gnome-connection-manager.glade:156 ../gnome-connection-manager.glade:189
 #: ../gnome-connection-manager.glade:328
-msgid "A_cerca de"
+msgid "_About"
 msgstr "_About"
 
 #: ../gnome-connection-manager.glade.h:5 ../gnome-connection-manager.glade:180
 #: ../gnome-connection-manager.glade:192 ../gnome-connection-manager.glade:227
 #: ../gnome-connection-manager.glade:366
-msgid "Abrir consola local"
+msgid "Open local console"
 msgstr "로컬 콘솔을 엽니다"
 
 #: ../gnome-connection-manager.glade.h:5 ../gnome-connection-manager.glade:403
@@ -597,13 +597,13 @@ msgstr "로컬 콘솔을 엽니다"
 #: ../gnome-connection-manager.glade:2396
 #: ../gnome-connection-manager.glade:589
 #: ../gnome-connection-manager.glade:2535
-msgid "Agregar"
+msgid "Add"
 msgstr "추가"
 
 #: ../gnome-connection-manager.glade.h:6 ../gnome-connection-manager.glade:358
 #: ../gnome-connection-manager.glade:370 ../gnome-connection-manager.glade:405
 #: ../gnome-connection-manager.glade:544
-msgid "Agregar nuevo host"
+msgid "Add new host"
 msgstr "새로운 호스트 추가"
 
 #: ../gnome-connection-manager.glade.h:8
@@ -617,13 +617,13 @@ msgstr "새로운 호스트 추가"
 #: ../gnome-connection-manager.glade:3248
 #: ../gnome-connection-manager.glade:3559
 #: ../gnome-connection-manager.glade:3698
-msgid "Atajos"
+msgid "Shortcuts"
 msgstr "바로가기"
 
 #: ../gnome-connection-manager.glade.h:7 ../gnome-connection-manager.glade:135
 #: ../gnome-connection-manager.glade:147 ../gnome-connection-manager.glade:181
 #: ../gnome-connection-manager.glade:320
-msgid "Ay_uda"
+msgid "_Help"
 msgstr "도움글"
 
 #: ../gnome-connection-manager.glade.h:8
@@ -645,7 +645,7 @@ msgstr "도움글"
 #: ../gnome-connection-manager.glade:3178
 #: ../gnome-connection-manager.glade:2824
 #: ../gnome-connection-manager.glade:3317
-msgid "Color del fondo:"
+msgid "Background color:"
 msgstr "바탕색깔:"
 
 #: ../gnome-connection-manager.glade.h:9
@@ -667,7 +667,7 @@ msgstr "바탕색깔:"
 #: ../gnome-connection-manager.glade:3206
 #: ../gnome-connection-manager.glade:2852
 #: ../gnome-connection-manager.glade:3345
-msgid "Color del texto:"
+msgid "Foreground color:"
 msgstr "텍스트 색깔:"
 
 #: ../gnome-connection-manager.glade.h:10
@@ -688,7 +688,7 @@ msgstr "텍스트 색깔:"
 #: ../gnome-connection-manager.glade:3093
 #: ../gnome-connection-manager.glade:3404
 #: ../gnome-connection-manager.glade:3543
-msgid "Colores"
+msgid "Colors"
 msgstr "색깔"
 
 #: ../gnome-connection-manager.glade.h:13
@@ -702,7 +702,7 @@ msgstr "색깔"
 #: ../gnome-connection-manager.glade:2519
 #: ../gnome-connection-manager.glade:2653
 #: ../gnome-connection-manager.glade:2792
-msgid "Comandos"
+msgid "Commands"
 msgstr "명령"
 
 #: ../gnome-connection-manager.glade.h:14
@@ -716,7 +716,7 @@ msgstr "명령"
 #: ../gnome-connection-manager.glade:3193
 #: ../gnome-connection-manager.glade:3504
 #: ../gnome-connection-manager.glade:3643
-msgid "Comandos Personalizados"
+msgid "Custom Commands"
 msgstr "사용자정의 명령"
 
 #: ../gnome-connection-manager.glade.h:15
@@ -730,13 +730,13 @@ msgstr "사용자정의 명령"
 #: ../gnome-connection-manager.glade:3136
 #: ../gnome-connection-manager.glade:3447
 #: ../gnome-connection-manager.glade:3586
-msgid "Comandos Predefinidos"
+msgid "Standard Commands"
 msgstr "표준 명령"
 
 #: ../gnome-connection-manager.glade.h:12
 #: ../gnome-connection-manager.glade:268 ../gnome-connection-manager.glade:280
 #: ../gnome-connection-manager.glade:315 ../gnome-connection-manager.glade:454
-msgid "Conectar a host seleccionado o a todos los host del grupo"
+msgid "Connect to selected host or all hosts in selected group"
 msgstr "선택한 호스트에 연결하거나 선택하신 그룹의 모든 호스트에 연결합니다."
 
 #: ../gnome-connection-manager.glade.h:13
@@ -754,7 +754,7 @@ msgstr "선택한 호스트에 연결하거나 선택하신 그룹의 모든 호
 #: ../gnome-connection-manager.glade:3053
 #: ../gnome-connection-manager.glade:947
 #: ../gnome-connection-manager.glade:3192
-msgid "Configuración"
+msgid "Settings"
 msgstr "설정"
 
 #: ../gnome-connection-manager.glade.h:15
@@ -763,19 +763,19 @@ msgstr "설정"
 #: ../gnome-connection-manager.glade:1178
 #: ../gnome-connection-manager.glade:1213
 #: ../gnome-connection-manager.glade:1352
-msgid "Editar Host"
+msgid "Edit Host"
 msgstr "호스트 편집"
 
 #: ../gnome-connection-manager.glade.h:16
 #: ../gnome-connection-manager.glade:447 ../gnome-connection-manager.glade:459
 #: ../gnome-connection-manager.glade:494 ../gnome-connection-manager.glade:633
-msgid "Editar propiedades de host seleccionado"
+msgid "Edit hosts properties"
 msgstr "선택된 호스트 속성 편집"
 
 #: ../gnome-connection-manager.glade.h:18
 #: ../gnome-connection-manager.glade:536 ../gnome-connection-manager.glade:548
 #: ../gnome-connection-manager.glade:583 ../gnome-connection-manager.glade:722
-msgid "Eliminar host seleccionado"
+msgid "Remove selected host"
 msgstr "선택하신 호스트 삭제"
 
 #: ../gnome-connection-manager.glade.h:24
@@ -789,11 +789,11 @@ msgstr "선택하신 호스트 삭제"
 #: ../gnome-connection-manager.glade:2430
 #: ../gnome-connection-manager.glade:2564
 #: ../gnome-connection-manager.glade:2703
-msgid "Enviar comandos al iniciar sesión"
+msgid "Send commands after login"
 msgstr "로그인 후 전송할 명령"
 
 #: ../gnome-connection-manager.glade.h:25 ../gnome-connection-manager.glade:94
-msgid "Exportar lista de servidores a un archivo"
+msgid "Export server list to file"
 msgstr "서버 목록을 파일로 저장합니다."
 
 #: ../gnome-connection-manager.glade.h:19
@@ -816,15 +816,15 @@ msgstr "일반"
 #: ../gnome-connection-manager.glade:1264
 #: ../gnome-connection-manager.glade:1299
 #: ../gnome-connection-manager.glade:1438
-msgid "Grupo"
+msgid "Group"
 msgstr "그룹"
 
 #: ../gnome-connection-manager.glade.h:30 ../gnome-connection-manager.glade:51
-msgid "Guardar buffer _como"
+msgid "Save buffer as"
 msgstr "Save buffer as"
 
 #: ../gnome-connection-manager.glade.h:31 ../gnome-connection-manager.glade:50
-msgid "Guardar buffer de la consola activa en un archivo"
+msgid "Save active console buffer to file"
 msgstr "Save active console buffer to file"
 
 #: ../gnome-connection-manager.glade.h:24
@@ -838,7 +838,7 @@ msgstr "Save active console buffer to file"
 #: ../gnome-connection-manager.glade:2085
 #: ../gnome-connection-manager.glade:2219
 #: ../gnome-connection-manager.glade:2358
-msgid "Host Remoto"
+msgid "Remote Host"
 msgstr "원격지 호스트"
 
 #: ../gnome-connection-manager.glade.h:25
@@ -848,7 +848,7 @@ msgstr "원격지 호스트"
 #: ../gnome-connection-manager.glade:1310
 #: ../gnome-connection-manager.glade:1345
 #: ../gnome-connection-manager.glade:1484
-msgid "Nombre"
+msgid "Name"
 msgstr "이름"
 
 #: ../gnome-connection-manager.glade.h:26
@@ -873,7 +873,7 @@ msgstr "암호"
 #: ../gnome-connection-manager.glade:1951
 #: ../gnome-connection-manager.glade:2085
 #: ../gnome-connection-manager.glade:2224
-msgid "Propiedades"
+msgid "Properties"
 msgstr "속성"
 
 #: ../gnome-connection-manager.glade.h:28
@@ -886,7 +886,7 @@ msgstr "속성"
 #: ../gnome-connection-manager.glade:1673
 #: ../gnome-connection-manager.glade:1708
 #: ../gnome-connection-manager.glade:1847
-msgid "Puerto"
+msgid "Port"
 msgstr "포트"
 
 #: ../gnome-connection-manager.glade.h:29
@@ -900,7 +900,7 @@ msgstr "포트"
 #: ../gnome-connection-manager.glade:2057
 #: ../gnome-connection-manager.glade:2191
 #: ../gnome-connection-manager.glade:2330
-msgid "Puerto Local"
+msgid "Local Port"
 msgstr "로컬 포트"
 
 #: ../gnome-connection-manager.glade.h:30
@@ -914,19 +914,19 @@ msgstr "로컬 포트"
 #: ../gnome-connection-manager.glade:2113
 #: ../gnome-connection-manager.glade:2247
 #: ../gnome-connection-manager.glade:2386
-msgid "Puerto Remoto"
+msgid "Remote Port"
 msgstr "원격지 포트"
 
 #: ../gnome-connection-manager.glade.h:32
 #: ../gnome-connection-manager.glade:639 ../gnome-connection-manager.glade:651
 #: ../gnome-connection-manager.glade:686 ../gnome-connection-manager.glade:825
-msgid "Separar consola horizontalmente"
+msgid "Split console horizontally"
 msgstr "콘솔 수평으로 나눕니다."
 
 #: ../gnome-connection-manager.glade.h:33
 #: ../gnome-connection-manager.glade:675 ../gnome-connection-manager.glade:687
 #: ../gnome-connection-manager.glade:722 ../gnome-connection-manager.glade:861
-msgid "Separar consola verticalmente"
+msgid "Split console vertically"
 msgstr "콘솔 수직으로 나눕니다."
 
 #: ../gnome-connection-manager.glade.h:34
@@ -939,7 +939,7 @@ msgstr "콘솔 수직으로 나눕니다."
 #: ../gnome-connection-manager.glade:1701
 #: ../gnome-connection-manager.glade:1736
 #: ../gnome-connection-manager.glade:1875
-msgid "Tipo"
+msgid "Type"
 msgstr "형식"
 
 #: ../gnome-connection-manager.glade.h:35
@@ -953,13 +953,13 @@ msgstr "형식"
 #: ../gnome-connection-manager.glade:2400
 #: ../gnome-connection-manager.glade:2534
 #: ../gnome-connection-manager.glade:2673
-msgid "Túnel"
+msgid "Tunnel"
 msgstr "Tunnel"
 
 #: ../gnome-connection-manager.glade.h:36
 #: ../gnome-connection-manager.glade:711 ../gnome-connection-manager.glade:723
 #: ../gnome-connection-manager.glade:758 ../gnome-connection-manager.glade:897
-msgid "Unir todas las consolas"
+msgid "Unsplit all consoles"
 msgstr "분리된 콘솔을 되돌립니다."
 
 #: ../gnome-connection-manager.glade.h:37
@@ -982,7 +982,7 @@ msgstr "분리된 콘솔을 되돌립니다."
 #: ../gnome-connection-manager.glade:3275
 #: ../gnome-connection-manager.glade:2917
 #: ../gnome-connection-manager.glade:3414
-msgid "Usar colores por defecto"
+msgid "Default colors"
 msgstr "기본 색깔"
 
 #: ../gnome-connection-manager.glade.h:38
@@ -995,19 +995,19 @@ msgstr "기본 색깔"
 #: ../gnome-connection-manager.glade:1645
 #: ../gnome-connection-manager.glade:1680
 #: ../gnome-connection-manager.glade:1819
-msgid "Usuario"
+msgid "User"
 msgstr "사용자"
 
 #: ../gnome-connection-manager.glade.h:39 ../gnome-connection-manager.glade:41
-msgid "_Archivo"
+msgid "_File"
 msgstr "_파일"
 
 #: ../gnome-connection-manager.glade.h:51 ../gnome-connection-manager.glade:95
-msgid "_Exportar servidores"
+msgid "_Export servers"
 msgstr "_서버 내보내기"
 
 #: ../gnome-connection-manager.glade.h:52 ../gnome-connection-manager.glade:73
-msgid "_Importar servidores"
+msgid "_Import servers"
 msgstr "_서버 들여놓기"
 
 #. TRANSLATORS: Replace this string with your names, one name per line.
@@ -1030,7 +1030,7 @@ msgstr "번역자 : leejh76@gmail.com"
 #: ../gnome_connection_manager.py:1989 ../gnome_connection_manager.py:2070
 #: ../gnome_connection_manager.py:2187 ../gnome_connection_manager.py:2288
 #: ../gnome_connection_manager.py:2407 ../gnome_connection_manager.py:2577
-msgid "Comprobar actualizaciones"
+msgid "Check updates"
 msgstr "업데이트 확인"
 
 #: ../gnome_connection_manager.py:1781 ../gnome_connection_manager.py:1993
@@ -1040,7 +1040,7 @@ msgstr "업데이트 확인"
 #: ../gnome_connection_manager.py:2844 ../gnome_connection_manager.py:2980
 #: ../gnome_connection_manager.py:3154
 msgid ""
-"Hay una nueva version disponible en http://kuthulu.com/gcm/?module=download"
+"There's a new version available at http://kuthulu.com/gcm/?module=download"
 msgstr "새로운 버전이 있습니다. http://kuthulu.com/gcm/?module=download"
 
 #: ../gnome_connection_manager.py:399 ../gnome_connection_manager.py:491
@@ -1052,7 +1052,7 @@ msgstr "새로운 버전이 있습니다. http://kuthulu.com/gcm/?module=downloa
 #: ../gnome_connection_manager.py:608 ../gnome_connection_manager.py:805
 #: ../gnome_connection_manager.py:661 ../gnome_connection_manager.py:858
 #: ../gnome_connection_manager.py:692 ../gnome_connection_manager.py:895
-msgid "Renombrar consola"
+msgid "Rename tab"
 msgstr "탭 이름 변경하기"
 
 #: ../gnome_connection_manager.py:399 ../gnome_connection_manager.py:449
@@ -1060,7 +1060,7 @@ msgstr "탭 이름 변경하기"
 #: ../gnome_connection_manager.py:566 ../gnome_connection_manager.py:590
 #: ../gnome_connection_manager.py:608 ../gnome_connection_manager.py:661
 #: ../gnome_connection_manager.py:692
-msgid "Ingrese nuevo nombre"
+msgid "Enter new name"
 msgstr "새로운 이름 입력"
 
 #: ../gnome_connection_manager.py:449 ../gnome_connection_manager.py:527
@@ -1068,7 +1068,7 @@ msgstr "새로운 이름 입력"
 #: ../gnome_connection_manager.py:688 ../gnome_connection_manager.py:739
 #: ../gnome_connection_manager.py:757 ../gnome_connection_manager.py:810
 #: ../gnome_connection_manager.py:847
-msgid "Copiar Direccion"
+msgid "Copy Address"
 msgstr "주소 복사"
 
 #: ../gnome-connection-manager.glade:1488
@@ -1092,7 +1092,7 @@ msgstr "연결-유지"
 #: ../gnome-connection-manager.glade:1773
 #: ../gnome-connection-manager.glade:1808
 #: ../gnome-connection-manager.glade:1947
-msgid "Intervalo en segundos para enviar paquetes keep-alive"
+msgid "Seconds between keep-alive packets"
 msgstr "연결 유지를 위한 패킷 전송 시간(초)"
 
 #: ../gnome_connection_manager.py:500 ../gnome_connection_manager.py:575
@@ -1103,7 +1103,7 @@ msgstr "연결 유지를 위한 패킷 전송 시간(초)"
 #: ../gnome_connection_manager.py:706 ../gnome_connection_manager.py:811
 #: ../gnome_connection_manager.py:759 ../gnome_connection_manager.py:864
 #: ../gnome_connection_manager.py:796 ../gnome_connection_manager.py:901
-msgid "Reiniciar consola"
+msgid "Reset console"
 msgstr "콘솔 재시작"
 
 #: ../gnome_connection_manager.py:506 ../gnome_connection_manager.py:581
@@ -1114,21 +1114,21 @@ msgstr "콘솔 재시작"
 #: ../gnome_connection_manager.py:712 ../gnome_connection_manager.py:817
 #: ../gnome_connection_manager.py:765 ../gnome_connection_manager.py:870
 #: ../gnome_connection_manager.py:802 ../gnome_connection_manager.py:907
-msgid "Reiniciar y Limpiar consola"
+msgid "Reset and Clear console"
 msgstr "콘솔 리셋 및 클리어(Clear)"
 
 #: ../gnome_connection_manager.py:1773 ../gnome_connection_manager.py:1905
 #: ../gnome_connection_manager.py:1990 ../gnome_connection_manager.py:2071
 #: ../gnome_connection_manager.py:2188 ../gnome_connection_manager.py:2289
 #: ../gnome_connection_manager.py:2408 ../gnome_connection_manager.py:2578
-msgid "Ocultar botón donar"
+msgid "Hide donate button"
 msgstr "Donate 버턴 숨기기"
 
 #: ../gnome_connection_manager.py:1982 ../gnome_connection_manager.py:2117
 #: ../gnome_connection_manager.py:2202 ../gnome_connection_manager.py:2284
 #: ../gnome_connection_manager.py:2401 ../gnome_connection_manager.py:2502
 #: ../gnome_connection_manager.py:2633 ../gnome_connection_manager.py:2803
-msgid "Seleccione la fuente"
+msgid "Select font"
 msgstr "글꼴 선택"
 
 #: ../gnome-connection-manager.glade:1321
@@ -1138,7 +1138,7 @@ msgstr "글꼴 선택"
 #: ../gnome-connection-manager.glade:1485
 #: ../gnome-connection-manager.glade:1520
 #: ../gnome-connection-manager.glade:1659
-msgid "Dejar en blanco para autenticación sin password/public key"
+msgid "Leave blank for passwordless/public key authentication"
 msgstr "키 인증 후 패스워드를 입력하지 않으시려면 공백으로/공인키"
 
 #: ../gnome-connection-manager.glade:1534
@@ -1149,7 +1149,7 @@ msgstr "키 인증 후 패스워드를 입력하지 않으시려면 공백으로
 #: ../gnome-connection-manager.glade:1795
 #: ../gnome-connection-manager.glade:1830
 #: ../gnome-connection-manager.glade:1969
-msgid "Redirigir X11"
+msgid "X11 Forwarding"
 msgstr "X11 포워딩"
 
 #: ../gnome-connection-manager.glade:2556
@@ -1160,7 +1160,7 @@ msgstr "X11 포워딩"
 #: ../gnome-connection-manager.glade:2987
 #: ../gnome-connection-manager.glade:3298
 #: ../gnome-connection-manager.glade:3437
-msgid "Usar fuente de ancho fijo por defecto"
+msgid "Use default fixed width font"
 msgstr "기본 설정된 글꼴 폭을 사용합니다."
 
 #: ../gnome-connection-manager.glade:2579
@@ -1171,28 +1171,28 @@ msgstr "기본 설정된 글꼴 폭을 사용합니다."
 #: ../gnome-connection-manager.glade:3010
 #: ../gnome-connection-manager.glade:3321
 #: ../gnome-connection-manager.glade:3460
-msgid "Fuente:"
+msgid "Font:"
 msgstr "글꼴:"
 
 #: ../gnome_connection_manager.py:574 ../gnome_connection_manager.py:645
 #: ../gnome_connection_manager.py:673 ../gnome_connection_manager.py:724
 #: ../gnome_connection_manager.py:742 ../gnome_connection_manager.py:795
 #: ../gnome_connection_manager.py:832 ../gnome-connection-manager.glade:257
-msgid "Comandos personalizados"
+msgid "Custom commands"
 msgstr "사용자 정의 명령"
 
 #: ../gnome_connection_manager.py:613 ../gnome_connection_manager.py:684
 #: ../gnome_connection_manager.py:712 ../gnome_connection_manager.py:763
 #: ../gnome_connection_manager.py:781 ../gnome_connection_manager.py:834
 #: ../gnome_connection_manager.py:871
-msgid "Duplicar Host"
+msgid "Duplicate Host"
 msgstr "중복 호스트"
 
 #: ../gnome_connection_manager.py:655 ../gnome_connection_manager.py:726
 #: ../gnome_connection_manager.py:754 ../gnome_connection_manager.py:805
 #: ../gnome_connection_manager.py:823 ../gnome_connection_manager.py:876
 #: ../gnome_connection_manager.py:913
-msgid "Reconectar al host"
+msgid "Reconnect to host"
 msgstr "호스트 재 연결"
 
 #: ../gnome_connection_manager.py:760 ../gnome_connection_manager.py:700
@@ -1200,27 +1200,27 @@ msgstr "호스트 재 연결"
 #: ../gnome_connection_manager.py:829 ../gnome_connection_manager.py:771
 #: ../gnome_connection_manager.py:882 ../gnome_connection_manager.py:808
 #: ../gnome_connection_manager.py:919
-msgid "Clonar consola"
+msgid "Clone console"
 msgstr "콘솔 복제"
 
 #: ../gnome_connection_manager.py:1476 ../gnome_connection_manager.py:1550
 #: ../gnome_connection_manager.py:1630 ../gnome_connection_manager.py:1657
 #: ../gnome_connection_manager.py:1706 ../gnome_connection_manager.py:1807
 #: ../gnome_connection_manager.py:1976
-msgid "No hay consolas abiertas"
+msgid "No open consoles"
 msgstr "열려진 콘솔이 없습니다."
 
 #: ../gnome_connection_manager.py:1901 ../gnome_connection_manager.py:1986
 #: ../gnome_connection_manager.py:2067 ../gnome_connection_manager.py:2184
 #: ../gnome_connection_manager.py:2285 ../gnome_connection_manager.py:2403
 #: ../gnome_connection_manager.py:2573
-msgid "Copiar selección al portapapeles"
+msgid "Copy selection to clipboard"
 msgstr "선택하신 사항을 클립보드로 복사합니다."
 
 #: ../gnome-connection-manager.glade:926 ../gnome-connection-manager.glade:938
 #: ../gnome-connection-manager.glade:973
 #: ../gnome-connection-manager.glade:1112
-msgid "Enviar comandos a varios hosts al mismo tiempo"
+msgid "Send commands to several hosts at the same time"
 msgstr "동시에 여러 호스트에 명령을 전송합니다."
 
 #: ../gnome-connection-manager.glade:970
@@ -1244,7 +1244,7 @@ msgstr "클러스터"
 #: ../gnome-connection-manager.glade:3339
 #: ../gnome-connection-manager.glade:3650
 #: ../gnome-connection-manager.glade:3789
-msgid "Seleccione las consolas a utilizar:"
+msgid "Select consoles to use:"
 msgstr "사용할 콘솔을 선택하세요:"
 
 #: ../gnome-connection-manager.glade:3201
@@ -1254,7 +1254,7 @@ msgstr "사용할 콘솔을 선택하세요:"
 #: ../gnome-connection-manager.glade:3530
 #: ../gnome-connection-manager.glade:3841
 #: ../gnome-connection-manager.glade:3980
-msgid "Limpiar selección"
+msgid "Clear selection"
 msgstr "Clear selection"
 
 #: ../gnome-connection-manager.glade:3280
@@ -1264,7 +1264,7 @@ msgstr "Clear selection"
 #: ../gnome-connection-manager.glade:3609
 #: ../gnome-connection-manager.glade:3920
 #: ../gnome-connection-manager.glade:4059
-msgid "Invertir selección"
+msgid "Invert selection"
 msgstr "선택한것 이외의 것"
 
 #: ../gnome-connection-manager.glade:3341
@@ -1274,99 +1274,99 @@ msgstr "선택한것 이외의 것"
 #: ../gnome-connection-manager.glade:3670
 #: ../gnome-connection-manager.glade:3981
 #: ../gnome-connection-manager.glade:4120
-msgid "Ingrese el texto a enviar a las consolas: "
+msgid "Enter text to send to hosts: "
 msgstr "호스트에게 전송할 텍스트 입력하세요: "
 
 #: ../gnome_connection_manager.py:2149 ../gnome_connection_manager.py:2234
 #: ../gnome_connection_manager.py:2316 ../gnome_connection_manager.py:2433
 #: ../gnome_connection_manager.py:2534 ../gnome_connection_manager.py:2665
 #: ../gnome_connection_manager.py:2836
-msgid "Activar"
+msgid "Activate"
 msgstr "활성화"
 
 #: ../gnome-connection-manager.glade:122
-msgid "Salir"
+msgid "Quit"
 msgstr "나가기"
 
 #: ../gnome_connection_manager.py:598 ../gnome_connection_manager.py:626
 #: ../gnome_connection_manager.py:666 ../gnome_connection_manager.py:684
 #: ../gnome_connection_manager.py:737 ../gnome_connection_manager.py:768
 #: ../gnome-connection-manager.glade:193
-msgid "Copiar y Pegar"
+msgid "Copy and Paste"
 msgstr "복사하고 붙혀넣기"
 
 #: ../gnome-connection-manager.glade:122
-msgid "_Salir"
+msgid "_Quit"
 msgstr "_나가기"
 
 #: ../gnome-connection-manager.glade:1348
 #: ../gnome-connection-manager.glade:1292
 #: ../gnome-connection-manager.glade:1327
 #: ../gnome-connection-manager.glade:1466
-msgid "Usar formato grupo1/grupo2/grupo3 para crear subgrupos"
+msgid "To create subgroups use format group1/group2/group3"
 msgstr "하위 그룹을 만들기 위한 형태는 그룹1/그룹2/그룹3 사용하세요"
 
 #: ../gnome_connection_manager.py:706 ../gnome_connection_manager.py:817
 #: ../gnome_connection_manager.py:724 ../gnome_connection_manager.py:835
 #: ../gnome_connection_manager.py:777 ../gnome_connection_manager.py:888
 #: ../gnome_connection_manager.py:814 ../gnome_connection_manager.py:925
-msgid "Habilitar log"
+msgid "Enable logging"
 msgstr "로그인 활성화"
 
 #: ../gnome_connection_manager.py:861 ../gnome_connection_manager.py:879
 #: ../gnome_connection_manager.py:932 ../gnome_connection_manager.py:1026
-msgid "No se puede abrir el archivo de log para escritura"
+msgid "Can't open log file for writting"
 msgstr "로그 작성을 위한 파일이 열수 없습니다."
 
 #: ../gnome_connection_manager.py:2182 ../gnome_connection_manager.py:2283
 #: ../gnome_connection_manager.py:2401 ../gnome_connection_manager.py:2570
-msgid "Ruta de logs"
+msgid "Logs path"
 msgstr "로그 경로"
 
 #: ../gnome-connection-manager.glade:1458
 #: ../gnome-connection-manager.glade:1507
 #: ../gnome-connection-manager.glade:1542
 #: ../gnome-connection-manager.glade:1681
-msgid "Clave Privada"
+msgid "Private key"
 msgstr "사설키"
 
 #: ../gnome-connection-manager.glade:1796
 #: ../gnome-connection-manager.glade:1845
 #: ../gnome-connection-manager.glade:1880
 #: ../gnome-connection-manager.glade:2019
-msgid "Redirigir Agente"
+msgid "Agent Forwarding"
 msgstr "에이젼트 포워딩"
 
 #: ../gnome-connection-manager.glade:1846
 #: ../gnome-connection-manager.glade:1895
 #: ../gnome-connection-manager.glade:2029
 #: ../gnome-connection-manager.glade:2168
-msgid "Habilitar Log"
+msgid "Enable Logging"
 msgstr "로긴 활성화"
 
 #: ../gnome-connection-manager.glade:1359
 #: ../gnome-connection-manager.glade:1394
 #: ../gnome-connection-manager.glade:1533
-msgid "Descripción"
+msgid "Description"
 msgstr "설명"
 
 #: ../gnome-connection-manager.glade:2034
 #: ../gnome-connection-manager.glade:2168
 #: ../gnome-connection-manager.glade:2307
-msgid "Dinámico"
+msgid "Dynamic"
 msgstr "동적"
 
 #: ../gnome-connection-manager.glade:2035
 #: ../gnome-connection-manager.glade:2169
 #: ../gnome-connection-manager.glade:2308
-msgid "Crear redirección dinámica de puertos"
+msgid "Create dynamic port forwarding"
 msgstr "동적 포트 포워딩 생성"
 
 #: ../gnome-connection-manager.glade:2449
 #: ../gnome-connection-manager.glade:2583
 #: ../gnome-connection-manager.glade:2722
 msgid ""
-"<span size='smaller'>Usar ##D=milisegundos para introducir un delay.\n"
+"<span size='smaller'>Use ##D=milliseconds to insert a delay.\n"
 "Ej: ##D=1000</span>"
 msgstr ""
 "<span size='smaller'>Use ##D=밀리초로 지연값을 입력하세요.\n"
@@ -1375,43 +1375,43 @@ msgstr ""
 #: ../gnome-connection-manager.glade:3732
 #: ../gnome-connection-manager.glade:4043
 #: ../gnome-connection-manager.glade:4183
-msgid "<span size=\"smaller\">CTRL+UP/CTRL+DOWN para historial</span>"
+msgid "<span size=\"smaller\">CTRL+UP/CTRL+DOWN for history</span>"
 msgstr "<span size=\"smaller\">CTRL+UP/CTRL+DOWN 이력 보기</span>"
 
 #: ../gnome_connection_manager.py:2405 ../gnome_connection_manager.py:2575
-msgid "Nunca"
+msgid "Never"
 msgstr "Never"
 
 #: ../gnome_connection_manager.py:2405 ../gnome_connection_manager.py:2575
-msgid "Siempre"
+msgid "Always"
 msgstr "항상"
 
 #: ../gnome_connection_manager.py:2405 ../gnome_connection_manager.py:2575
-msgid "Sólo si no hay errores"
+msgid "Only on clean exit"
 msgstr "애러가 없을때만"
 
 #: ../gnome-connection-manager.glade:147 ../gnome-connection-manager.glade:274
-msgid "_Ver"
+msgid "_View"
 msgstr "_보기"
 
 #: ../gnome-connection-manager.glade:155 ../gnome-connection-manager.glade:282
-msgid "Mostrar Toolbar"
+msgid "Show Toolbar"
 msgstr "툴바 보기"
 
 #: ../gnome-connection-manager.glade:165 ../gnome-connection-manager.glade:292
-msgid "Mostrar Panel"
+msgid "Show Panel"
 msgstr "판넬 보기"
 
 #: ../gnome-connection-manager.glade:1931
 #: ../gnome-connection-manager.glade:2070
-msgid "Compresión"
+msgid "Compression"
 msgstr "압축하기"
 
 #: ../gnome-connection-manager.glade:1962
 #: ../gnome-connection-manager.glade:2101
 msgid ""
-"Nivel de compresión: \n"
-"blanco: por defecto\n"
+"Compression level: \n"
+"blank: default compression\n"
 "1: min\n"
 "9: max"
 msgstr ""
@@ -1422,17 +1422,17 @@ msgstr ""
 
 #: ../gnome-connection-manager.glade:1979
 #: ../gnome-connection-manager.glade:2118
-msgid "Opciones extra"
+msgid "Extra arguments"
 msgstr "추가 옵션"
 
 #: ../gnome-connection-manager.glade:2015
 #: ../gnome-connection-manager.glade:2154
-msgid "Parámetros extra a pasar a la línea de comandos"
+msgid "Extra arguments to pass to command line"
 msgstr "Extra arguments to pass to command line"
 
 #: ../gnome-connection-manager.glade:2851
 #: ../gnome-connection-manager.glade:2990
-msgid "Sequencias de Teclas:"
+msgid "Key sequences:"
 msgstr "Key sequences"
 
 #: ../gnome-connection-manager.glade:2880
@@ -1447,21 +1447,21 @@ msgstr "삭제:"
 
 #: ../gnome-connection-manager.glade:2989
 #: ../gnome-connection-manager.glade:3128
-msgid "Colores y Teclas"
+msgid "Colors and Keys"
 msgstr "색 과 키"
 
 #: ../gnome_connection_manager.py:780 ../gnome-connection-manager.glade:231
-msgid "Copiar todo"
+msgid "Copy all"
 msgstr "모두 복사"
 
 #: ../gnome_connection_manager.py:2571
-msgid "Abrir consola local al inicio"
+msgid "Open local console on startup"
 msgstr "시작 시 로컬 콘솔을 엽니다"
 
 #: ../gnome-connection-manager.glade:147
-msgid "_Editar"
+msgid "_Edit"
 msgstr "_편집"
 
 #: ../gnome-connection-manager.glade:308
-msgid "_Servidores"
+msgid "_Servers"
 msgstr "_서버들"

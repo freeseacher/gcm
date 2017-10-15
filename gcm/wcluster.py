@@ -27,7 +27,7 @@ class Wcluster(SimpleGladeApp):
         crt = gtk.CellRendererToggle()
         crt.set_property('activatable', True)
         crt.connect('toggled', self.on_active_toggled)
-        col = gtk.TreeViewColumn(_("Activar"), crt, active=0)
+        col = gtk.TreeViewColumn(_("Activate"), crt, active=0)
         self.treeHosts.append_column(col)
         self.treeHosts.append_column(gtk.TreeViewColumn(_("Host"), gtk.CellRendererText(), text=1))
         self.get_widget("txtCommands").history = []

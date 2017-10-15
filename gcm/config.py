@@ -298,7 +298,7 @@ class Config(object):
             self.SHOW_TOOLBAR = cp.getboolean("window", "show-toolbar")
             self.STARTUP_LOCAL = cp.getboolean("options", "startup-local")
         except:
-            print "%s: %s" % (_("Entrada invalida en archivo de configuracion"), sys.exc_info()[1])
+            print "%s: %s" % (_("Invalid entry in configuration file"), sys.exc_info()[1])
 
         # Leer shorcuts
         scuts = {}
@@ -391,6 +391,6 @@ class Config(object):
 
                 self.groups[host.group].append(host)
             except:
-                print "%s: %s" % (_("Entrada invalida en archivo de configuracion"), sys.exc_info()[1])
+                print "%s: %s" % (_("Invalid entry in configuration file"), sys.exc_info()[1])
 
 

@@ -308,7 +308,7 @@ class Wmain(SimpleGladeApp):
                                         hp_position=self.hpMain.get_position())
             return True
         elif item == 'R':  # RENAME TAB
-            text = inputbox(_('Renombrar consola'), _('Ingrese nuevo nombre'),
+            text = inputbox(_('Rename tab'), _('Enter new name'),
                             self.popupMenuTab.label.get_text().strip())
             if text != None and text != '':
                 self.popupMenuTab.label.set_text("  %s  " % (text))
@@ -373,37 +373,37 @@ class Wmain(SimpleGladeApp):
 
     def createMenu(self):
         self.popupMenu = gtk.Menu()
-        self.popupMenu.mnuCopy = menuItem = gtk.ImageMenuItem(_("Copiar"))
+        self.popupMenu.mnuCopy = menuItem = gtk.ImageMenuItem(_("Copy"))
         menuItem.set_image(gtk.image_new_from_stock(gtk.STOCK_COPY, gtk.ICON_SIZE_MENU))
         self.popupMenu.append(menuItem)
         menuItem.connect("activate", self.on_popupmenu, 'C')
         menuItem.show()
 
-        self.popupMenu.mnuPaste = menuItem = gtk.ImageMenuItem(_("Pegar"))
+        self.popupMenu.mnuPaste = menuItem = gtk.ImageMenuItem(_("Paste"))
         menuItem.set_image(gtk.image_new_from_stock(gtk.STOCK_PASTE, gtk.ICON_SIZE_MENU))
         self.popupMenu.append(menuItem)
         menuItem.connect("activate", self.on_popupmenu, 'V')
         menuItem.show()
 
-        self.popupMenu.mnuCopyPaste = menuItem = gtk.ImageMenuItem(_("Copiar y Pegar"))
+        self.popupMenu.mnuCopyPaste = menuItem = gtk.ImageMenuItem(_("Copy and Paste"))
         menuItem.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_MENU))
         self.popupMenu.append(menuItem)
         menuItem.connect("activate", self.on_popupmenu, 'CV')
         menuItem.show()
 
-        self.popupMenu.mnuSelect = menuItem = gtk.ImageMenuItem(_("Seleccionar todo"))
+        self.popupMenu.mnuSelect = menuItem = gtk.ImageMenuItem(_("Select all"))
         menuItem.set_image(gtk.image_new_from_stock(gtk.STOCK_SELECT_ALL, gtk.ICON_SIZE_MENU))
         self.popupMenu.append(menuItem)
         menuItem.connect("activate", self.on_popupmenu, 'A')
         menuItem.show()
 
-        self.popupMenu.mnuCopyAll = menuItem = gtk.ImageMenuItem(_("Copiar todo"))
+        self.popupMenu.mnuCopyAll = menuItem = gtk.ImageMenuItem(_("Copy all"))
         menuItem.set_image(gtk.image_new_from_stock(gtk.STOCK_SELECT_ALL, gtk.ICON_SIZE_MENU))
         self.popupMenu.append(menuItem)
         menuItem.connect("activate", self.on_popupmenu, 'CA')
         menuItem.show()
 
-        self.popupMenu.mnuSelect = menuItem = gtk.ImageMenuItem(_("Guardar buffer en archivo"))
+        self.popupMenu.mnuSelect = menuItem = gtk.ImageMenuItem(_("Save buffer to file"))
         menuItem.set_image(gtk.image_new_from_stock(gtk.STOCK_SAVE, gtk.ICON_SIZE_MENU))
         self.popupMenu.append(menuItem)
         menuItem.connect("activate", self.on_popupmenu, 'S')
@@ -413,30 +413,30 @@ class Wmain(SimpleGladeApp):
         self.popupMenu.append(menuItem)
         menuItem.show()
 
-        self.popupMenu.mnuReset = menuItem = gtk.ImageMenuItem(_("Reiniciar consola"))
+        self.popupMenu.mnuReset = menuItem = gtk.ImageMenuItem(_("Reset console"))
         menuItem.set_image(gtk.image_new_from_stock(gtk.STOCK_NEW, gtk.ICON_SIZE_MENU))
         self.popupMenu.append(menuItem)
         menuItem.connect("activate", self.on_popupmenu, 'RS2')
         menuItem.show()
 
-        self.popupMenu.mnuClear = menuItem = gtk.ImageMenuItem(_("Reiniciar y Limpiar consola"))
+        self.popupMenu.mnuClear = menuItem = gtk.ImageMenuItem(_("Reset and Clear console"))
         menuItem.set_image(gtk.image_new_from_stock(gtk.STOCK_CLEAR, gtk.ICON_SIZE_MENU))
         self.popupMenu.append(menuItem)
         menuItem.connect("activate", self.on_popupmenu, 'RC2')
         menuItem.show()
 
-        self.popupMenu.mnuClone = menuItem = gtk.ImageMenuItem(_("Clonar consola"))
+        self.popupMenu.mnuClone = menuItem = gtk.ImageMenuItem(_("Clone console"))
         menuItem.set_image(gtk.image_new_from_stock(gtk.STOCK_COPY, gtk.ICON_SIZE_MENU))
         self.popupMenu.append(menuItem)
         menuItem.connect("activate", self.on_popupmenu, 'CC2')
         menuItem.show()
 
-        self.popupMenu.mnuLog = menuItem = gtk.CheckMenuItem(_("Habilitar log"))
+        self.popupMenu.mnuLog = menuItem = gtk.CheckMenuItem(_("Enable logging"))
         self.popupMenu.append(menuItem)
         menuItem.connect("activate", self.on_popupmenu, 'L2')
         menuItem.show()
 
-        self.popupMenu.mnuClose = menuItem = gtk.ImageMenuItem(_("Cerrar consola"))
+        self.popupMenu.mnuClose = menuItem = gtk.ImageMenuItem(_("Close console"))
         menuItem.set_image(gtk.image_new_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_MENU))
         self.popupMenu.append(menuItem)
         menuItem.connect("activate", self.on_popupmenu, 'X')
@@ -449,7 +449,7 @@ class Wmain(SimpleGladeApp):
         # Menu de comandos personalizados
         self.popupMenu.mnuCommands = gtk.Menu()
 
-        self.popupMenu.mnuCmds = menuItem = gtk.ImageMenuItem(_("Comandos personalizados"))
+        self.popupMenu.mnuCmds = menuItem = gtk.ImageMenuItem(_("Custom commands"))
         menuItem.set_submenu(self.popupMenu.mnuCommands)
         self.popupMenu.append(menuItem)
         menuItem.show()
@@ -458,13 +458,13 @@ class Wmain(SimpleGladeApp):
         # Menu contextual para panel de servidores
         self.popupMenuFolder = gtk.Menu()
 
-        self.popupMenuFolder.mnuConnect = menuItem = gtk.ImageMenuItem(_("Conectar"))
+        self.popupMenuFolder.mnuConnect = menuItem = gtk.ImageMenuItem(_("Connect"))
         menuItem.set_image(gtk.image_new_from_stock(gtk.STOCK_EXECUTE, gtk.ICON_SIZE_MENU))
         self.popupMenuFolder.append(menuItem)
         menuItem.connect("activate", self.on_btnConnect_clicked)
         menuItem.show()
 
-        self.popupMenuFolder.mnuCopyAddress = menuItem = gtk.ImageMenuItem(_("Copiar Direccion"))
+        self.popupMenuFolder.mnuCopyAddress = menuItem = gtk.ImageMenuItem(_("Copy Address"))
         menuItem.set_image(gtk.image_new_from_stock(gtk.STOCK_COPY, gtk.ICON_SIZE_MENU))
         self.popupMenuFolder.append(menuItem)
         menuItem.connect("activate", self.on_popupmenu, 'H')
@@ -482,25 +482,25 @@ class Wmain(SimpleGladeApp):
         menuItem.connect("activate", self.on_popupmenu, 'SCPT')
         menuItem.show()
 
-        self.popupMenuFolder.mnuAdd = menuItem = gtk.ImageMenuItem(_("Agregar Host"))
+        self.popupMenuFolder.mnuAdd = menuItem = gtk.ImageMenuItem(_("Add Host"))
         menuItem.set_image(gtk.image_new_from_stock(gtk.STOCK_ADD, gtk.ICON_SIZE_MENU))
         self.popupMenuFolder.append(menuItem)
         menuItem.connect("activate", self.on_btnAdd_clicked)
         menuItem.show()
 
-        self.popupMenuFolder.mnuEdit = menuItem = gtk.ImageMenuItem(_("Editar"))
+        self.popupMenuFolder.mnuEdit = menuItem = gtk.ImageMenuItem(_("Edit"))
         menuItem.set_image(gtk.image_new_from_stock(gtk.STOCK_EDIT, gtk.ICON_SIZE_MENU))
         self.popupMenuFolder.append(menuItem)
         menuItem.connect("activate", self.on_bntEdit_clicked)
         menuItem.show()
 
-        self.popupMenuFolder.mnuDel = menuItem = gtk.ImageMenuItem(_("Eliminar"))
+        self.popupMenuFolder.mnuDel = menuItem = gtk.ImageMenuItem(_("Remove"))
         menuItem.set_image(gtk.image_new_from_stock(gtk.STOCK_DELETE, gtk.ICON_SIZE_MENU))
         self.popupMenuFolder.append(menuItem)
         menuItem.connect("activate", self.on_btnDel_clicked)
         menuItem.show()
 
-        self.popupMenuFolder.mnuDup = menuItem = gtk.ImageMenuItem(_("Duplicar Host"))
+        self.popupMenuFolder.mnuDup = menuItem = gtk.ImageMenuItem(_("Duplicate Host"))
         menuItem.set_image(gtk.image_new_from_stock(gtk.STOCK_DND_MULTIPLE, gtk.ICON_SIZE_MENU))
         self.popupMenuFolder.append(menuItem)
         menuItem.connect("activate", self.on_popupmenu, 'D')
@@ -510,12 +510,12 @@ class Wmain(SimpleGladeApp):
         self.popupMenuFolder.append(menuItem)
         menuItem.show()
 
-        self.popupMenuFolder.mnuExpand = menuItem = gtk.ImageMenuItem(_("Expandir todo"))
+        self.popupMenuFolder.mnuExpand = menuItem = gtk.ImageMenuItem(_("Expand all"))
         self.popupMenuFolder.append(menuItem)
         menuItem.connect("activate", lambda *args: self.treeServers.expand_all())
         menuItem.show()
 
-        self.popupMenuFolder.mnuCollapse = menuItem = gtk.ImageMenuItem(_("Contraer todo"))
+        self.popupMenuFolder.mnuCollapse = menuItem = gtk.ImageMenuItem(_("Collapse all"))
         self.popupMenuFolder.append(menuItem)
         menuItem.connect("activate", lambda *args: self.treeServers.collapse_all())
         menuItem.show()
@@ -523,37 +523,37 @@ class Wmain(SimpleGladeApp):
         # Menu contextual para tabs
         self.popupMenuTab = gtk.Menu()
 
-        self.popupMenuTab.mnuRename = menuItem = gtk.ImageMenuItem(_("Renombrar consola"))
+        self.popupMenuTab.mnuRename = menuItem = gtk.ImageMenuItem(_("Rename tab"))
         menuItem.set_image(gtk.image_new_from_stock(gtk.STOCK_EDIT, gtk.ICON_SIZE_MENU))
         self.popupMenuTab.append(menuItem)
         menuItem.connect("activate", self.on_popupmenu, 'R')
         menuItem.show()
 
-        self.popupMenuTab.mnuReset = menuItem = gtk.ImageMenuItem(_("Reiniciar consola"))
+        self.popupMenuTab.mnuReset = menuItem = gtk.ImageMenuItem(_("Reset console"))
         menuItem.set_image(gtk.image_new_from_stock(gtk.STOCK_NEW, gtk.ICON_SIZE_MENU))
         self.popupMenuTab.append(menuItem)
         menuItem.connect("activate", self.on_popupmenu, 'RS')
         menuItem.show()
 
-        self.popupMenuTab.mnuClear = menuItem = gtk.ImageMenuItem(_("Reiniciar y Limpiar consola"))
+        self.popupMenuTab.mnuClear = menuItem = gtk.ImageMenuItem(_("Reset and Clear console"))
         menuItem.set_image(gtk.image_new_from_stock(gtk.STOCK_CLEAR, gtk.ICON_SIZE_MENU))
         self.popupMenuTab.append(menuItem)
         menuItem.connect("activate", self.on_popupmenu, 'RC')
         menuItem.show()
 
-        self.popupMenuTab.mnuReopen = menuItem = gtk.ImageMenuItem(_("Reconectar al host"))
+        self.popupMenuTab.mnuReopen = menuItem = gtk.ImageMenuItem(_("Reconnect to host"))
         menuItem.set_image(gtk.image_new_from_stock(gtk.STOCK_CONNECT, gtk.ICON_SIZE_MENU))
         self.popupMenuTab.append(menuItem)
         menuItem.connect("activate", self.on_popupmenu, 'RO')
         # menuItem.show()
 
-        self.popupMenuTab.mnuClone = menuItem = gtk.ImageMenuItem(_("Clonar consola"))
+        self.popupMenuTab.mnuClone = menuItem = gtk.ImageMenuItem(_("Clone console"))
         menuItem.set_image(gtk.image_new_from_stock(gtk.STOCK_COPY, gtk.ICON_SIZE_MENU))
         self.popupMenuTab.append(menuItem)
         menuItem.connect("activate", self.on_popupmenu, 'CC')
         menuItem.show()
 
-        self.popupMenuTab.mnuLog = menuItem = gtk.CheckMenuItem(_("Habilitar log"))
+        self.popupMenuTab.mnuLog = menuItem = gtk.CheckMenuItem(_("Enable logging"))
         self.popupMenuTab.append(menuItem)
         menuItem.connect("activate", self.on_popupmenu, 'L')
         menuItem.show()
@@ -657,7 +657,7 @@ class Wmain(SimpleGladeApp):
                     "Session '%s' opened at %s\n%s\n" % (title, time.strftime("%Y-%m-%d %H:%M:%S"), "-" * 80))
             except:
                 traceback.print_exc()
-                msgbox("%s\n%s" % (_("No se puede abrir el archivo de log para escritura"), filename))
+                msgbox("%s\n%s" % (_("Can't open log file for writting"), filename))
                 terminal.disconnect(terminal.log_handler_id)
                 del terminal.log_handler_id
                 return False
@@ -825,7 +825,7 @@ class Wmain(SimpleGladeApp):
             v.host = host
         except:
             traceback.print_exc()
-            msgbox("%s: %s" % (_("Error al conectar con servidor"), sys.exc_info()[1]))
+            msgbox("%s: %s" % (_("Error connecting to server"), sys.exc_info()[1]))
 
     def send_data(self, terminal, data):
         terminal.feed_child('%s\r' % (data))
@@ -1072,7 +1072,7 @@ class Wmain(SimpleGladeApp):
             delattr(self, "check_notebook")
 
     def show_save_buffer(self, terminal):
-        dlg = gtk.FileChooserDialog(title=_("Guardar como"), parent=self.wMain, action=gtk.FILE_CHOOSER_ACTION_SAVE)
+        dlg = gtk.FileChooserDialog(title=_("Save as"), parent=self.wMain, action=gtk.FILE_CHOOSER_ACTION_SAVE)
         dlg.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
         dlg.add_button(gtk.STOCK_SAVE, gtk.RESPONSE_OK)
         dlg.set_do_overwrite_confirmation(True)
@@ -1094,7 +1094,7 @@ class Wmain(SimpleGladeApp):
             except:
                 traceback.print_exc()
                 dlg.destroy()
-                msgbox("%s: %s" % (_("No se puede abrir archivo para escritura"), filename))
+                msgbox("%s: %s" % (_("Can't open file for writting"), filename))
                 return
 
         dlg.destroy()
@@ -1125,7 +1125,7 @@ class Wmain(SimpleGladeApp):
     def on_wMain_delete_event(self, widget, *args):
         (self.config.WINDOW_WIDTH, self.config.WINDOW_HEIGHT) = self.get_widget("wMain").get_size()
         if self.config.CONFIRM_ON_EXIT and self.count > 0 and msgconfirm("%s %d %s" % (
-                _("Hay"), self.count, _("consolas abiertas, confirma que desea salir?"))) != gtk.RESPONSE_OK:
+                _("There are"), self.count, _("open consoles, exit anyway?"))) != gtk.RESPONSE_OK:
             return True
 
     def on_guardar_como1_activate(self, widget, *args):
@@ -1136,9 +1136,9 @@ class Wmain(SimpleGladeApp):
             self.show_save_buffer(term)
 
     def on_importar_servidores1_activate(self, widget, *args):
-        filename = show_open_dialog(parent=self.wMain, title=_("Abrir"), action=gtk.FILE_CHOOSER_ACTION_OPEN)
+        filename = show_open_dialog(parent=self.wMain, title=_("Open"), action=gtk.FILE_CHOOSER_ACTION_OPEN)
         if filename != None:
-            password = inputbox(_('Importar Servidores'), _('Ingrese clave: '), password=True)
+            password = inputbox(_('Import Servers'), _('Enter password: '), password=True)
             if password == None:
                 return
 
@@ -1150,10 +1150,10 @@ class Wmain(SimpleGladeApp):
                 # validar el pass
                 s = decrypt(password, cp.get("gcm", "gcm"))
                 if (s != password[::-1]):
-                    msgbox(_("Clave invalida"))
+                    msgbox(_("Invalid password"))
                     return
 
-                if msgconfirm(_(u'Se sobreescribirá la lista de servidores, continuar?')) != gtk.RESPONSE_OK:
+                if msgconfirm(_(u'Server list will be overwritten, continue?')) != gtk.RESPONSE_OK:
                     return
 
                 grupos = {}
@@ -1168,15 +1168,15 @@ class Wmain(SimpleGladeApp):
                     grupos[host.group].append(host)
             except:
                 traceback.print_exc()
-                msgbox(_("Archivo invalido"))
+                msgbox(_("Invalid file"))
                 return
             # sobreescribir lista de hosts
             self.updateTree()
 
     def on_exportar_servidores1_activate(self, widget, *args):
-        filename = show_open_dialog(parent=self.wMain, title=_("Guardar como"), action=gtk.FILE_CHOOSER_ACTION_SAVE)
+        filename = show_open_dialog(parent=self.wMain, title=_("Save as"), action=gtk.FILE_CHOOSER_ACTION_SAVE)
         if filename != None:
-            password = inputbox(_('Exportar Servidores'), _('Ingrese clave: '), password=True)
+            password = inputbox(_('Export Servers'), _('Enter password: '), password=True)
             if password == None:
                 return
 
@@ -1199,7 +1199,7 @@ class Wmain(SimpleGladeApp):
                 os.rename(filename + ".tmp", filename)
             except:
                 traceback.print_exc()
-                msgbox(_("Archivo invalido"))
+                msgbox(_("Invalid file"))
 
     def on_salir1_activate(self, widget, *args):
         (self.config.WINDOW_WIDTH, self.config.WINDOW_HEIGHT) = self.get_widget("wMain").get_size()
@@ -1284,17 +1284,17 @@ class Wmain(SimpleGladeApp):
     def on_btnDel_clicked(self, widget, *args):
         if self.treeServers.get_selection().get_selected()[1] != None:
             if not self.treeModel.iter_has_child(self.treeServers.get_selection().get_selected()[1]):
-                # Eliminar solo el nodo
+                # Remove solo el nodo
                 name = self.treeModel.get_value(self.treeServers.get_selection().get_selected()[1], 0)
-                if msgconfirm("%s [%s]?" % (_("Confirma que desea eliminar el host"), name)) == gtk.RESPONSE_OK:
+                if msgconfirm("%s [%s]?" % (_("Do you really want to remove host"), name)) == gtk.RESPONSE_OK:
                     host = self.treeModel.get_value(self.treeServers.get_selection().get_selected()[1], 1)
                     self.config.groups[host.group].remove(host)
                     self.updateTree()
             else:
-                # Eliminar todo el grupo
+                # Remove todo el grupo
                 group = self.get_group(self.treeModel.iter_children(self.treeServers.get_selection().get_selected()[1]))
                 if msgconfirm("%s [%s]?" % (
-                        _("Confirma que desea eliminar todos los hosts del grupo"), group)) == gtk.RESPONSE_OK:
+                        _("Do you really want to remove all hosts in group"), group)) == gtk.RESPONSE_OK:
                     try:
                         del self.config.groups[group]
                     except:
@@ -1331,7 +1331,7 @@ class Wmain(SimpleGladeApp):
         self.populateCommandsMenu()
 
     def on_txtSearch_focus(self, widget, *args):
-        if widget.get_text() == _('buscar...'):
+        if widget.get_text() == _('search...'):
             widget.modify_text(gtk.STATE_NORMAL, gtk.gdk.Color('black'))
             widget.set_text('')
 
@@ -1348,7 +1348,7 @@ class Wmain(SimpleGladeApp):
     def on_txtSearch_focus_out_event(self, widget, *args):
         if widget.get_text() == '':
             widget.modify_text(gtk.STATE_NORMAL, gtk.gdk.Color('darkgray'))
-            widget.set_text(_('buscar...'))
+            widget.set_text(_('search...'))
 
     def on_btnSearchBack_clicked(self, widget, *args):
         if self.init_search():
@@ -1390,7 +1390,7 @@ class Wmain(SimpleGladeApp):
                     consoles.append((title, terminal))
 
         if len(consoles) == 0:
-            msgbox(_("No hay consolas abiertas"))
+            msgbox(_("No open consoles"))
             return True
 
         self.wCluster = Wcluster(terms=consoles).get_widget('wCluster')
@@ -1493,7 +1493,7 @@ class NotebookTabLabel(gtk.HBox):
 
     def on_close_tab(self, widget, notebook, *args):
         if self.config.CONFIRM_ON_CLOSE_TAB and msgconfirm(
-                        "%s [%s]?" % (_("Cerrar consola"), self.label.get_text().strip())) != gtk.RESPONSE_OK:
+                        "%s [%s]?" % (_("Close console"), self.label.get_text().strip())) != gtk.RESPONSE_OK:
             return True
 
         self.close_tab(widget)

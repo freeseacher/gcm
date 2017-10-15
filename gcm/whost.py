@@ -28,7 +28,7 @@ class Whost(SimpleGladeApp):
         self.treeTunel.append_column(column)
         column = gtk.TreeViewColumn(_("Host"), gtk.CellRendererText(), text=1)
         self.treeTunel.append_column(column)
-        column = gtk.TreeViewColumn(_("Remoto"), gtk.CellRendererText(), text=2)
+        column = gtk.TreeViewColumn(_("Remote"), gtk.CellRendererText(), text=2)
         self.treeTunel.append_column(column)
 
     def new(self):
@@ -208,11 +208,11 @@ class Whost(SimpleGladeApp):
 
         # Validar datos
         if group == "" or name == "" or (host == "" and ctype != 'local'):
-            msgbox(_("Los campos grupo, nombre y host son obligatorios"))
+            msgbox(_("Fields group, name and host are required"))
             return
 
         if not (port and port.isdigit() and 1 <= int(port) <= 65535):
-            msgbox(_("Puerto invalido"))
+            msgbox(_("Invalid port"))
             return
 
         host = Host(group, name, description, host, user, password, private_key, port, tunnel, ctype, commands,
@@ -227,7 +227,7 @@ class Whost(SimpleGladeApp):
             if self.isNew:
                 for h in self.config.groups[group]:
                     if h.name == name:
-                        msgbox("%s [%s] %s [%s]" % (_("El nombre"), name, _("ya existe para el grupo"), group))
+                        msgbox("%s [%s] %s [%s]" % (_("Host name"), name, _("already exists for group"), group))
                         return
                 # agregar host a grupo
                 self.config.groups[group].append(host)
@@ -239,7 +239,7 @@ class Whost(SimpleGladeApp):
                     else:
                         for h in self.config.groups[group]:
                             if h.name == name:
-                                msgbox("%s [%s] %s [%s]" % (_("El nombre"), name, _("ya existe para el grupo"), group))
+                                msgbox("%s [%s] %s [%s]" % (_("Host name"), name, _("already exists for group"), group))
                                 return
                         self.config.groups[group].append(host)
                         for h in self.config.groups[self.oldGroup]:
@@ -250,7 +250,7 @@ class Whost(SimpleGladeApp):
                     if self.oldName != name:
                         for h in self.config.groups[self.oldGroup]:
                             if h.name == name:
-                                msgbox("%s [%s] %s [%s]" % (_("El nombre"), name, _("ya existe para el grupo"), group))
+                                msgbox("%s [%s] %s [%s]" % (_("Host name"), name, _("already exists for group"), group))
                                 return
                         for h in self.config.groups[self.oldGroup]:
                             if h.name == self.oldName:
@@ -265,7 +265,7 @@ class Whost(SimpleGladeApp):
                                 break
         except:
             traceback.print_exc()
-            msgbox("%s [%s]" % (_("Error al guardar el host. Descripcion"), sys.exc_info()[1]))
+            msgbox("%s [%s]" % (_("Error saving host. Description"), sys.exc_info()[1]))
 
         self.config.writeConfig()
         self.get_widget("wHost").destroy()
@@ -334,12 +334,12 @@ class Whost(SimpleGladeApp):
 
         # Validar datos del tunel
         if host == "":
-            msgbox(_("Debe ingresar host remoto"))
+            msgbox(_("Enter remote host"))
             return
 
         for x in self.treeModel:
             if x[0] == local:
-                msgbox(_("Puerto local ya fue asignado"))
+                msgbox(_("Local port already assigned"))
                 return
 
         tunel = self.treeModel.append([local, host, remote, '%s:%s:%s' % (local, host, remote)])
@@ -362,6 +362,6 @@ class Whost(SimpleGladeApp):
         widget.selected_color = widget.get_color().to_string()
 
     def on_btnBrowse_clicked(self, widget, *args):
-        filename = show_open_dialog(parent=self.main_widget, title=_("Abrir"), action=gtk.FILE_CHOOSER_ACTION_OPEN)
+        filename = show_open_dialog(parent=self.main_widget, title=_("Open"), action=gtk.FILE_CHOOSER_ACTION_OPEN)
         if filename != None:
             self.txtPrivateKey.set_text(filename)

@@ -39,7 +39,7 @@ class Wconfig(SimpleGladeApp):
 
     def new(self):
         self.config = Config()
-        # Agregar controles
+        # Add controles
         self.tblGeneral = self.get_widget("tblGeneral")
         self.btnFColor = self.get_widget("btnFColor")
         self.btnBColor = self.get_widget("btnBColor")
@@ -51,17 +51,17 @@ class Wconfig(SimpleGladeApp):
         self.capture_keys = False
 
         self.tblGeneral.rows = 0
-        self.addParam(_("Separador de Palabras"), "self.config.WORD_SEPARATORS", str)
-        self.addParam(_(u"Tamaño del buffer"), "self.config.BUFFER_LINES", int, 1, 1000000)
-        self.addParam(_("Transparencia"), "self.config.TRANSPARENCY", int, 0, 100)
-        self.addParam(_("Ruta de logs"), "self.config.LOG_PATH", str)
-        self.addParam(_("Abrir consola local al inicio"), "self.config.STARTUP_LOCAL", bool)
-        self.addParam(_(u"Pegar con botón derecho"), "self.config.PASTE_ON_RIGHT_CLICK", bool)
-        self.addParam(_(u"Copiar selección al portapapeles"), "self.config.AUTO_COPY_SELECTION", bool)
-        self.addParam(_("Confirmar al cerrar una consola"), "self.config.CONFIRM_ON_CLOSE_TAB", bool)
-        self.addParam(_("Cerrar consola"), "self.config.AUTO_CLOSE_TAB", list,
-                      [_("Nunca"), _("Siempre"), _(u"Sólo si no hay errores")])
-        self.addParam(_("Confirmar al salir"), "self.config.CONFIRM_ON_EXIT", bool)
+        self.addParam(_("Word separator"), "self.config.WORD_SEPARATORS", str)
+        self.addParam(_(u"Buffer size"), "self.config.BUFFER_LINES", int, 1, 1000000)
+        self.addParam(_("Transparency"), "self.config.TRANSPARENCY", int, 0, 100)
+        self.addParam(_("Logs path"), "self.config.LOG_PATH", str)
+        self.addParam(_("Open local console on startup"), "self.config.STARTUP_LOCAL", bool)
+        self.addParam(_(u"Paste on right click"), "self.config.PASTE_ON_RIGHT_CLICK", bool)
+        self.addParam(_(u"Copy selection to clipboard"), "self.config.AUTO_COPY_SELECTION", bool)
+        self.addParam(_("Confirm on close console"), "self.config.CONFIRM_ON_CLOSE_TAB", bool)
+        self.addParam(_("Close console"), "self.config.AUTO_CLOSE_TAB", list,
+                      [_("Never"), _("Always"), _(u"Only on clean exit")])
+        self.addParam(_("Confirm on exit"), "self.config.CONFIRM_ON_EXIT", bool)
 
         if len(self.config.FONT_COLOR) == 0:
             self.get_widget("chkDefaultColors").set_active(True)
@@ -93,7 +93,7 @@ class Wconfig(SimpleGladeApp):
         # commandos
         self.treeModel = gtk.TreeStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
         self.treeCmd.set_model(self.treeModel)
-        column = gtk.TreeViewColumn(_(u"Acción"), gtk.CellRendererText(), text=0)
+        column = gtk.TreeViewColumn(_(u"Action"), gtk.CellRendererText(), text=0)
         column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
         column.set_expand(True)
         self.treeCmd.append_column(column)
@@ -259,7 +259,7 @@ class Wconfig(SimpleGladeApp):
         self.lblFont.set_sensitive(not widget.get_active())
 
     def on_btnFont_clicked(self, widget, *args):
-        show_font_dialog(self, _("Seleccione la fuente"), self.btnFont)
+        show_font_dialog(self, _("Select font"), self.btnFont)
 
     def on_treeCommands_key_press_event(self, widget, event, *args):
         if self.capture_keys and len(args) == 3 and (event.keyval != gtk.keysyms.Return or
