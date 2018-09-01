@@ -894,9 +894,9 @@ class Wmain(SimpleGladeApp):
 
     def updateTree(self):
         # clean empty groups
-        for grupo in dict(self.config.groups):
-            if len(self.config.groups[grupo]) == 0:
-                del self.config.groups[grupo]
+        for g in dict(self.config.groups):
+            if len(self.config.groups[g]) == 0:
+                del self.config.groups[g]
 
         if not self.config.COLLAPSED_FOLDERS:
             self.config.COLLAPSED_FOLDERS = ','.join(self.get_collapsed_nodes())
@@ -907,15 +907,15 @@ class Wmain(SimpleGladeApp):
         iconHost = self.treeServers.render_icon("gtk-network", size=gtk.ICON_SIZE_BUTTON, detail=None)
         iconDir = self.treeServers.render_icon("gtk-directory", size=gtk.ICON_SIZE_BUTTON, detail=None)
 
-        grupos = self.config.groups.keys()
-        grupos.sort(lambda x, y: cmp(y, x))
+        groups = self.config.groups.keys()
+        groups.sort(lambda x, y: cmp(y, x))
 
-        for grupo in grupos:
+        for g in groups:
             group = None
             path = ""
             menuNode = self.menuServers
 
-            for folder in grupo.split("/"):
+            for folder in g.split("/"):
                 path = path + '/' + folder
                 row = self.get_folder(self.treeModel, '', path)
                 if not row:
@@ -934,8 +934,8 @@ class Wmain(SimpleGladeApp):
                 else:
                     menuNode = menu
 
-            self.config.groups[grupo].sort(key=operator.attrgetter('name'))
-            for host in self.config.groups[grupo]:
+            self.config.groups[g].sort(key=operator.attrgetter('name'))
+            for host in self.config.groups[g]:
                 self.treeModel.append(group, [host.name, host, iconHost])
                 mnuItem = gtk.ImageMenuItem(host.name)
                 mnuItem.set_image(gtk.image_new_from_stock(gtk.STOCK_NETWORK, gtk.ICON_SIZE_MENU))
