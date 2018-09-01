@@ -273,7 +273,11 @@ class Config(object):
     def loadConfig(self):
 
         cp = ConfigParser.RawConfigParser()
-        cp.read(self.config_file)
+        if os.path.exists(self.config_file):
+            cp.read(self.config_file)
+        else:
+            self.writeConfig()
+            cp.read(self.config_file)
 
         # Leer configuracion general
         try:
