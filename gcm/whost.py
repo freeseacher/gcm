@@ -221,7 +221,7 @@ class Whost(SimpleGladeApp):
 
         try:
             # Guardar
-            if not self.config.groups.has_key(group):
+            if not group not in self.config.groups:
                 self.config.groups[group] = []
 
             if self.isNew:
@@ -234,7 +234,7 @@ class Whost(SimpleGladeApp):
             else:
                 if self.oldGroup != group:
                     # revisar que no este el nombre en el nuevo grupo
-                    if not self.config.groups.has_key(group):
+                    if not group not in self.config.groups:
                         self.config.groups[group] = [host]
                     else:
                         for h in self.config.groups[group]:
@@ -309,7 +309,7 @@ class Whost(SimpleGladeApp):
         self.txtPort.set_text(port)
 
     def on_chkKeepAlive_toggled(self, widget, *args):
-        if (widget.get_active()):
+        if widget.get_active():
             self.txtKeepAlive.set_text('120')
         else:
             self.txtKeepAlive.set_text('0')
