@@ -34,39 +34,6 @@ import inspect
 __version__ = "1.0"
 __author__ = 'Sandino "tigrux" Flores-Moreno'
 
-def bindtextdomain(app_name, locale_dir=None):
-    """
-    Bind the domain represented by app_name to the locale directory locale_dir.
-    It has the effect of loading translations, enabling applications for different
-    languages.
-
-    app_name:
-        a domain to look for translations, tipically the name of an application.
-
-    locale_dir:
-        a directory with locales like locale_dir/lang_isocode/LC_MESSAGES/app_name.mo
-        If omitted or None, then the current binding for app_name is used.
-    """
-    try:
-        import locale
-        import gettext
-        locale.setlocale(locale.LC_ALL, "")
-        gtk.glade.bindtextdomain(app_name, locale_dir)
-        gettext.install(app_name, locale_dir, unicode=1)
-    except (IOError,locale.Error), e:
-        #force english as default locale
-        try:
-            os.environ["LANGUAGE"] = "en_US.UTF-8"
-            locale.setlocale(locale.LC_ALL, "en_US.UTF-8")
-            gtk.glade.bindtextdomain(app_name, locale_dir)
-            gettext.install(app_name, locale_dir, unicode=1)
-            return
-        except:
-            #english didnt work, just use spanish
-            try:
-                __builtins__.__dict__["_"] = lambda x : x
-            except:
-                __builtins__["_"] = lambda x : x
 
 class SimpleGladeApp:
 
