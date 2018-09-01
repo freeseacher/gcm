@@ -20,7 +20,7 @@ from wmain import Wmain
 def main():
     gtk.gdk.threads_init()
 
-    conf = Config()
+    Config()
 
     update_localization_files()
 
@@ -30,4 +30,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
