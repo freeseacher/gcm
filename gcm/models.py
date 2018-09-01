@@ -1,6 +1,7 @@
 import vte
 
-class Host():
+
+class Host:
     def __init__(self, *args):
         try:
             self.i = 0
@@ -26,7 +27,7 @@ class Host():
             self.log = self.get_arg(args, False)
             self.backspace_key = self.get_arg(args, int(vte.ERASE_AUTO))
             self.delete_key = self.get_arg(args, int(vte.ERASE_AUTO))
-        except:
+        except KeyError:
             pass
 
     def get_arg(self, args, default):
@@ -35,13 +36,18 @@ class Host():
         return arg
 
     def __repr__(self):
-        return "group=[%s],\t name=[%s],\t host=[%s],\t type=[%s]" % (self.group, self.name, self.host, self.type)
+        return "group=[%s],\t name=[%s],\t host=[%s],\t type=[%s]" % (
+            self.group, self.name, self.host, self.type
+        )
 
     def tunnel_as_string(self):
         return ",".join(self.tunnel)
 
     def clone(self):
-        return Host(self.group, self.name, self.description, self.host, self.user, self.password, self.private_key,
-                    self.port, self.tunnel_as_string(), self.type, self.commands, self.keep_alive, self.font_color,
-                    self.back_color, self.x11, self.agent, self.compression, self.compressionLevel, self.extra_params,
+        return Host(self.group, self.name, self.description,
+                    self.host, self.user, self.password, self.private_key,
+                    self.port, self.tunnel_as_string(), self.type,
+                    self.commands, self.keep_alive, self.font_color,
+                    self.back_color, self.x11, self.agent, self.compression,
+                    self.compressionLevel, self.extra_params,
                     self.log, self.backspace_key, self.delete_key)
