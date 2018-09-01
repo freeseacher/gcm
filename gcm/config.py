@@ -14,8 +14,8 @@ from utils import msgbox, SingletonMeta
 
 from vars import app_fileversion, SSH_BIN, TEL_BIN, SHELL, SSH_COMMAND, DOMAIN_NAME, HSPLIT, VSPLIT, _COPY, _PASTE, \
     _COPY_ALL, _SAVE, _FIND, _CLEAR, _FIND_NEXT, _FIND_BACK, _CONSOLE_PREV, _CONSOLE_NEXT, _CONSOLE_CLOSE, \
-    _CONSOLE_RECONNECT, _CONNECT, ICON_PATH, GLADE_DIR, _CONSOLE_1,_CONSOLE_2,_CONSOLE_3,_CONSOLE_4,\
-    _CONSOLE_5,_CONSOLE_6,_CONSOLE_7,_CONSOLE_8,_CONSOLE_9
+    _CONSOLE_RECONNECT, _CONNECT, ICON_PATH, GLADE_DIR, _CONSOLE_1, _CONSOLE_2, _CONSOLE_3, _CONSOLE_4, \
+    _CONSOLE_5, _CONSOLE_6, _CONSOLE_7, _CONSOLE_8, _CONSOLE_9
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-c', '--configdir', dest='configdir',
@@ -188,7 +188,6 @@ class Config(object):
         except:
             s = ""
         return s
-
 
     def decrypt_old(self, passw, string):
         try:
@@ -396,5 +395,3 @@ class Config(object):
                 self.groups[host.group].append(host)
             except:
                 print "%s: %s" % (_("Invalid entry in configuration file"), sys.exc_info()[1])
-
-
